@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ButtonComponent from './ButtonComponent';
+import ButtonComponent from '../components/ButtonComponent';
 import { shallow } from 'enzyme';
 
 describe('Rendering with ReactDOM', () => {
