@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CardComponent from './CardComponent';
+import CardComponent from '../components/CardComponent';
 import { shallow } from 'enzyme';
 
 describe('Rendering with ReactDOM', () => {
