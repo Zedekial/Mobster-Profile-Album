@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LogoComponent from './LogoComponent';
+import LogoComponent from '../components/LogoComponent';
 import { shallow } from 'enzyme';
 
 describe('Rendering with ReactDOM', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SearchComponent from './SearchComponent';
+import SearchComponent from '../components/SearchComponent';
 import { shallow } from 'enzyme';
 
 describe('Rendering with ReactDOM', () => {

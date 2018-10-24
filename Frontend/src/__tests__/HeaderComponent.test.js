@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HeaderComponent from './HeaderComponent';
+import HeaderComponent from '../components/HeaderComponent';
 import { shallow } from 'enzyme';
 
 describe('Rendering with ReactDOM', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LoginPage from './LoginPage';
+import LoginPage from '../components/LoginPage';
 import { shallow } from 'enzyme';
 
 describe('Rendering with ReactDOM', () => {
