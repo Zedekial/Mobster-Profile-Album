@@ -5,37 +5,31 @@ class CardComponent extends Component {
         super(props);
         this.state = {
             active : true,
-            class: 'show'
+            classFront: 'show',
+            classBack: 'hide',
         };
         this.toggleCard = this.toggleCard.bind(this);
-        this.toggleClass = this.toggleClass.bind(this);
 
     }
     toggleCard(){
         this.setState({active: !this.state.active});
         if(this.state.active){
-            this.setState({class: 'show'});
+            this.setState({classFront: 'show', classBack: 'hide'});
         } else {
-            this.setState({class: 'hide'});
+            this.setState({classFront: 'hide', classBack: 'show'});
         }
         console.log(this.state.active);
     }
-
-    toggleClass(){
-        this.setState({active: this.state.active});
-        console.log(this.state.active);
-    }
-
 
   render() {
 
     return (
       <div >
-        <div className={this.state.class} onClick={this.toggleCard}>
+        <div className={this.state.classFront} onClick={this.toggleCard}>
             <img src={this.props.src}></img>
             <h1>{this.props.name}</h1>
         </div>
-        <div className={this.state.class} onClick={this.toggleCard}>
+        <div className={this.state.classBack} onClick={this.toggleCard}>
             <h2>{this.props.name}</h2>
             <ul>
                 <li>phone: {this.props.phone}</li>
