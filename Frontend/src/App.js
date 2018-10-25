@@ -4,6 +4,13 @@ import './CSS/App.css';
 import HeaderComponent from './components/HeaderComponent';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      auth: 0
+  }
+  
+  }
   render() {
     return (
       <div className="App">
