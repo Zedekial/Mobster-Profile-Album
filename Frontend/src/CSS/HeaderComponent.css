@@ -1,4 +1,14 @@
-.header-logo-mobiquity {
-    height: 3rem;
-    margin-top: 20px;
+.headercomponentlogomobiquity {
+    height: 2.3rem;
+    padding: 10px;
+    padding-top: 15px;
+}
+
+.headercomponentgrow {
+  flex-grow: 1;
+  /* align-self: flex-end; */
+}
+
+.MuiAppBar-colorPrimary-8 {
+  background-color: #fff !important;
 }
