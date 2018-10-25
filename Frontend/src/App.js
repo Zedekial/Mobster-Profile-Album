@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CardComponentContainer from './components/CardComponentContainer';
-import './CSS/App.css';
+// import './CSS/App.css';
 
 class App extends Component {
   render() {

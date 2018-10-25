@@ -1,45 +1,32 @@
 import React, { Component } from 'react';
 import '../CSS/CardComponent.css';
+import { CardMediaComponent } from './CardMediaComponent';
+import { CardDetailsComponent } from './CardDetailsComponent';
 
 class CardComponentContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
-            active : true,
+            active : false,
             classFront: 'card--show',
             classBack: 'card--hide',
         };
         this.toggleCard = this.toggleCard.bind(this);
-
     }
+
     toggleCard(){
         this.setState({active: !this.state.active});
-        if(this.state.active){
-            this.setState({classFront: 'card--show', classBack: 'card--hide'});
-        } else {
-            this.setState({classFront: 'card--hide', classBack: 'card--show'});
-        }
+        this.state.active ? this.setState({classFront: 'card--show', classBack: 'card--hide'}) : this.setState({classFront: 'card--hide', classBack: 'card--show'});
     }
 
-  render() {
-
-    return (
-      <div >
-        <div className={this.state.classFront} onClick={this.toggleCard}>
-            <img src={this.props.src}></img>
-            <h1>{this.props.name}</h1>
+    render() {
+        return (
+        <div className={'card__container'}>
+            <CardMediaComponent src={this.props.src} name={this.props.name} onClick={this.toggleCard} className={`card__media ${this.state.classFront}`}  />
+            <CardDetailsComponent phone={this.props.phone} email={this.props.email} role={this.props.role} name={this.props.name} onClick={this.toggleCard} className={`card__details ${this.state.classBack}`}/>
         </div>
-        <div className={this.state.classBack} onClick={this.toggleCard}>
-            <h2>{this.props.name}</h2>
-            <ul>
-                <li>phone: {this.props.phone}</li>
-                <li>email: {this.props.email}</li>
-                <li>role: {this.props.role}</li>
-            </ul>
-        </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default CardComponentContainer;
