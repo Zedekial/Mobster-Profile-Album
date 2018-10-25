@@ -58,7 +58,7 @@ class SearchComponent extends Component {
     /* Filter search phrase (text typed in input) and return the result */
     let filteredSearch = this.FilterSearch(e.target.value).join("");
 
-    if(e.target.value === '') {
+    if (e.target.value === '') {
       this.setState({
         searchText: '',
         searching: false,
@@ -83,7 +83,7 @@ class SearchComponent extends Component {
     let filteredMobsters = FilterMobsterData(this.state);
 
     return (
-      <div>
+      <div className="searchinput">
         <h4>Search by first name, location or email</h4>
         <input onChange={e => this.HandleSearch(e)} />
         <h2>Searching for: {this.state.searchText}</h2>
@@ -97,15 +97,15 @@ class SearchComponent extends Component {
               )
             })
           ) :
-          (
-            this.state.data.map(mobster => {
-              return (
-                <DisplayTestData
-                mobster={mobster}
-                />
-              )
-            })
-          )
+            (
+              this.state.data.map(mobster => {
+                return (
+                  <DisplayTestData
+                    mobster={mobster}
+                  />
+                )
+              })
+            )
         }
       </div>
     );
@@ -113,30 +113,30 @@ class SearchComponent extends Component {
 }
 
 const FilterMobsterData = (props) => {
-  let allProps = {...props}
+  let allProps = { ...props }
   return allProps.data.filter(mobster =>
     MatchAgainstSearchText(allProps, mobster)
   )
 }
 
 const MatchAgainstSearchText = (props, mobster) => {
-  if(mobster.name.toLowerCase().includes(props.searchText.toLowerCase())) {
+  if (mobster.name.toLowerCase().includes(props.searchText.toLowerCase())) {
     return true
-  }else if(mobster.email.toLowerCase().includes(props.searchText.toLowerCase())) {
+  } else if (mobster.email.toLowerCase().includes(props.searchText.toLowerCase())) {
     return true
-  }else {
+  } else {
     return false
   }
 }
 
 const DisplayTestData = (props) => {
   return (
-      <ul key={props.mobster.name}>
-        <li>{props.mobster.id}</li>
-        <li>{props.mobster.name}</li>
-        <li>{props.mobster.email}</li>
-        <li>{props.mobster.image}</li>
-      </ul>
+    <ul key={props.mobster.name}>
+      <li>{props.mobster.id}</li>
+      <li>{props.mobster.name}</li>
+      <li>{props.mobster.email}</li>
+      <li>{props.mobster.image}</li>
+    </ul>
   )
 }
 
