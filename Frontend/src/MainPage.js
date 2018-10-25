@@ -13,6 +13,10 @@ class App extends Component {
       loading: true,
     }
   }
+  SearchComponentCallBack = (filteredMobsters, searching) => {
+    console.log(filteredMobsters, searching);
+  }
+
   componentDidMount() {
     fetch('https://api.myjson.com/bins/hqo8c')
       .then((res) => res.json())
@@ -28,6 +32,7 @@ class App extends Component {
       <div className="App">
         <HeaderComponent
           state={this.state}
+          SearchComponentCallBack={this.SearchComponentCallBack}
         />
       </div>
     );

@@ -51,13 +51,8 @@ class SearchComponent extends Component {
           <h2>Searching for: {this.state.searchText}</h2>
           {
             this.state.searching ? (
-              filteredMobsters.map(mobster => {
-                return (
-                  <DisplayTestData
-                    mobster={mobster}
-                  />
-                )
-              })
+              this.props.SearchComponentCallBack(filteredMobsters, this.state.searching)
+
             ) :
             (
               this.props.state.data.map(mobster => {

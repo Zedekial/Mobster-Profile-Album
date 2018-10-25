@@ -22,6 +22,7 @@ function HeaderComponent(props) {
           </Typography>
           <SearchComponent
             state={props.state}
+            SearchComponentCallBack={props.SearchComponentCallBack}
           />
           <LoginControlComponent />
         </Toolbar>
