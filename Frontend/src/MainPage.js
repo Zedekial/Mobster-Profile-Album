@@ -3,13 +3,24 @@ import SearchComponent from './components/SearchComponent'
 import './CSS/App.css';
 import HeaderComponent from './components/HeaderComponent';
 import LoginPageComponent from './components/LoginPageComponent'
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      auth: 0
-    }
+import FetchMobsterData from './API/FetchMobstersDataAPI';
 
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+    }
+  }
+  componentDidMount() {
+    let mobsterData = FetchMobsterData()
+    console.log(mobsterData)
+    this.setState({
+      data: mobsterData
+    })
+    setTimeout(() => {
+      console.log(this.state)
+    }, 2000)
   }
   render() {
     return (

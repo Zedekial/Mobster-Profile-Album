@@ -1,5 +1,15 @@
+import DataTest from '../components/dataTest.json';
 
 
-export const FetchMobsterData = () => {
-  let mobsterdata = [];
-}
+const FetchMobsterData = () => {
+  fetch(DataTest)
+    .then(res => {
+      console.log(res)
+      let mobsterData = res
+      return mobsterData
+    })
+
+};
+
+export default FetchMobsterData;
+

@@ -37,15 +37,15 @@
     {
         "id": 6,
         "name": "Snowball",
-        "email": "",
+        "email": "sball@mobiquity.com",
         "role": "Cat",
-        "src":"https://static.simpsonswiki.com/images/a/a6/Snowball_II.png"
+        "src": "https://static.simpsonswiki.com/images/a/a6/Snowball_II.png"
     },
     {
         "id": 7,
         "name": "Santa's Little Helper",
-        "email": "",
+        "email": "littlehelper@email.com",
         "role": "Dog",
-        "src":"https://vignette.wikia.nocookie.net/simpsons/images/2/2c/Santa%27s_Little_Helper.png/revision/latest?cb=20180311074656"
+        "src": "https://vignette.wikia.nocookie.net/simpsons/images/2/2c/Santa%27s_Little_Helper.png/revision/latest?cb=20180311074656"
     }
 ]
