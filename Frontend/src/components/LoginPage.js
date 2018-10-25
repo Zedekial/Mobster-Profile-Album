@@ -5,29 +5,47 @@ import App from '../App'
 class LoginPage extends Component {
   constructor() {
     super();
-    this.state = { redirectToReferrer: false }
-    this.login = this.login.bind(this);
+    this.state = { 
+      redirectToReferrer: false,
+      inputValue: ''
+     }
+    this.handleLogin = this.handleLogin.bind(this);
   }
-  login() {
-    fakeAuth.authenticate(() => { this.setState({ redirectToReferrer: true }) })
+  handleLogin(e) {
+    e.preventDefault();
+    let login = e.target.login.value;
+    let password = e.target.password.value;
+    const  dlogin = 'admin';
+    const dpassword = 'admin';
+    if (dlogin == login && dpassword == password){
+   fakeAuth.authenticate(() => { this.setState({ redirectToReferrer: true }) })
+
+    } else {
+      
+      document.getElementById('myForm').reset();
+
+
+
+      console.log('wrong password');
+
+
+
+    }
     }
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } } 
     const { redirectToReferrer } = this.state;
+    
     
  if (redirectToReferrer) { 
   return ( <Redirect to={from} /> ) }
     return (
       <div>
         <h1>Login Page</h1>
-        <form onSubmit={
-          (e)=>e.preventDefault()
-        }>
-            <input name="login" placeholder="login"></input>
-            <input name="password" placeholder="password"></input>
-            <button type="submit" onClick={
-              this.login
-            }>Login
+        <form id="myForm" onSubmit={this.handleLogin.bind(this)}>
+            <input name="login" placeholder="login" ></input>
+            <input type="password" name="password" placeholder="password" ></input>
+            <button type="submit" value="submit">Login
      </button>
         </form>
       </div>
@@ -35,8 +53,11 @@ class LoginPage extends Component {
   }
 }
 export const fakeAuth = {
-  isAuthenticated: false, authenticate(cb) { 
+  
+  isAuthenticated: false, 
+  authenticate(cb) { 
     this.isAuthenticated = true 
-    setTimeout(cb, 100) },
+    setTimeout(cb, 100)
+   },
  }
  export default LoginPage;
