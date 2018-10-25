@@ -10,6 +10,9 @@ import IconButton from "@material-ui/core/IconButton";
 import LoginControlComponent from './LoginControlComponent';
 // import MenuIcon from "@material-ui/icons/Menu";
 import '../CSS/HeaderComponent.css';
+import { Redirect, Link, Route, Switch } from 'react-router-dom';
+import LoginPageComponent from "./LoginPageComponent";
+
 
 function HeaderComponent(props) {
   return (
@@ -19,9 +22,15 @@ function HeaderComponent(props) {
         <Typography type="title" color="inherit" className={'headercomponentgrow'}>
           <img src="https://www.usvolleybal.nl/wp-content/uploads/2017/10/Logo.png" className={'headercomponentlogomobiquity'}></img>
         </Typography>
-          <LoginControlComponent />
+        <Link to="/login" style={{textDecoration: 'none'}}><LoginControlComponent /></Link>
+          
         </Toolbar>
       </AppBar>
+
+      <Switch>
+        <Route path="/login" component={LoginPageComponent}/>
+        {/* <Route exact path="/" component={App}/> */}
+       </Switch> 
     </div>
   );
 }
