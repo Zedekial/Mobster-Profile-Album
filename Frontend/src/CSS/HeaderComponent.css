@@ -1,12 +1,11 @@
-.headercomponentlogomobiquity {
+.headerwrapper__logo--img {
     height: 2.3rem;
     padding: 10px;
     padding-top: 15px;
 }
 
-.headercomponentgrow {
+.headerwrapper__logo {
   flex-grow: 1;
-  /* align-self: flex-end; */
 }
 
 .MuiAppBar-colorPrimary-8 {
