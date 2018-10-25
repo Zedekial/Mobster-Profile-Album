@@ -10,6 +10,7 @@ class LoginPage extends Component {
       inputValue: ''
      }
     this.handleLogin = this.handleLogin.bind(this);
+    // this.resetLogin = this.resetLogin.bind(this);
   }
   handleLogin(e) {
     e.preventDefault();
@@ -21,17 +22,19 @@ class LoginPage extends Component {
    fakeAuth.authenticate(() => { this.setState({ redirectToReferrer: true }) })
 
     } else {
-
+      // this.refs.form.reset();
+      // e.target.reset();
+      // console.log(this.refs.form);
       document.getElementById('myForm').reset();
-
-
-
+      // this.resetLogin(e);
       console.log('wrong password');
 
-
-
+      }
     }
-    }
+
+  // resetLogin(e){
+  //   this.refs.form.reset();
+  // }
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } }
     const { redirectToReferrer } = this.state;    
@@ -40,9 +43,9 @@ class LoginPage extends Component {
     return (
       <div>
         <h1>Login Page</h1>
-        <form id="myForm" onSubmit={this.handleLogin.bind(this)}>
-            <input name="login" placeholder="login" ></input>
-            <input type="password" name="password" placeholder="password" ></input>
+        <form id="myForm" onSubmit={this.handleLogin}>
+            <input type="text" name="login" placeholder="login" ref="login"></input>
+            <input type="text" name="password" placeholder="password" ref="password"></input>
             <button type="submit" value="submit">Login
      </button>
         </form>
