@@ -15,26 +15,19 @@ class LoginPage extends Component {
     e.preventDefault();
     let login = e.target.login.value;
     let password = e.target.password.value;
-    const  dlogin = 'admin';
+    const dlogin = 'admin';
     const dpassword = 'admin';
     if (dlogin == login && dpassword == password){
    fakeAuth.authenticate(() => { this.setState({ redirectToReferrer: true }) })
 
     } else {
-
       document.getElementById('myForm').reset();
-
-
-
       console.log('wrong password');
-
-
-
-    }
+     }
     }
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } }
-    const { redirectToReferrer } = this.state;    
+    const { redirectToReferrer } = this.state;
  if (redirectToReferrer) {
   return ( <Redirect to={from} /> ) }
     return (

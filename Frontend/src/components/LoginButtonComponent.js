@@ -24,9 +24,9 @@ class LoginButtonComponent extends React.Component {
     let button;
 
     if (isLoggedIn) {
-      button = <Button className={'headercomponentgrow'} color="primary" onClick={this.handleLogoutClick}>Logout</Button>;
+      button = <Button className={'headerwrapper__logo'} color="primary" onClick={this.handleLogoutClick}>Logout</Button>;
     } else {
-      button = <Button className={'headercomponentgrow'} color="primary" onClick={this.handleLoginClick}>Login</Button>;
+      button = <Button className={'headerwrapper__logo'} color="primary" onClick={this.handleLoginClick}>Login</Button>;
     }
 
     return (

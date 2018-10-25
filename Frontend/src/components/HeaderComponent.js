@@ -8,7 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import LoginButtonComponent from './LoginButtonComponent';
-// import MenuIcon from "@material-ui/icons/Menu";
 import '../CSS/HeaderComponent.css';
 import { Redirect, Link, Route, Switch } from 'react-router-dom';
 import LoginPage from "./LoginPage";
@@ -16,20 +15,15 @@ import LoginPage from "./LoginPage";
 
 function HeaderComponent(props) {
   return (
-    <div className={'headercomponentroot'}>
+    <div className={'headerwrapper'}>
       <AppBar position="static" className={'MuiAppBar-colorPrimary-8'}>
         <Toolbar>
-        <Typography type="title" color="inherit" className={'headercomponentgrow'}>
-          <img src="https://www.usvolleybal.nl/wp-content/uploads/2017/10/Logo.png" className={'headercomponentlogomobiquity'}></img>
+        <Typography type="title" color="inherit" className={'headerwrapper__logo'}>
+          <img src="https://www.usvolleybal.nl/wp-content/uploads/2017/10/Logo.png" className={'headerwrapper__logo--img'}></img>
         </Typography>
         <Link to="/login" style={{textDecoration: 'none'}}><LoginButtonComponent /></Link>
-          
         </Toolbar>
       </AppBar>
-
-      <Switch>
-        {/* <Route exact path="/" component={App}/> */}
-       </Switch> 
     </div>
   );
 }
