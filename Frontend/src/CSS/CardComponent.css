@@ -9,6 +9,13 @@
     transition: all .5s ease-out;
 }
 
+.card__grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .card__container {
     font-size: 14px;
     cursor: pointer;
@@ -16,6 +23,7 @@
     height: 250px;
     width: 200px;
     overflow: hidden;
+    margin: 14px;
 }
 
 .card__details {

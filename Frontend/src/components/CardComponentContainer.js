@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../CSS/CardComponent.css';
 import { CardMediaComponent } from './CardMediaComponent';
 import { CardDetailsComponent } from './CardDetailsComponent';
 
