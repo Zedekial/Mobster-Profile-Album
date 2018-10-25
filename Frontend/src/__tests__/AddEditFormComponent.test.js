@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AddEditFormComponent from './AddEditFormComponent';
+import AddEditFormComponent from '../components/AddEditFormComponent';
 import { shallow } from 'enzyme';
 
 describe('Rendering with ReactDOM', () => {
