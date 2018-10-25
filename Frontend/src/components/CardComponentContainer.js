@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import '../CSS/CardComponent.css';
 
-class CardComponent extends Component {
+class CardComponentContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
             active : true,
-            classFront: 'show',
-            classBack: 'hide',
+            classFront: 'card--show',
+            classBack: 'card--hide',
         };
         this.toggleCard = this.toggleCard.bind(this);
 
@@ -14,11 +15,10 @@ class CardComponent extends Component {
     toggleCard(){
         this.setState({active: !this.state.active});
         if(this.state.active){
-            this.setState({classFront: 'show', classBack: 'hide'});
+            this.setState({classFront: 'card--show', classBack: 'card--hide'});
         } else {
-            this.setState({classFront: 'hide', classBack: 'show'});
+            this.setState({classFront: 'card--hide', classBack: 'card--show'});
         }
-        console.log(this.state.active);
     }
 
   render() {
@@ -42,4 +42,4 @@ class CardComponent extends Component {
   }
 }
 
-export default CardComponent;
+export default CardComponentContainer;
