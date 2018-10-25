@@ -1,0 +1,51 @@
+[
+    {
+        "id": 1,
+        "name": "Lisa Simpson",
+        "email": "lisa@email.com",
+        "role": "Older daughter",
+        "src": "https://vignette.wikia.nocookie.net/simpsons/images/e/ed/Lisa-Simpson-icon-1.png/revision/latest?cb=20170628205647"
+    },
+    {
+        "id": 2,
+        "name": "Bart Simpson",
+        "email": "bart@email.com",
+        "role": "Son",
+        "src": "https://static.comicvine.com/uploads/square_small/11/114183/5147868-bart_simpson.png"
+    },
+    {
+        "id": 3,
+        "name": "Maggie Simpson",
+        "email": "meg@email.com",
+        "role": "Younger daughter",
+        "src": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/Maggie_Simpson.png/220px-Maggie_Simpson.png"
+    },
+    {
+        "id": 4,
+        "name": "Homer Simpson",
+        "email": "homer@email.com",
+        "role": "Father",
+        "src": "https://banner2.kisspng.com/20180404/qxq/kisspng-homer-simpson-the-simpsons-tapped-out-bart-simpso-homer-5ac53063b97335.4238462215228724197596.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Marge Simpson",
+        "email": "marge@email.com",
+        "role": "Mother",
+        "src": "https://images.genius.com/a8151ddf1f76e54ba53b8e2c8cb1b5c8.300x300x1.png"
+    },
+    {
+        "id": 6,
+        "name": "Snowball",
+        "email": "",
+        "role": "Cat",
+        "src":"https://static.simpsonswiki.com/images/a/a6/Snowball_II.png"
+    },
+    {
+        "id": 7,
+        "name": "Santa's Little Helper",
+        "email": "",
+        "role": "Dog",
+        "src":"https://vignette.wikia.nocookie.net/simpsons/images/2/2c/Santa%27s_Little_Helper.png/revision/latest?cb=20180311074656"
+    }
+]
