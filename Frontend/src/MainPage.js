@@ -10,25 +10,25 @@ class App extends Component {
     super(props);
     this.state = {
       data: [],
+      loading: true,
     }
   }
   componentDidMount() {
-    let mobsterData = FetchMobsterData()
-    console.log(mobsterData)
-    this.setState({
-      data: mobsterData
-    })
-    setTimeout(() => {
-      console.log(this.state)
-    }, 2000)
+    fetch('https://api.myjson.com/bins/hqo8c')
+      .then((res) => res.json())
+      .then((mobData) => {
+        this.setState({
+          data: mobData,
+          loading: false,
+        })
+      });
   }
   render() {
     return (
       <div className="App">
-        <HeaderComponent />
-        {/* <LoginPageComponent /> */}
-        <h1>The fantastic Mobster Photo Album - v.033a</h1>
-        {/* <SearchComponent /> */}
+        <HeaderComponent
+          state={this.state}
+        />
       </div>
     );
   }

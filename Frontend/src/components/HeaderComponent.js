@@ -20,7 +20,9 @@ function HeaderComponent(props) {
           <Typography type="title" color="inherit" className={'headercomponentgrow'}>
             <img src="https://www.usvolleybal.nl/wp-content/uploads/2017/10/Logo.png" className={'headercomponentlogomobiquity'}></img>
           </Typography>
-          <SearchComponent />
+          <SearchComponent
+            state={props.state}
+          />
           <LoginControlComponent />
         </Toolbar>
       </AppBar>
