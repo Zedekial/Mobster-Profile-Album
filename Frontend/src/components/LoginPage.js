@@ -32,21 +32,9 @@ class LoginPage extends Component {
   }
 }
 
-const readField = () => {
-  console.log('hello readField');
-}
-
 export const fakeAuth = {
   isAuthenticated: false, authenticate(cb) {
     this.isAuthenticated = true
     setTimeout(cb, 100) },
  }
  export default LoginPage;
-
-
- // var loginName = 'admin';
- // var input_value = document.getElementById('loginField').value;
- // console.log(input_value);
- //  if (input_value === loginName) {
- //    console.log(input_value);
- //  }
