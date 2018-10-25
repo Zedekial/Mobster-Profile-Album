@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Redirect, Link, Route, Switch } from 'react-router-dom';
 import App from '../App'
 
-class LoginPageComponent extends Component {
+class LoginPage extends Component {
   constructor() {
     super();
     this.state = { redirectToReferrer: false }
@@ -13,7 +13,8 @@ class LoginPageComponent extends Component {
     }
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } } 
- const { redirectToReferrer } = this.state;
+    const { redirectToReferrer } = this.state;
+    
  if (redirectToReferrer) { 
   return ( <Redirect to={from} /> ) }
     return (
@@ -34,7 +35,8 @@ class LoginPageComponent extends Component {
   }
 }
 export const fakeAuth = {
-  isAuthenticated: false, authenticate(cb) { this.isAuthenticated = true 
-  setTimeout(cb, 100) },
+  isAuthenticated: false, authenticate(cb) { 
+    this.isAuthenticated = true 
+    setTimeout(cb, 100) },
  }
- export default LoginPageComponent;
+ export default LoginPage;

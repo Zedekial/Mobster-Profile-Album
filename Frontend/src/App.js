@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './CSS/App.css';
 import HeaderComponent from './components/HeaderComponent';
-import LoginPageComponent from './components/LoginPageComponent'
+import LoginPage from './components/LoginPage'
+import { Redirect, Link, Route, Switch } from 'react-router-dom';
 
 
 class App extends Component {
@@ -15,10 +16,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      
        <HeaderComponent />
+      
+       <Switch>
+       <Route path="/login" component={LoginPage}/>
+       <Route exact path="/" component={HeaderComponent} />
+       </Switch>
        {/* <LoginPageComponent /> */}
-        <h1>The fantastic Mobster Photo Album - v.033a</h1>
+        
       </div>
     );
   }

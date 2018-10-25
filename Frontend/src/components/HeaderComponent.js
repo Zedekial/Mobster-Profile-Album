@@ -7,11 +7,11 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import LoginControlComponent from './LoginControlComponent';
+import LoginButtonComponent from './LoginButtonComponent';
 // import MenuIcon from "@material-ui/icons/Menu";
 import '../CSS/HeaderComponent.css';
 import { Redirect, Link, Route, Switch } from 'react-router-dom';
-import LoginPageComponent from "./LoginPageComponent";
+import LoginPage from "./LoginPage";
 
 
 function HeaderComponent(props) {
@@ -22,13 +22,12 @@ function HeaderComponent(props) {
         <Typography type="title" color="inherit" className={'headercomponentgrow'}>
           <img src="https://www.usvolleybal.nl/wp-content/uploads/2017/10/Logo.png" className={'headercomponentlogomobiquity'}></img>
         </Typography>
-        <Link to="/login" style={{textDecoration: 'none'}}><LoginControlComponent /></Link>
+        <Link to="/login" style={{textDecoration: 'none'}}><LoginButtonComponent /></Link>
           
         </Toolbar>
       </AppBar>
 
       <Switch>
-        <Route path="/login" component={LoginPageComponent}/>
         {/* <Route exact path="/" component={App}/> */}
        </Switch> 
     </div>

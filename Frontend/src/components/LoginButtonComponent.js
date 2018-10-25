@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import '../CSS/HeaderComponent.css';
 
 
-class LoginControlComponent extends React.Component {
+class LoginButtonComponent extends React.Component {
   constructor(props) {
     super(props);
     this.handleLoginClick = this.handleLoginClick.bind(this);
@@ -37,4 +37,4 @@ class LoginControlComponent extends React.Component {
   }
 }
 
-export default LoginControlComponent;
+export default LoginButtonComponent;
