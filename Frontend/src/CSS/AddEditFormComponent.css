@@ -1,1 +1,32 @@
 /* css for the form */
+.add__user__form{
+    display: block;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.add__user__form__input{
+    height: 50px;
+    width: 100%;
+    outline: 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin: 0 auto;
+    font-size: 17px;
+}
+
+.add__user__form__input::placeholder{
+    color: grey;
+}
+
+.add__user__form__button{
+    background-color: white;
+    padding: 10px 20px 10px 20px;
+    box-shadow: 0px 4px 5px lightgrey;
+    font-size: 17px;
+    color: grey;
+    margin-top: 20px;
+    border: none;
+}
