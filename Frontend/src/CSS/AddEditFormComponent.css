@@ -1,8 +1,12 @@
 /* css for the form */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
 .add__user__form{
     display: block;
     align-items: center;
-    width: 50%;
+    width: 40%;
     margin: 0 auto;
 }
 
@@ -29,4 +33,14 @@
     color: grey;
     margin-top: 20px;
     border: none;
+    cursor: pointer;
+}
+
+.add__user__form__button:focus {
+    outline:0;
+}
+
+.add__user__form__button:hover {
+    background-color: #0f9dce;
+    color: white;
 }

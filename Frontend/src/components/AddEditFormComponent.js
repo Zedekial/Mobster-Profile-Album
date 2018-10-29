@@ -1,24 +1,35 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import '../CSS/AddEditFormComponent.css';
 
 class AddEditFormComponent extends Component {
     constructor(){
         super();
-        this.state = {name:'',email:'',role:'', phone:'',picture:''};
+        this.state = {name:'',email:'',role:'', phone:''};
         this.submitForm = this.submitForm.bind(this);
     }
     
     submitForm(event){
         event.preventDefault();
-        let data = {
-            "name": this.state.name, 
-            "email": this.state.email, 
-            "role": this.state.role,
-            "phone": this.state.phone,
-            "picture": this.state.picture,
-        }
+        let formData = new FormData();
+        let fileField = document.getElementById('picture');
         
-        console.log(data);
+        console.log('file:');
+        console.log(fileField.files[0]);
+        
+        formData.append('name', this.state.name);
+        formData.append('email', this.state.email);
+        formData.append('role', this.state.role);
+        formData.append('phone', this.state.phone);
+        formData.append('picture', fileField.files[0]);
+        
+        axios.post('url', formData)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
         
     }
     setInput(nameInput,e){
@@ -28,13 +39,13 @@ class AddEditFormComponent extends Component {
     render() {
         return (
             <div>
-            <form onSubmit={this.submitForm}>
-                <input id="picture" type="file" value={this.state.picture} onChange={this.setInput.bind(this, 'picture')} accept="image/*"/>
-                <input id="name" type="text" placeholder="Name" value={this.state.name} onChange={this.setInput.bind(this, 'name')}/>
-                <input id="email" type="email" placeholder="Email" value={this.state.email} onChange={this.setInput.bind(this, 'email')}/>
-                <input id="role" type="text" placeholder="Role" value={this.state.role} onChange={this.setInput.bind(this, 'role')}/>
-                <input id="phone" type="text" placeholder="Phone" value={this.state.phone} onChange={this.setInput.bind(this, 'phone')}/>
-                <input type="submit" value="Create"/>
+                <form className="add__user__form" onSubmit={this.submitForm}>
+                <input className="add__user__form__input" id="picture" type="file" accept="image/*"/>
+                <input className="add__user__form__input" id="name" type="text" placeholder="Name" value={this.state.name} onChange={this.setInput.bind(this, 'name')}/>
+                <input className="add__user__form__input" id="email" type="email" placeholder="Email" value={this.state.email} onChange={this.setInput.bind(this, 'email')}/>
+                <input className="add__user__form__input" id="role" type="text" placeholder="Role" value={this.state.role} onChange={this.setInput.bind(this, 'role')}/>
+                <input className="add__user__form__input" id="phone" type="text" placeholder="Phone" value={this.state.phone} onChange={this.setInput.bind(this, 'phone')}/>
+                <input className="add__user__form__button" type="submit" value="Create"/>
             </form>
             </div>
             );
