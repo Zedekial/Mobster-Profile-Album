@@ -15,7 +15,6 @@ module.exports = function() {
   // ======================================
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended: true}));
-  app.use(expressValidator());
   consign({cwd: PATH_ROUTES}).include('routes').into(app);
   app.use(express.static(PUBLIC_RESOURCES));
   return app;

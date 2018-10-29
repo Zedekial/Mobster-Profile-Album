@@ -17,12 +17,12 @@ mongoose.connect(mongodbUrl, { useNewUrlParser: true })
 const MobsterSchema = mongoose.Schema({
         name: {
             type: String,
-            required: 'Please give your firstname',
+            // required: 'Please give your firstname',
             trim: true
         },
         phone: {
             type: String,
-            required: 'Please give your phone number',
+            // required: 'Please give your phone number',
             trim: true
         },
         email: {
@@ -31,11 +31,11 @@ const MobsterSchema = mongoose.Schema({
             lowercase: true,
             trim: true,
             match: [/.+\@.+\..+/, 'Please fill a valid email address'],
-            required: 'Please give your address'
+            // required: 'Please give your address'
         },
         role: {
             type: String,
-            required: 'Please give your role name',
+            // required: 'Please give your role name',
             trim: true
         },
         picture: {

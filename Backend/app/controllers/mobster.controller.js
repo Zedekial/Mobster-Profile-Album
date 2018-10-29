@@ -7,29 +7,30 @@ const fs = require('fs');
 exports.create = (req, res) => {
     var form = new formidable.IncomingForm();
     var dir = path.resolve(__dirname, '..', '..','uploads');
-    let filePath = ''
-    
+    var filePath = ''
+
     if (!fs.existsSync(dir)){
         fs.mkdirSync(dir);
     };
 
     form.maxFileSize = 20 * 1024 * 1024;
-    
+
     form.on('fileBegin', function (name, file){
         file.path = path.resolve(dir, file.name);
         filePath = file.path;
+        console.log(file.path);
     });
-    
-    form.on('error', function(error){
-        res.json({
-            message: error
-        });
-    })
-    
-    form.on('end', function(){
-        res.json({message: 'File uploaded'});
-    })
-    
+
+    // form.on('error', function(error){
+    //     res.json({
+    //         message: error
+    //     });
+    // })
+    //
+    // form.on('end', function(){
+    //     res.json({message: 'File uploaded'});
+    // })
+
     form.parse(req);
 
     const mobster = new Mobster({
@@ -39,7 +40,8 @@ exports.create = (req, res) => {
         role: req.body.role,
         picture: filePath
     });
-    
+    console.log(mobster);
+
     mobster.save()
     .then(data => {
         res.send(data);
