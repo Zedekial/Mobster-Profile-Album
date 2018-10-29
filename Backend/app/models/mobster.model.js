@@ -39,8 +39,7 @@ const MobsterSchema = mongoose.Schema({
             trim: true
         },
         picture: {
-            data: Buffer,
-            contentType: String
+            type: String
         }
     })
 module.exports = mongoose.model('Mobster', MobsterSchema);
