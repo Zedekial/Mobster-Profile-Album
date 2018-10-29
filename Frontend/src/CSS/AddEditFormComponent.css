@@ -44,3 +44,7 @@ input:-webkit-autofill {
     background-color: #0f9dce;
     color: white;
 }
+
+.form__errors{
+    color: red;
+}

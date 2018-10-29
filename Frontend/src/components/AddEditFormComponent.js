@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
+import {FormErrors} from './AddEditFormErrorsComponent';
 import axios from 'axios';
 import '../CSS/AddEditFormComponent.css';
 
 class AddEditFormComponent extends Component {
     constructor(){
         super();
-        this.state = {name:'',email:'',role:'', phone:''};
+        this.state = {
+            name:'',
+            email:'',
+            role:'', 
+            phone:'', 
+            formErrors: {email: '', name: '', role:'', phone:''},
+            emailValid: false,
+            nameValid: false,
+            roleValid: false,
+            phoneValid: false,
+            formValid: false
+        };
         this.submitForm = this.submitForm.bind(this);
+        this.validateField = this.validateField.bind(this);
+        this.validateForm = this.validateForm.bind(this);
+
     }
     
     submitForm(event){
@@ -32,21 +47,64 @@ class AddEditFormComponent extends Component {
         });
         
     }
+
     setInput(nameInput,e){
-        this.setState({[nameInput]: e.target.value});
+        const value=e.target.value;
+        this.setState({[nameInput]: value},
+            () => { this.validateField(nameInput, value) });
     }
-    
+
+    validateField(fieldName, value) {
+        let fieldValidationErrors = this.state.formErrors;
+        let emailValid = this.state.emailValid;
+        let nameValid = this.state.nameValid;
+        let roleValid = this.state.roleValid;
+        let phoneValid = this.state.phoneValid;
+      
+        switch(fieldName) {
+            case 'email':
+                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+                fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+                break;
+            case 'name':
+                nameValid = value.length > 0;
+                fieldValidationErrors.name = nameValid ? '': ' is invalid';
+                break;
+            case 'role':
+                roleValid = value.length > 0;
+                fieldValidationErrors.role = roleValid ? '': ' is invalid';
+                break;
+            case 'phone':
+                phoneValid = value.match(/[0-9]{11}/);
+                fieldValidationErrors.phone = phoneValid ? '': ' is invalid';
+                break;
+            default:
+                break;
+        }
+        this.setState({formErrors: fieldValidationErrors,
+                        emailValid: emailValid,
+                        nameValid: nameValid,
+                        roleValid: roleValid,
+                        phoneValid: phoneValid
+                      }, this.validateForm);
+      }
+      
+      validateForm() {
+        this.setState({formValid: this.state.emailValid && this.state.nameValid && this.state.roleValid && this.state.phoneValid});
+      }
+      
     render() {
         return (
-            <div>
-                <form className="add__user__form" onSubmit={this.submitForm}>
+            <div className="add__user__form">
+                <form onSubmit={this.submitForm}>
                 <input className="add__user__form__input" id="picture" type="file" accept="image/*"/>
                 <input className="add__user__form__input" id="name" type="text" placeholder="Name" value={this.state.name} onChange={this.setInput.bind(this, 'name')}/>
                 <input className="add__user__form__input" id="email" type="email" placeholder="Email" value={this.state.email} onChange={this.setInput.bind(this, 'email')}/>
                 <input className="add__user__form__input" id="role" type="text" placeholder="Role" value={this.state.role} onChange={this.setInput.bind(this, 'role')}/>
                 <input className="add__user__form__input" id="phone" type="text" placeholder="Phone" value={this.state.phone} onChange={this.setInput.bind(this, 'phone')}/>
-                <input className="add__user__form__button" type="submit" value="Create"/>
+                <input className="add__user__form__button" type="submit" value="Create" disabled={!this.state.formValid}/>
             </form>
+            <FormErrors formErrors={this.state.formErrors} />
             </div>
             );
         }
