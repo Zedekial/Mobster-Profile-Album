@@ -13,7 +13,7 @@ class SearchComponent extends Component {
     /* Filter search phrase (text typed in input) and return the result */
     let filteredSearch = this.FilterSearch(e.target.value).join("");
 
-    if(e.target.value === '') {
+    if (e.target.value === '') {
       this.setState({
         searchText: '',
         searching: false,
@@ -35,7 +35,7 @@ class SearchComponent extends Component {
   };
 
   render() {
-    if(this.props.state.loading) {
+    if (this.props.state.loading) {
       return (
         <div className='searchinput'>
           <h1>Loading</h1>
@@ -54,20 +54,22 @@ class SearchComponent extends Component {
               this.props.SearchComponentCallBack(filteredMobsters, this.state.searching)
 
             ) :
-            (
-              this.props.state.data.map(mobster => {
-                return (
-                  <DisplayTestData
-                  mobster={mobster}
-                  />
-                )
-              })
-            )
+              (
+
+                this.props.SearchComponentCallBack(null, this.state.searching)
+                // this.props.state.data.map(mobster => {
+                //   return (
+                //     <DisplayTestData
+                //     mobster={mobster}
+                //     />
+                //   )
+                // })
+              )
           }
         </div>
       );
     }
-    }
+  }
 
 }
 
@@ -78,23 +80,23 @@ const FilterMobsterData = (mobsterData, searchText) => {
 }
 
 const MatchAgainstSearchText = (mobster, searchText) => {
-  if(mobster.name.toLowerCase().includes(searchText.toLowerCase())) {
+  if (mobster.name.toLowerCase().includes(searchText.toLowerCase())) {
     return true
-  }else if(mobster.email.toLowerCase().includes(searchText.toLowerCase())) {
+  } else if (mobster.email.toLowerCase().includes(searchText.toLowerCase())) {
     return true
-  }else {
+  } else {
     return false
   }
 }
 
 const DisplayTestData = (props) => {
   return (
-      <ul key={props.mobster.name}>
-        <li>{props.mobster.id}</li>
-        <li>{props.mobster.name}</li>
-        <li>{props.mobster.email}</li>
-        <li>{props.mobster.image}</li>
-      </ul>
+    <ul key={props.mobster.name}>
+      <li>{props.mobster.id}</li>
+      <li>{props.mobster.name}</li>
+      <li>{props.mobster.email}</li>
+      <li>{props.mobster.image}</li>
+    </ul>
   )
 }
 
