@@ -6,4 +6,10 @@ ul, li {
 
 .searchinput {
   color: black;
+  flex-grow: 2;
+  margin-bottom: 10px;
+}
+
+.invalid-search {
+  border: solid 3px red;
 }
