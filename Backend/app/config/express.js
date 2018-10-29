@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const consign = require('consign');
-const expressValidator = require('express-validator');
 const path =require('path');
 
 const PUBLIC_RESOURCES = path.resolve(__dirname, '..', '..', '..', 'Frontend');
