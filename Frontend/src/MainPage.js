@@ -5,17 +5,18 @@ import CardGridComponent from './components/CardGridComponent'
 import LoginPage, { fakeAuth } from './components/LoginPage'
 import { Redirect, Link, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
+import FooterComponent from './components/FooterComponent';
 
 /* From login/header branch */
-const Admin = () => ( <div> <h2>I am in GOD MODE ADMIN</h2> </div> )
+const Admin = () => (<div> <h2>I am in GOD MODE ADMIN</h2> </div>)
 
-const PrivateRoute = ({component: Component, ...rest}) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
       render={(props) => fakeAuth.isAuthenticated === true
         ? <Component {...props} />
-        : <Redirect to={{pathname: '/', state: {from: props.location}}} />} />
+        : <Redirect to={{ pathname: '/', state: { from: props.location } }} />} />
   )
 }
 /* ^From login/header branch^ */
@@ -38,20 +39,20 @@ class App extends Component {
     return (
       <CardGridComponent
         list={this.state.searching ?
-              this.state.filteredMobsterData :
-              this.state.data}
+          this.state.filteredMobsterData :
+          this.state.data}
       />
     )
   }
 
   /* From login/header branch */
   MyLoginPage = (props) => {
-   return (
-     <LoginPage
-       UpdateLoginState={this.UpdateLoginState}
-       {...props} state={this.state}
-     />
-   );
+    return (
+      <LoginPage
+        UpdateLoginState={this.UpdateLoginState}
+        {...props} state={this.state}
+      />
+    );
   }
 
   UpdateLoginState = () => {
@@ -72,7 +73,7 @@ class App extends Component {
 
 
   SearchComponentCallBack = (filteredMobsters, searching) => {
-    switch(filteredMobsters) {
+    switch (filteredMobsters) {
       case null:
       case []:
         this.setState({
@@ -115,8 +116,9 @@ class App extends Component {
         <Switch>
           <Route exact path='/' render={this.CardGridComponentWithProps} />
           <Route path="/login" render={this.MyLoginPage} />
-          <PrivateRoute path='/admin' component = {Admin} />
+          <PrivateRoute path='/admin' component={Admin} />
         </Switch>
+        <FooterComponent />
       </div>
     );
   }

@@ -1,12 +1,12 @@
-.Site {
+/* .Site {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-}
+} */
 
-.Site-content {
+/* .Site-content {
   flex: 1;
-}
+} */
 
 .footer {
   height: 70px;
