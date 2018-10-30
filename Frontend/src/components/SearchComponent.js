@@ -48,7 +48,7 @@ class SearchComponent extends Component {
 
   FilterSearch = searchPhrase => {
     let filteredSearchPhrase = searchPhrase.split("").filter(letter => {
-      return /^[A-Z]+$|\@/i.test(letter);
+      return /^[A-Z]+$/i.test(letter);
     });
 
     if (filteredSearchPhrase.length === 0) {
@@ -80,19 +80,15 @@ class SearchComponent extends Component {
 }
 
 const FilterMobsterData = (mobsterData, searchText) => {
-  // if(searchText === '') {
-  //   return 'Invalid Data'
-  // } else {
     return mobsterData.filter(mobster =>
       MatchAgainstSearchText(mobster, searchText)
     )
-  // }
 }
 
 const MatchAgainstSearchText = (mobster, searchText) => {
   if (mobster.name.toLowerCase().includes(searchText.toLowerCase())) {
     return true
-  } else if (mobster.email.toLowerCase().includes(searchText.toLowerCase())) {
+  } else if (mobster.email.replace('@email.com', '').replace('@mobiquity.com', '').toLowerCase().includes(searchText.toLowerCase())) {
     return true
   } else {
     return false
