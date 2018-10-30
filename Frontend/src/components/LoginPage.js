@@ -1,13 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Redirect, Link, Route, Switch } from 'react-router-dom';
-import App from '../App'
+import LoginFormComponent from './LoginFormComponent';
+
+export const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true
+    setTimeout(cb, 100)
+  },
+}
 
 class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirectToReferrer: false,
-      inputValue: ''
+      redirectToReferrer: false
      }
     this.handleLogin = this.handleLogin.bind(this);
   }
@@ -24,10 +31,8 @@ class LoginPage extends Component {
       this.setState({ redirectToReferrer: true }) 
     });
       this.props.updateLoginState();
-
-
     } else {
-      document.getElementById('myForm').reset();
+      e.target.reset();
       console.log('wrong password');
     }
   }
@@ -37,25 +42,8 @@ class LoginPage extends Component {
     const { redirectToReferrer } = this.state;
     if (redirectToReferrer) {
       return ( <Redirect to={from} /> ) }
-      return (
-      <div>
-        <h1>Login Page</h1>
-        <form id="myForm" onSubmit={this.handleLogin}>
-            <input type="text" name="login" placeholder="login" ref="login"></input>
-            <input type="text" name="password" placeholder="password" ref="password"></input>
-            <button type="submit" value="submit">Login</button>
-            
-        </form>
-      </div>
-      )
+      return <LoginFormComponent onSubmit={this.handleLogin}/>
   }
 }
 
-export const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100)
-   },
- }
  export default LoginPage;
