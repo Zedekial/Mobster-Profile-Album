@@ -15,7 +15,7 @@ exports.create = (req, res) => {
     };
     
     form.maxFileSize = 20 * 1024 * 1024;
-    
+
     form.on('fileBegin', function (name, file){
         file.path = path.resolve(dir, file.name);
         mobsterData[name] = file.name;
