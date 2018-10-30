@@ -10,22 +10,31 @@ class App extends Component {
       data: [],
       loading: true,
       filterMobsterData: [],
+      searching: false,
     }
   }
 
-  SearchComponentCallBack = (filteredMobsters) => {
+  SearchComponentCallBack = (filteredMobsters, searching) => {
     switch(filteredMobsters) {
       case null:
       case []:
-        // console.log(`You are passing null, ${JSON.stringify(filteredMobsters)}`)
+        this.setState({
+          searching: searching,
+        }, () => {
+          console.log(`Null or empty array, ${JSON.stringify(this.state)}`)
+        })
+        console.log(`You are passing null, ${JSON.stringify(filteredMobsters)}`)
         break;
       case undefined:
-        // console.log(`Something went wrong undefined data`)
+        console.log(`Something went wrong undefined data`)
         break;
       default:
-        // console.log(`Filtered data received, ${JSON.stringify(filteredMobsters)}`)
+        console.log(`Filtered data received, ${JSON.stringify(filteredMobsters)}`)
         this.setState({
           filteredMobstersData: filteredMobsters,
+          searching: searching,
+        }, () => {
+          console.log(`Fitered data, ${JSON.stringify(this.state)}`)
         })
         break;
     }

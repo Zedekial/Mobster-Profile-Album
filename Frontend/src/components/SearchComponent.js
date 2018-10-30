@@ -20,7 +20,7 @@ class SearchComponent extends Component {
         searchText: '',
         searching: false,
       }, () => {
-        this.props.SearchComponentCallBack(null);
+        this.props.SearchComponentCallBack(null, this.state.searching);
       })
     } else {
       this.setState({
@@ -28,7 +28,7 @@ class SearchComponent extends Component {
         searching: true,
       }, () => {
         let filteredMobsters = FilterMobsterData(this.props.state.data, this.state.searchText);
-        this.props.SearchComponentCallBack(filteredMobsters);
+        this.props.SearchComponentCallBack(filteredMobsters, this.state.searching);
       });
 
     }
