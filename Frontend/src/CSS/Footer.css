@@ -1,0 +1,27 @@
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
+}
+
+.footer {
+  height: 70px;
+  background: #0f9dce;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-icon-container {
+  margin: 10px auto;
+  padding: 10px;
+}
+
+.footer-icon {
+  font-size: 2rem;
+  margin: 5px 15px;
+  color: #fff;
+}
