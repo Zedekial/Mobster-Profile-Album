@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+var linkJSON = require('./link.json')
 
 // Configuring the database
-const mongodbUrl = 'mongodb://localhost:27017/mobsters';
+const mongodbUrl = linkJSON.link;
 
 mongoose.Promise = global.Promise;
 
