@@ -15,7 +15,7 @@ const PrivateRoute = ({component: Component, ...rest}) => {
       {...rest}
       render={(props) => fakeAuth.isAuthenticated === true
         ? <Component {...props} />
-        : <Redirect to={{pathname: '/login', state: {from: props.location}}} />} />
+        : <Redirect to={{pathname: '/', state: {from: props.location}}} />} />
   )
 }
 /* ^From login/header branch^ */
@@ -30,25 +30,43 @@ class App extends Component {
       filteredMobsterData: [],
       searching: false,
       LoggedIn: false,
+      LoggingIn: false,
     }
+  }
+
+  CardGridComponentWithProps = () => {
+    return (
+      <CardGridComponent
+        list={this.state.searching ?
+              this.state.filteredMobsterData :
+              this.state.data}
+      />
+    )
   }
 
   /* From login/header branch */
   MyLoginPage = (props) => {
    return (
      <LoginPage
-       updateLoginState={this.updateLoginState}
-       {...props} mainState={this.state}
+       UpdateLoginState={this.UpdateLoginState}
+       {...props} state={this.state}
      />
    );
   }
 
-  updateLoginState = () => {
+  UpdateLoginState = () => {
     if (this.state.LoggedIn === false) {
-      this.setState({ LoggedIn: true });
+      this.setState({
+        LoggedIn: true,
+        LoggingIn: false,
+      });
     } else {
       this.setState({ LoggedIn: false });
     }
+  }
+
+  UpdateLoggingIn = () => {
+    this.setState({ LoggingIn: true })
   }
   /* ^From login/header branch^ */
 
@@ -91,14 +109,11 @@ class App extends Component {
         <HeaderComponent
           state={this.state}
           SearchComponentCallBack={this.SearchComponentCallBack}
-          updateLoginState={this.updateLoginState}
-        />
-        <CardGridComponent
-          list={this.state.searching ?
-                this.state.filteredMobsterData :
-                this.state.data}
+          UpdateLoginState={this.UpdateLoginState}
+          UpdateLoggingIn={this.UpdateLoggingIn}
         />
         <Switch>
+          <Route exact path='/' render={this.CardGridComponentWithProps} />
           <Route path="/login" render={this.MyLoginPage} />
           <PrivateRoute path='/admin' component = {Admin} />
         </Switch>

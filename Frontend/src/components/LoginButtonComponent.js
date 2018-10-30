@@ -6,32 +6,24 @@ import '../CSS/HeaderComponent.css';
 class LoginButtonComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.handleLoginClick = this.handleLoginClick.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
     this.state = {isLoggedIn: false};
   }
 
-  handleLoginClick() {
-    // this.setState({isLoggedIn: true});
-    console.log(this.props.state.LoggedIn);
+  handleLogoutClick = () => {
+    this.props.UpdateLoginState();
   }
 
-  handleLogoutClick() {
-    // this.setState({isLoggedIn: false});
-    
-    this.props.updateLoginState();
+  handleLoggingIn = () => {
+    this.props.UpdateLoggingIn();
   }
 
   render() {
-    console.log(`LoginButton props is ${JSON.stringify(this.props)}`)
-    // var isLoggedIn = this.state.isLoggedIn;
-    // console.log(this.props.mainState.LoggedIn);
     let button;
 
     if (this.props.state.LoggedIn) {
       button = <Button className={'headerwrapper__logo'} color="primary" onClick={this.handleLogoutClick}>Logout</Button>;
     } else {
-      button = <Button className={'headerwrapper__logo'} color="primary" onClick={this.handleLoginClick} >Login</Button>;
+      button = <Button className={'headerwrapper__logo'} color="primary" onClick={this.handleLoggingIn}>Login</Button>;
     }
 
     return (

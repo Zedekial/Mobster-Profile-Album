@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 export const CardDetailsComponent = (props) => {
     return (
@@ -12,4 +12,3 @@ export const CardDetailsComponent = (props) => {
         </div>
         );
     }
-    

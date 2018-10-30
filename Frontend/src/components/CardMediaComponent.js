@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 export const CardMediaComponent = (props) => {
-    return ( 
+    return (
         <div onClick={props.onClick} className={props.className}>
-        <img src={props.src}></img>
+        <img alt={props.name + ' img'} src={props.src}></img>
         <h1>{props.name}</h1>
         </div>
         );
