@@ -12,21 +12,26 @@ class LoginButtonComponent extends React.Component {
   }
 
   handleLoginClick() {
-    this.setState({isLoggedIn: true});
+    // this.setState({isLoggedIn: true});
+    console.log(this.props.mainState.LoggedIn);
   }
 
   handleLogoutClick() {
-    this.setState({isLoggedIn: false});
+    // this.setState({isLoggedIn: false});
+    
+    this.props.updateLoginState();
   }
 
   render() {
-    const isLoggedIn = this.state.isLoggedIn;
+    console.log(`LoginButton props is ${JSON.stringify(this.props)}`)
+    // var isLoggedIn = this.state.isLoggedIn;
+    // console.log(this.props.mainState.LoggedIn);
     let button;
 
-    if (isLoggedIn) {
+    if (this.props.mainState.LoggedIn) {
       button = <Button className={'headerwrapper__logo'} color="primary" onClick={this.handleLogoutClick}>Logout</Button>;
     } else {
-      button = <Button className={'headerwrapper__logo'} color="primary" onClick={this.handleLoginClick}>Login</Button>;
+      button = <Button className={'headerwrapper__logo'} color="primary" onClick={this.handleLoginClick} >Login</Button>;
     }
 
     return (

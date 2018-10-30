@@ -14,6 +14,7 @@ import LoginPage from "./LoginPage";
 
 
 function HeaderComponent(props) {
+  console.log(`HeaderComp props is, ${JSON.stringify(props)}`);
   return (
     <div className={'headerwrapper'}>
       <AppBar position="static" className={'MuiAppBar-colorPrimary-8'}>
@@ -21,7 +22,12 @@ function HeaderComponent(props) {
         <Typography type="title" color="inherit" className={'headerwrapper__logo'}>
           <img src="https://www.usvolleybal.nl/wp-content/uploads/2017/10/Logo.png" className={'headerwrapper__logo--img'}></img>
         </Typography>
-        <Link to="/login" style={{textDecoration: 'none'}}><LoginButtonComponent /></Link>
+        <Link to="/login" style={{textDecoration: 'none'}}>
+          <LoginButtonComponent 
+            mainState={props.mainState} 
+            updateLoginState={props.updateLoginState} 
+          />
+        </Link>
         </Toolbar>
       </AppBar>
     </div>
