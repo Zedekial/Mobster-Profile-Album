@@ -63,7 +63,7 @@ class SearchComponent extends Component {
     if (this.props.state.loading) {
       return (
         <div className='searchinput'>
-          <h1>Loading</h1>
+          <h1>Loading..</h1>
         </div>
       )
 
@@ -71,7 +71,7 @@ class SearchComponent extends Component {
       return (
         <div className='searchinput'>
           <h4>Search by first name, location or email</h4>
-          <input onChange={e => this.HandleSearch(e)} />
+          <p>Search:</p><input onChange={e => this.HandleSearch(e)} />
         </div>
       );
     }

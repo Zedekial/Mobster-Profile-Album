@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './CSS/App.css';
 import HeaderComponent from './components/HeaderComponent';
+import CardGridComponent from './components/CardGridComponent'
 import axios from 'axios';
 
 class App extends Component {
@@ -9,7 +10,7 @@ class App extends Component {
     this.state = {
       data: [],
       loading: true,
-      filterMobsterData: [],
+      filteredMobsterData: [],
       searching: false,
     }
   }
@@ -20,21 +21,14 @@ class App extends Component {
       case []:
         this.setState({
           searching: searching,
-        }, () => {
-          console.log(`Null or empty array, ${JSON.stringify(this.state)}`)
         })
-        console.log(`You are passing null, ${JSON.stringify(filteredMobsters)}`)
         break;
       case undefined:
-        console.log(`Something went wrong undefined data`)
         break;
       default:
-        console.log(`Filtered data received, ${JSON.stringify(filteredMobsters)}`)
         this.setState({
-          filteredMobstersData: filteredMobsters,
+          filteredMobsterData: filteredMobsters,
           searching: searching,
-        }, () => {
-          console.log(`Fitered data, ${JSON.stringify(this.state)}`)
         })
         break;
     }
@@ -60,7 +54,9 @@ class App extends Component {
           SearchComponentCallBack={this.SearchComponentCallBack}
         />
         <CardGridComponent
-          list={dataTest}
+          list={this.state.searching ?
+                this.state.filteredMobsterData :
+                this.state.data}
         />
       </div>
     );
