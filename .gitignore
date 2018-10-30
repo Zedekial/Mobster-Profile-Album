@@ -4,6 +4,7 @@
 /Frontend/node_modules
 /Backend/node_modules
 /Backend/uploads
+/Backend/app/models/link.json
 
 # testing
 /coverage
