@@ -6,7 +6,8 @@ const fs = require('fs');
 // POST
 exports.create = (req, res) => {
     let form = new formidable.IncomingForm();
-    let dir = path.resolve(__dirname, '..', '..','uploads');
+    let dir = path.resolve(__dirname, '..', '..','..','Frontend', 'uploads');
+    console.log(dir);
     let mobsterData = {};
     
     if (!fs.existsSync(dir)){
