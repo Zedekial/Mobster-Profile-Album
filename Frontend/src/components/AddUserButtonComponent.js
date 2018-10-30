@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-    
+import '../CSS/AddUserButtonComponent.css';
+
 class AddUserButtonComponent extends Component {
-    render() {
-        if(this.props.mainState) {
-            return(
-                <Router>
-                    <div>
-                        <button>
-                            <Link to="/add">Add User</Link>
-                        </button>
-                        <Route path="/add" component={AddEditFormComponent} />
-                    </div>
-                </Router>
-            )
-            } else {
-                return null
-            }
-            
+    render() { 
+        return(
+            this.props.state.LoggedIn &&
+            <button className={'add__user__button'}>+</button>
+        )  
         }
     }
-    
-    export default AddUserButtonComponent;
+export default AddUserButtonComponent;
