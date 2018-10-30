@@ -2,7 +2,6 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import '../CSS/HeaderComponent.css';
 
-
 class LoginButtonComponent extends React.Component {
   constructor(props) {
     super(props);
