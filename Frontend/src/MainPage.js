@@ -59,6 +59,9 @@ class App extends Component {
           state={this.state}
           SearchComponentCallBack={this.SearchComponentCallBack}
         />
+        <CardGridComponent
+          list={dataTest}
+        />
       </div>
     );
   }
