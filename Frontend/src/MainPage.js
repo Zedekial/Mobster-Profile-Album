@@ -10,15 +10,10 @@ class App extends Component {
       data: [],
       loading: true,
       filterMobsterData: [],
-      invalidSearch: false,
     }
   }
 
-  SearchComponentCallBack = (filteredMobsters, searching) => {
-    if(filteredMobsters !== 'Invalid Data') {
-      this.setState({ invalidSearch: false })
-    }
-
+  SearchComponentCallBack = (filteredMobsters) => {
     switch(filteredMobsters) {
       case null:
       case []:
@@ -26,10 +21,6 @@ class App extends Component {
         break;
       case undefined:
         // console.log(`Something went wrong undefined data`)
-        break;
-      case 'Invalid Data':
-        // console.log(`You have searched something invalid, perhaps a number or symbol, ${JSON.stringify(filteredMobsters)}`)
-        this.setState({ invalidSearch: true })
         break;
       default:
         // console.log(`Filtered data received, ${JSON.stringify(filteredMobsters)}`)
@@ -47,6 +38,9 @@ class App extends Component {
           data: response.data,
           loading: false,
         })
+      })
+      .catch(err => {
+        console.log(`Data failed to fetch`)
       })
   }
   render() {

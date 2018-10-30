@@ -12,49 +12,54 @@ class SearchComponent extends Component {
   HandleSearch = e => {
     /* Filter search phrase (text typed in input) and return the result */
     let filteredSearch = this.FilterSearch(e.target.value).join("");
-    let searchInput = document.getElementsByClassName('searchinput')[0];
 
-    if (this.props.state.invalidSearch) {
-      console.log(`invalidSearch is true, ${this.props.state.invalidSearch}`)
-      searchInput.classList.add('invalid-search');
-    } else {
-      searchInput.classList.remove('invalid-search')
-    }
 
     if (e.target.value === '') {
+      this.HandleInvalidSearch(false);
       this.setState({
         searchText: '',
         searching: false,
+      }, () => {
+        this.props.SearchComponentCallBack(null);
       })
     } else {
-      if (this.state.searching) {
+      this.setState({
+        searchText: filteredSearch,
+        searching: true,
+      }, () => {
         let filteredMobsters = FilterMobsterData(this.props.state.data, this.state.searchText);
+        this.props.SearchComponentCallBack(filteredMobsters);
+      });
 
-        this.setState({
-          searchText: filteredSearch,
-        })
-        this.props.SearchComponentCallBack(filteredMobsters, this.state.searching)
-      } else if (this.state.searching === false) {
-        this.setState({
-          searchText: filteredSearch,
-          searching: true
-        })
-        
-        this.props.SearchComponentCallBack(null, this.state.searching)
-      }
     }
+
+
   };
 
+  HandleInvalidSearch = (isInvalid) => {
+    let searchInput = document.getElementsByClassName('searchinput')[0];
+
+    if(isInvalid) {
+      searchInput.classList.add('invalid-search');
+    }else {
+      searchInput.classList.remove('invalid-search');
+    }
+  }
+
   FilterSearch = searchPhrase => {
-    let filteredSearchPhrase = searchPhrase.split("");
-    let finalFilteredPhrase = filteredSearchPhrase.filter(letter => {
+    let filteredSearchPhrase = searchPhrase.split("").filter(letter => {
       return /^[A-Z]+$|\@/i.test(letter);
     });
-    return finalFilteredPhrase;
+
+    if (filteredSearchPhrase.length === 0) {
+      this.HandleInvalidSearch(true);
+    } else {
+      this.HandleInvalidSearch(false);
+    }
+    return filteredSearchPhrase;
   };
 
   render() {
-    console.log(this.state.searchText)
     if (this.props.state.loading) {
       return (
         <div className='searchinput'>
@@ -75,14 +80,13 @@ class SearchComponent extends Component {
 }
 
 const FilterMobsterData = (mobsterData, searchText) => {
-  if(searchText === '') {
-    console.log(`Searchtext is empty, this could be because of numbers or symbols`)
-    return 'Invalid Data'
-  } else {
+  // if(searchText === '') {
+  //   return 'Invalid Data'
+  // } else {
     return mobsterData.filter(mobster =>
       MatchAgainstSearchText(mobster, searchText)
     )
-  }
+  // }
 }
 
 const MatchAgainstSearchText = (mobster, searchText) => {
