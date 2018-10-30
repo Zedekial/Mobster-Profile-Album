@@ -2,13 +2,22 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import LoginControlComponent from './LoginControlComponent';
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+
+import LoginButtonComponent from './LoginButtonComponent';
+import { Redirect, Link, Route, Switch } from 'react-router-dom';
+import LoginPage from "./LoginPage";
+
+// import LoginControlComponent from './LoginControlComponent';
+
 import '../CSS/HeaderComponent.css';
 import SearchComponent from '../components/SearchComponent'
 
 function HeaderComponent(props) {
+  console.log(`HeaderComp props is, ${JSON.stringify(props)}`);
   return (
-    <div className={'headercomponentroot'}>
+    <div className={'headerwrapper'}>
       <AppBar position="static" className={'MuiAppBar-colorPrimary-8'}>
         <Toolbar>
           <Typography type="title" color="inherit" className={'headercomponentgrow'}>
@@ -18,7 +27,12 @@ function HeaderComponent(props) {
             state={props.state}
             SearchComponentCallBack={props.SearchComponentCallBack}
           />
-          <LoginControlComponent />
+          <Link to="/login" style={{textDecoration: 'none'}}>
+            <LoginButtonComponent
+              state={props.state}
+              updateLoginState={props.updateLoginState}
+            />
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
