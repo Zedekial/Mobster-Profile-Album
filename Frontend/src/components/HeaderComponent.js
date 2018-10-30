@@ -22,10 +22,13 @@ function HeaderComponent(props) {
           <Typography type="title" color="inherit" className={'headerwrapper__logo'}>
             <img alt ="MobiquityInc Logo" src="https://www.usvolleybal.nl/wp-content/uploads/2017/10/Logo.png" className={'headerwrapper__logo--img'}></img>
           </Typography>
-          <SearchComponent
-            state={props.state}
-            SearchComponentCallBack={props.SearchComponentCallBack}
-          />
+          {
+            !props.state.LoggingIn &&
+            <SearchComponent
+              state={props.state}
+              SearchComponentCallBack={props.SearchComponentCallBack}
+            />
+          }
           <Link to={ props.state.LoggedIn ? '/' : '/login' } style={{textDecoration: 'none'}}>
           {
             !props.state.LoggingIn &&
