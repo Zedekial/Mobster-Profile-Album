@@ -1,6 +1,4 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import '../CSS/HeaderComponent.css';
 
 class LoginButtonComponent extends React.Component {
   constructor(props) {
@@ -20,9 +18,9 @@ class LoginButtonComponent extends React.Component {
     let button;
 
     if (this.props.state.LoggedIn) {
-      button = <Button className={'headerwrapper__logo'} color="primary" onClick={this.handleLogoutClick}>Logout</Button>;
+      button = <button className={'standard__button__style'} onClick={this.handleLogoutClick}>Logout</button>;
     } else {
-      button = <Button className={'headerwrapper__logo'} color="primary" onClick={this.handleLoggingIn}>Login</Button>;
+      button = <button className={'standard__button__style'} onClick={this.handleLoggingIn}>Login</button>;
     }
 
     return (

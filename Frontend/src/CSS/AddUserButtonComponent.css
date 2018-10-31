@@ -1,11 +1,11 @@
 .add__user__button{
     background-color:  #0f9dce;
-    padding: 10px 20px 10px 20px;
-    box-shadow: 0px 4px 5px lightgrey;
-    font-size: 32px;
+    padding: 20px;
+    /* box-shadow: 0px 4px 5px lightgrey; */
+    font-size: 28px;
     color: white;
-    margin: 40px;
-    border: none;
+    margin: 20px;
+    /* border: none; */
     border-radius: 50%;
     cursor: pointer;
     position: fixed;
@@ -13,10 +13,8 @@
     right: 0;
 }
 
-.add__user__button:focus {
-    outline:0;
-}
+
 
 .add__user__button:hover {
-    color: white;
+    /* color: white; */
 }

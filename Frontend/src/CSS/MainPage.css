@@ -8,11 +8,12 @@
   padding: 10px 20px 10px 20px;
   border: none;
   cursor: pointer;
-  background-color: white;
-  color: #0f9dce;
-  font-size: 20px;
+  background-color: #0f9dce;
+  color: white;
+  font-size: 18px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 7px;
+  border-radius: 8px;
+  margin: 4px;
 }
 
 .standard__button__style:focus {
@@ -20,7 +21,7 @@
 }
 
 .standard__button__style:hover{
-  background-color: #0f9dce;
+  background-color: #098bb6;
   color: white;
 }
 
