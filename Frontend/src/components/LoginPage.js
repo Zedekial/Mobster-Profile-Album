@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import MainPage from '../MainPage';
-import LoginFormComponent from './LoginFormComponent'
+import LoginFormComponent from './LoginFormComponent';
 
 export const fakeAuth = {
   isAuthenticated: false,
