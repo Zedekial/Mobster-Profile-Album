@@ -6,6 +6,7 @@ import LoginPage, { fakeAuth } from './components/LoginPage'
 import { Redirect, Link, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import AddUserButtonComponent from './components/AddUserButtonComponent'
+import AddEditFormComponent from './components/AddEditFormComponent'
 import FooterComponent from './components/FooterComponent';
 
 /* From login/header branch */
