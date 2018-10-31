@@ -98,12 +98,12 @@ class AddEditFormComponent extends Component {
             <div className="add__user__form">
                 <h1>Add new mobster</h1>
                 <form onSubmit={this.submitForm}>
-                    <input className="add__user__form__input" id="name" type="text" placeholder="Name" value={this.state.name} onChange={this.setInput.bind(this, 'name')}/>
-                    <input className="add__user__form__input" id="email" type="email" placeholder="Email" value={this.state.email} onChange={this.setInput.bind(this, 'email')}/>
-                    <input className="add__user__form__input" id="role" type="text" placeholder="Role" value={this.state.role} onChange={this.setInput.bind(this, 'role')}/>
-                    <input className="add__user__form__input" id="phone" type="text" placeholder="Phone" value={this.state.phone} onChange={this.setInput.bind(this, 'phone')}/>
-                    <input className="add__user__form__input" id="picture" type="file" accept="image/*"/>
-                    <input className="add__user__form__button" type="submit" value="Create" disabled={!this.state.formValid}/>
+                    <input className="standard__input__style add__user__form__input" id="name" type="text" placeholder="Name" value={this.state.name} onChange={this.setInput.bind(this, 'name')}/>
+                    <input className="standard__input__style add__user__form__input" id="email" type="email" placeholder="Email" value={this.state.email} onChange={this.setInput.bind(this, 'email')}/>
+                    <input className="standard__input__style add__user__form__input" id="role" type="text" placeholder="Role" value={this.state.role} onChange={this.setInput.bind(this, 'role')}/>
+                    <input className="standard__input__style add__user__form__input" id="phone" type="text" placeholder="Phone" value={this.state.phone} onChange={this.setInput.bind(this, 'phone')}/>
+                    <input className="standard__input__style add__user__form__input" id="picture" type="file" accept="image/*"/>
+                    <input className="standard__button__style add__user__form__button" type="submit" value="Create" disabled={!this.state.formValid}/>
                 </form>
             <FormErrors formErrors={this.state.formErrors} />
             </div>

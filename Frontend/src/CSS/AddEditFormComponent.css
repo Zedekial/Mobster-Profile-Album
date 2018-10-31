@@ -1,8 +1,4 @@
 /* css for the form */
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px white inset;
-}
-
 .add__user__form{
     display: block;
     align-items: center;
@@ -18,40 +14,12 @@ input:-webkit-autofill {
 
 .add__user__form__input{
     padding-top: 40px;
-    width: 100%;
-    outline: 0;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    margin: 0 auto;
-    font-size: 17px;
-}
-
-.add__user__form__input::placeholder{
-    color: grey;
 }
 
 .add__user__form__button{
     display: block;
     margin: 0 auto;
     margin-top: 60px;
-    padding: 10px 20px 10px 20px;
-    border: none;
-    cursor: pointer;
-    background-color: white;
-    color: #0f9dce;
-    font-size: 20px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 7px;
-}
-
-.add__user__form__button:focus {
-    outline:0;
-}
-
-.add__user__form__button:hover {
-    background-color: #0f9dce;
-    color: white;
 }
 
 .form__errors{
