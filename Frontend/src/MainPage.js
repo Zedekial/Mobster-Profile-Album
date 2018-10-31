@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './CSS/App.css';
+import './CSS/MainPage.css';
 import HeaderComponent from './components/HeaderComponent';
 import CardGridComponent from './components/CardGridComponent'
 import LoginPage, { fakeAuth } from './components/LoginPage'
@@ -8,6 +8,26 @@ import axios from 'axios';
 import AddUserButtonComponent from './components/AddUserButtonComponent'
 import AddEditFormComponent from './components/AddEditFormComponent'
 import FooterComponent from './components/FooterComponent';
+
+/* Font Awesome imports */
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+/* You must import your icon below this line  */
+import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faCheckSquare, faCoffee)
+
+/*
+  ^ To add an icon to the library add it in the import above, ^
+    then add it to the library
+
+  First use this link to import the library in your app ->
+  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+  Then if you wish to use the icon in the library you use this format
+  <FontAwesomeIcon icon="coffee" />
+*/
+
+/* ^Font Awesome imports^ */
 
 /* From login/header branch */
 const Admin = () => (<div> <h2>I am in GOD MODE ADMIN</h2> </div>)
@@ -94,7 +114,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/mobsters')
+    axios.get('https://api.myjson.com/bins/msk5m')
       .then(response => {
         this.setState({
           data: response.data,
