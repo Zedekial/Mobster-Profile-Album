@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Configuring the database
-const mongodbUrl = 'mongodb://localhost:27017/mobsters-album';
+const mongodbUrl = 'mongodb://localhost:27017/mobsters';
 
 mongoose.Promise = global.Promise;
 
@@ -17,26 +17,26 @@ mongoose.connect(mongodbUrl, { useNewUrlParser: true })
 const MobsterSchema = mongoose.Schema({
         name: {
             type: String,
-            required: 'Please give your firstname',
-            trim: true
+            // required: 'Please give your firstname',
+            // trim: true
         },
         phone: {
             type: String,
-            required: 'Please give your phone number',
-            trim: true
+            // required: 'Please give your phone number',
+            // trim: true
         },
         email: {
             type: String,
-            unique: true,
-            lowercase: true,
-            trim: true,
-            match: [/.+\@.+\..+/, 'Please fill a valid email address'],
-            required: 'Please give your address'
+            // unique: true,
+            // lowercase: true,
+            // trim: true,
+            // match: [/.+\@.+\..+/, 'Please fill a valid email address'],
+            // required: 'Please give your address'
         },
         role: {
             type: String,
-            required: 'Please give your role name',
-            trim: true
+            // required: 'Please give your role name',
+            // trim: true
         },
         picture: {
             type: String

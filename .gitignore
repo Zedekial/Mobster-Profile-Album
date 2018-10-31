@@ -3,6 +3,8 @@
 # dependencies
 /Frontend/node_modules
 ../package-lock.json
+/Backend/node_modules
+/Backend/uploads
 
 # testing
 /coverage
