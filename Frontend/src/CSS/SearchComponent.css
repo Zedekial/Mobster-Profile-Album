@@ -6,6 +6,7 @@ ul, li {
 
 .searchinput {
   flex-grow: 1.5;
+  color: black;
 }
 
 .input {
