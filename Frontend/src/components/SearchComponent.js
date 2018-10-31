@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
-
 import "../CSS/SearchComponent.css";
-
-
 
 class SearchComponent extends Component {
   state = {
