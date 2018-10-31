@@ -38,7 +38,7 @@ class AddEditFormComponent extends Component {
         formData.append('phone', this.state.phone);
         formData.append('picture', fileField.files[0]);
         
-        axios.post('url', formData)
+        axios.post('/mobsters', formData)
         .then(function (response) {
             console.log(response);
         })
