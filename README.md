@@ -4,6 +4,7 @@
 - [Working on the project](#Working-on-the-project)
 - [Teams](#Teams)
 - [Dependancies & setup](#Dependancies-&-setup)
+- [Standard CSS file] (#CSS-default-classes)
 
 
 # About
@@ -15,6 +16,9 @@
 - If it is a page component name it 'PageName' + Page, for example HomePage or UserPage
 - If it is a component to be nested the name should be 'CompName' + Component, for example SearchComponent
 
+##CSS default classes
+- The standard class for buttons is standard__button__style;
+- The standard class for form inputs is standard__input__style;
 
 ### Working on the project
 - During development each team will create a development branch for their project
