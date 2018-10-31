@@ -9,32 +9,32 @@ exports.create = (req, res) => {
     let dir = path.resolve(__dirname, '..', '..','..','Frontend', 'uploads');
     console.log(dir);
     let mobsterData = {};
-    
+
     if (!fs.existsSync(dir)){
         fs.mkdirSync(dir);
     };
-    
+
     form.maxFileSize = 20 * 1024 * 1024;
-    
+
     form.on('fileBegin', function (name, file){
         file.path = path.resolve(dir, file.name);
         mobsterData[name] = file.name;
     });
-    
+
     form.on('field', function(name, value) {
         mobsterData[name] = value;
     });
-    
+
     form.on('error', function(error){
         res.json({
             message: error
         });
     })
-    
+
     form.on('end', function(){
         console.log(mobsterData);
         const mobster = new Mobster(mobsterData);
-        
+
         mobster.save()
         .then(data => {
             res.send(data);
@@ -44,10 +44,10 @@ exports.create = (req, res) => {
             });
         });
     })
-    
+
     form.parse(req);
-    
-    
+
+
 };
 
 // GET
