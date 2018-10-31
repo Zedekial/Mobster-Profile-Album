@@ -1,17 +1,18 @@
-.headerwrapper__logo--img {
-    height: 2.3rem;
-    padding: 10px;
-    padding-top: 15px;
+.header__container {
+  padding: 18px;
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 0px 8px grey;
+  box-sizing: border-box;
 }
 
-.headerwrapper__logo {
-  flex-grow: 1;
+.header__logo__img {
+  height: 100%;
 }
 
-.MuiAppBar-colorPrimary-8 {
-  background-color: #fff !important;
+.header__logo {
+  height: 48px;
 }
 
-.MuiButton-textPrimary-79 {
- color: #0f9dce !important;
-}
