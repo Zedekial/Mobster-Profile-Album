@@ -47,5 +47,54 @@
         "email": "littlehelper@email.com",
         "role": "Dog",
         "src": "https://vignette.wikia.nocookie.net/simpsons/images/2/2c/Santa%27s_Little_Helper.png/revision/latest?cb=20180311074656"
+    },
+    {
+        "id": 8,
+        "name": "Chocobo",
+        "email": "choc@email.com",
+        "role": "Mount",
+        "src": "https://steamuserimages-a.akamaihd.net/ugc/939436531231930827/3ABF690CFE58A3D7B7E3C279316D1602D56CE32A/"
+    },
+    {
+        "id": 9,
+        "name": "Cactaur",
+        "email": "thousandneedles@email.com",
+        "role": "Evasive",
+        "src": "https://thumbs.mic.com/ZDg2MzI5NDFhNSMvZE9XMm9mQ1QwV0VhUGtreUtWRThxZlQ0N0M4PS8zOHg4MDoyNTE0eDEzNTIvODAweDQ1MC9maWx0ZXJzOmZvcm1hdChqcGVnKTpxdWFsaXR5KDgwKS9odHRwczovL3MzLmFtYXpvbmF3cy5jb20vcG9saWN5bWljLWltYWdlcy9uNXlwb2VmMHdkazFpN3d0anBtamdwdHVrZzR6bWticHZhcThscWV5eWYwcXdtaGlzaDBtNHVtazlqbG5oeTZkLmpwZw.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Moogle",
+        "email": "mog@email.com",
+        "role": "Helper",
+        "src": "https://vignette.wikia.nocookie.net/monster-strike-enjp/images/c/c9/2499.png/revision/latest?cb=20170218051039"
+    },
+    {
+        "id": 11,
+        "name": "Iron Giant",
+        "email": "igiant@email.com",
+        "role": "Giant",
+        "src": "http://www.game-art-hq.com/wp-content/uploads/2016/08/Iron-Giant-Final-Fantasy-Type-0-Render.png"
+    },
+    {
+        "id": 12,
+        "name": "Tonberry",
+        "email": "tberry@email.com",
+        "role": "Chef",
+        "src": "https://vignette.wikia.nocookie.net/finalfantasy/images/7/70/WoFF_Tonberry.png/revision/latest?cb=20161105140848"
+    },
+    {
+        "id": 13,
+        "name": "Flan",
+        "email": "jellyflan@mobiquity.com",
+        "role": "Monster",
+        "src": "https://vignette.wikia.nocookie.net/finalfantasy/images/d/dd/XII_flan_render.png/revision/latest?cb=20130708042457"
+    },
+    {
+        "id": 14,
+        "name": "Malboro",
+        "email": "mal@email.com",
+        "role": "Monster",
+        "src": "https://vignette.wikia.nocookie.net/finalfantasy/images/8/81/FF8_Malboro.png/revision/latest?cb=20120506184202"
     }
 ]
