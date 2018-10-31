@@ -20,10 +20,10 @@ class LoginPage extends Component {
     let login = e.target.login.value;
     let password = e.target.password.value;
 
-    if (dlogin === login && dpassword === password){
+    if (dlogin === login && dpassword === password) {
       fakeAuth.authenticate(() => {
-      this.setState({ redirectToReferrer: true })
-    });
+        this.setState({ redirectToReferrer: true })
+      });
       this.props.UpdateLoginState();
 
 
@@ -37,18 +37,19 @@ class LoginPage extends Component {
     const { from } = this.props.location.state || { from: { pathname: '/' } }
     const { redirectToReferrer } = this.state;
     if (redirectToReferrer) {
-      return ( <Redirect to={from} /> ) }
-      return (
+      return (<Redirect to={from} />)
+    }
+    return (
       <div>
         <h1>Login Page</h1>
         <form id="myForm" onSubmit={this.handleLogin}>
-            <input type="text" name="login" placeholder="login" ref="login"></input>
-            <input type="text" name="password" placeholder="password" ref="password"></input>
-            <button type="submit" value="submit">Login</button>
+          <input type="text" name="login" placeholder="login" ref="login"></input>
+          <input type="password" name="password" placeholder="password" ref="password"></input>
+          <button type="submit" value="submit">Login</button>
 
         </form>
       </div>
-      )
+    )
   }
 }
 
@@ -57,6 +58,6 @@ export const fakeAuth = {
   authenticate(cb) {
     this.isAuthenticated = true
     setTimeout(cb, 100)
-   },
- }
- export default LoginPage;
+  },
+}
+export default LoginPage;

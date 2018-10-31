@@ -1,5 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
+
 import "../CSS/SearchComponent.css";
+
+
 
 class SearchComponent extends Component {
   state = {
@@ -7,7 +13,6 @@ class SearchComponent extends Component {
     searching: false,
     filteredData: [],
   };
-
   /* This function is called when you start typing in the input */
   HandleSearch = e => {
     /* Filter search phrase (text typed in input) and return the result */
@@ -37,12 +42,13 @@ class SearchComponent extends Component {
   };
 
   HandleInvalidSearch = (isInvalid) => {
-    let searchInput = document.getElementsByClassName('searchinput')[0];
-
-    if(isInvalid) {
-      searchInput.classList.add('invalid-search');
-    }else {
-      searchInput.classList.remove('invalid-search');
+    let searchInput = document.getElementsByClassName('input')[0];
+    if (isInvalid) {
+      searchInput.classList.remove('MuiInput-underline-116');
+      searchInput.classList.add('invalid-input');
+    } else {
+      searchInput.classList.remove('invalid-input');
+      searchInput.classList.add('MuiInput-underline-116');
     }
   }
 
@@ -69,9 +75,25 @@ class SearchComponent extends Component {
 
     } else {
       return (
+
         <div className='searchinput'>
-          <h4>Search by first name, location or email</h4>
-          <p>Search:</p><input onChange={e => this.HandleSearch(e)} />
+          {/* <h4>Search by first name, location or email</h4>
+          <p>Search:</p><input onChange={e => this.HandleSearch(e)} /> */}
+          <Input
+            placeholder="Search Mobster"
+            className='input'
+            inputProps={{
+              'aria-label': 'Description',
+
+            }}
+            startAdornment={
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            }
+            onChange={e => this.HandleSearch(e)}
+          />
+          <span className="errorMessage"></span>
         </div>
       );
     }
@@ -80,13 +102,9 @@ class SearchComponent extends Component {
 }
 
 const FilterMobsterData = (mobsterData, searchText) => {
-  // if(searchText === '') {
-  //   return 'Invalid Data'
-  // } else {
-    return mobsterData.filter(mobster =>
-      MatchAgainstSearchText(mobster, searchText)
-    )
-  // }
+  return mobsterData.filter(mobster =>
+    MatchAgainstSearchText(mobster, searchText)
+  )
 }
 
 const MatchAgainstSearchText = (mobster, searchText) => {
