@@ -13,8 +13,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    flex: 1;
+    margin-top: 50px;
 }
+
+
 
 .card__container {
     font-size: 14px;
@@ -23,14 +25,21 @@
     height: 250px;
     width: 200px;
     overflow: hidden;
-    margin: 14px;
+    margin: 35px;
+}
+
+.card__container:hover {
+    box-shadow: 1px 1px 8px #0f9dce;
 }
 
 .card__details {
     position: relative;
     padding: 12px;
     background-color: white;
+    opacity: 0.95;
+    text-align: left;
 }
+
 .card__media {
     position: relative;
 }
@@ -46,8 +55,14 @@
     border-bottom: 1px solid grey;
 }
 
-.card__media h1 {
+.card__media h1,h2 {
     font-size: 16px;
     vertical-align: middle;
-    padding-left: 8px; 
+    text-align: center;
+    padding-left: 8px;
+}
+
+.edit__icon {
+    position: absolute;
+    z-index: 1
 }
