@@ -3,6 +3,9 @@
 # dependencies
 /Frontend/node_modules
 ../package-lock.json
+/Backend/node_modules
+/Backend/uploads
+/Backend/app/models/link.json
 
 # testing
 /coverage

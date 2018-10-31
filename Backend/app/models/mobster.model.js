@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+var linkJSON = require('./link.json')
 
 // Configuring the database
-const mongodbUrl = 'mongodb://localhost:27017/mobsters-album';
+const mongodbUrl = linkJSON.link;
 
 mongoose.Promise = global.Promise;
 
@@ -17,7 +18,7 @@ mongoose.connect(mongodbUrl, { useNewUrlParser: true })
 const MobsterSchema = mongoose.Schema({
         name: {
             type: String,
-            required: 'Please give your firstname',
+            required: 'Please give your name',
             trim: true
         },
         phone: {
@@ -27,20 +28,18 @@ const MobsterSchema = mongoose.Schema({
         },
         email: {
             type: String,
-            unique: true,
             lowercase: true,
             trim: true,
             match: [/.+\@.+\..+/, 'Please fill a valid email address'],
-            required: 'Please give your address'
+            required: 'Please give your email address'
         },
         role: {
             type: String,
-            required: 'Please give your role name',
+            required: 'Please give your role',
             trim: true
         },
-        picture: {
-            data: Buffer,
-            contentType: String
+        src: {
+            type: String
         }
     })
 module.exports = mongoose.model('Mobster', MobsterSchema);
