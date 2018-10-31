@@ -4,3 +4,47 @@
   flex-direction: column;
 }
 
+.standard__button__style{
+  padding: 10px 20px 10px 20px;
+  border: none;
+  cursor: pointer;
+  background-color: white;
+  color: #0f9dce;
+  font-size: 20px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+}
+
+.standard__button__style:focus {
+  outline-width: 0;
+}
+
+.standard__button__style:hover{
+  background-color: #0f9dce;
+  color: white;
+}
+
+.standard__input__style{
+  width: 100%;
+  outline: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin: 0 auto;
+  font-size: 17px;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+::placeholder{
+  font-size: 20px;
+}
+
+
+
