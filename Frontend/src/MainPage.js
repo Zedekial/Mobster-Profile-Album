@@ -5,6 +5,7 @@ import CardGridComponent from './components/CardGridComponent'
 import LoginPage, { fakeAuth } from './components/LoginPage'
 import { Redirect, Link, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
+import AddUserButtonComponent from './components/AddUserButtonComponent'
 import FooterComponent from './components/FooterComponent';
 
 /* From login/header branch */
@@ -117,6 +118,15 @@ class App extends Component {
           <Route exact path='/' render={this.CardGridComponentWithProps} />
           <Route path="/login" render={this.MyLoginPage} />
           <PrivateRoute path='/admin' component={Admin} />
+        </Switch>
+        <Switch>
+          <div>
+            <Link to="/add">
+              <AddUserButtonComponent
+                state={this.state}/>
+            </Link>
+          <Route path="/add" component={AddEditFormComponent} />
+          </div>
         </Switch>
         <FooterComponent />
       </div>
