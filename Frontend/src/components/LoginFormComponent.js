@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../CSS/LoginPageComponent.css';
 
 class LoginFormComponent extends React.Component{
-    constructor(props){
-        super(props);
-    }
     render() {
         return(
             <div className="login__form__container">
