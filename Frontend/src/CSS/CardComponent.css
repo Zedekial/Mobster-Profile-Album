@@ -9,14 +9,12 @@
 }
 
 .card__grid {
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 50px;
+    margin: 50px auto;
 }
-
-
 
 .card__container {
     font-size: 14px;
