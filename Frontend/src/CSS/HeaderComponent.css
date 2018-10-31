@@ -6,6 +6,11 @@
   align-items: center;
   box-shadow: 0px 0px 8px grey;
   box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  background-color: white;
 }
 
 .header__logo__img {
