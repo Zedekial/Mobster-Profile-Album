@@ -1,15 +1,17 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../CSS/Footer.css'
-function Footer() {
+
+const Footer = () => {
   return (
-    <div className="footer">
-      <div className="footer-icon-container">
-        <a href="https://www.linkedin.com/company/mobiquity-inc-europe" target="_blank" rel="noopener noreferrer"><span className="footer-icon"><i className="fab fa-linkedin"></i></span></a>
-        <a href="https://www.instagram.com/mobiquityeu/?hl=en" target="_blank" rel="noopener noreferrer"><span className="footer-icon"><i className="fab fa-instagram"></i></span></a>
-        <a href="https://www.facebook.com/Mobiquity/" target="_blank" rel="noopener noreferrer"><span className="footer-icon"><i className="fab fa-facebook"></i></span></a>
-        <a href="https://twitter.com/mobiquityincEU" target="_blank" rel="noopener noreferrer"><span className="footer-icon"><i className="fab fa-twitter"></i></span></a>
+    <footer className="footer__container">
+      <div className="footer__icon__container">
+        <a href="https://www.linkedin.com/company/mobiquity-inc-europe" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon className="footer__icon" icon={['fab', 'linkedin']}/></a>
+        <a href="https://www.instagram.com/mobiquityeu/?hl=en" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon className="footer__icon" icon={['fab', 'instagram']}/></a>
+        <a href="https://www.facebook.com/Mobiquity/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon className="footer__icon" icon={['fab', 'facebook']}/></a>
+        <a href="https://twitter.com/mobiquityincEU" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon className="footer__icon" icon={['fab', 'twitter']}/></a>
       </div>
-    </div>
+    </footer>
   )
 }
 
