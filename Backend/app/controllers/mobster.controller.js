@@ -1,22 +1,53 @@
 const Mobster = require('../models/mobster.model.js');
+const formidable = require('formidable');
+const path = require('path');
+const fs = require('fs');
 
 // POST
 exports.create = (req, res) => {
-    const mobster = new Mobster({
-        name: req.body.name,
-        phone: req.body.phone,
-        email: req.body.email,
-        role: req.body.role
-    });
+    let form = new formidable.IncomingForm();
+    let dir = path.resolve(__dirname, '..', '..','..','Frontend', 'uploads');
+    console.log(dir);
+    let mobsterData = {};
+    
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    };
+    
+    form.maxFileSize = 20 * 1024 * 1024;
 
-    mobster.save()
-    .then(data => {
-        res.send(data);
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message
-        });
+    form.on('fileBegin', function (name, file){
+        file.path = path.resolve(dir, file.name);
+        mobsterData[name] = file.name;
     });
+    
+    form.on('field', function(name, value) {
+        mobsterData[name] = value;
+    });
+    
+    form.on('error', function(error){
+        res.json({
+            message: error
+        });
+    })
+    
+    form.on('end', function(){
+        console.log(mobsterData);
+        const mobster = new Mobster(mobsterData);
+        
+        mobster.save()
+        .then(data => {
+            res.send(data);
+        }).catch(err => {
+            res.send({
+                message: err.message
+            });
+        });
+    })
+    
+    form.parse(req);
+    
+    
 };
 
 // GET
@@ -58,7 +89,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     Mobster.findByIdAndUpdate(req.params.mobsterid, {
         name: req.body.name,
-		    phone: req.body.phone,
+        phone: req.body.phone,
         email: req.body.email,
         role: req.body.role
     }, {new: true})

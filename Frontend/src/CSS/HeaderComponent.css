@@ -1,0 +1,17 @@
+.headerwrapper__logo--img {
+    height: 2.3rem;
+    padding: 10px;
+    padding-top: 15px;
+}
+
+.headerwrapper__logo {
+  flex-grow: 1;
+}
+
+.MuiAppBar-colorPrimary-8 {
+  background-color: #fff !important;
+}
+
+.MuiButton-textPrimary-79 {
+ color: #0f9dce !important;
+}

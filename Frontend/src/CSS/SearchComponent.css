@@ -1,0 +1,28 @@
+ul, li {
+  list-style: none;
+  padding: 0;
+  color: black;
+}
+
+.searchinput {
+  flex-grow: 1.5;
+  color: black;
+}
+
+.input {
+  margin: 10px;
+  width: 200px;
+}
+
+.invalid-input {
+  border-bottom: 1px solid #f44336 !important;
+  color: #f44336 !important;
+}
+
+.MuiInput-underline-116:before {
+  border-bottom: 1px solid lightgray !important;
+}
+
+.MuiInput-underline-116:after {
+  border-bottom: 1px solid #0f9dce !important;
+}
