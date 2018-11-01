@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 export const CardDetailsComponent = (props) => {
     const showMore = () => {
         console.log(props);
+        console.log(`ID of mobster is ${props.id}`);
     }
     return (
         <div onClick={props.onClick} className={props.className}>

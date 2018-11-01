@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 export default class EditUserButtonComponent extends Component {
   render() {
+    console.log(this.props);
     return (
       this.props.state && 
       <Link to={'/edit'}>

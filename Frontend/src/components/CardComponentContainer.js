@@ -22,12 +22,11 @@ class CardComponentContainer extends Component {
     }
 
     render() {
-        console.log(this.props.state);
         return (
         <div className={'card__container'}>
-            <EditUserButtonComponent state={this.props.state}/>
+            <EditUserButtonComponent props={this.props} state={this.props.state}/>
             <CardMediaComponent src={this.props.src} name={this.props.name} onClick={this.toggleCard} className={`card__media ${this.state.classFront}`}  />
-            <CardDetailsComponent phone={this.props.phone} email={this.props.email} role={this.props.role} name={this.props.name} onClick={this.toggleCard} className={`card__details ${this.state.classBack}`}/>
+            <CardDetailsComponent id={this.props.id} phone={this.props.phone} email={this.props.email} role={this.props.role} name={this.props.name} onClick={this.toggleCard} className={`card__details ${this.state.classBack}`}/>
         </div>
         );
     }
