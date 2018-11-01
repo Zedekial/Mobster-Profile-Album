@@ -12,8 +12,12 @@ import FooterComponent from './components/FooterComponent';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* You must import your icon below this line  */
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faPlus);
+import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
+
+library.add(fab, faUserEdit, faEye);
+
+
 
 /*
 ^ To add an icon to the library add it in the import above, ^
@@ -62,6 +66,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           list={this.state.searching ?
             this.state.filteredMobsterData :
             this.state.data}
+            state={this.state.LoggedIn}
             />
             )
           }
@@ -138,6 +143,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
                   <Route exact path='/' render={this.CardGridComponentWithProps} />
                   <Route path="/login" render={this.MyLoginPage} />
                   <Route path="/add" component={AddEditFormComponent} />
+                  <Route path="/edit" component={AddEditFormComponent} />
+                  
+
                   <PrivateRoute path='/admin' component={Admin} />
                 </Switch>
                 <FooterComponent />
