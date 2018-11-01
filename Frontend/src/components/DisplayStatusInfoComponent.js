@@ -4,7 +4,7 @@ import '../CSS/DisplayStatusInfoComponent.css'
 const LoadingMessage = () => {
   console.log('LoadingMessage')
   return (
-    <h1>Loding!</h1>
+    <h1>Loading!</h1>
   )
 }
 
