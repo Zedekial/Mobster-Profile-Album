@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {FormErrors} from './AddEditFormErrorsComponent';
 import BackButtonComponent from './BackButtonComponent';
+import AlertComponent from './AlertComponent';
 import axios from 'axios';
 import '../CSS/AddEditFormComponent.css';
 
@@ -13,6 +14,7 @@ class AddEditFormComponent extends Component {
             role:'', 
             phone:'', 
             formErrors: {email: '', name: '', role:'', phone:''},
+            alert: {class: '', message: ''},
             emailValid: false,
             nameValid: false,
             roleValid: false,
@@ -104,6 +106,7 @@ class AddEditFormComponent extends Component {
                     <input className="standard__input__style add__user__form__input" id="role" type="text" placeholder="Role" value={this.state.role} onChange={this.setInput.bind(this, 'role')}/>
                     <input className="standard__input__style add__user__form__input" id="phone" type="text" placeholder="Phone" value={this.state.phone} onChange={this.setInput.bind(this, 'phone')}/>
                     <input className="standard__input__style add__user__form__input" id="picture" type="file" accept="image/*"/>
+                    <AlertComponent className={this.state.alert.class} message={this.state.alert.message}/>
                     <div className="add__user__form__buttons">
                     <input className="standard__button__style" type="submit" value="Save" disabled={!this.state.formValid}/>
                     <BackButtonComponent/>
