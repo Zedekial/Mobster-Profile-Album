@@ -18,6 +18,9 @@ const HeaderComponent = (props) => {
               SearchComponentCallBack={props.SearchComponentCallBack}
             />
           }
+          <Link to={props.state.LoggedIn ? '/add' : '/login' }>
+                <AddUserButtonComponent state={props.state}/>
+          </Link>
           <Link to={ props.state.LoggedIn ? '/' : '/login' } style={{textDecoration: 'none'}}>
           {
             !props.state.LoggingIn &&
@@ -27,9 +30,6 @@ const HeaderComponent = (props) => {
             UpdateLoggingIn={props.UpdateLoggingIn}
             />
           }
-          </Link>
-          <Link to={props.state.LoggedIn ? '/add' : '/login' }>
-                <AddUserButtonComponent state={props.state}/>
           </Link>
     </header>
   );
