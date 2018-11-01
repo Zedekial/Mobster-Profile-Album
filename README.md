@@ -16,7 +16,7 @@
 - If it is a page component name it 'PageName' + Page, for example HomePage or UserPage
 - If it is a component to be nested the name should be 'CompName' + Component, for example SearchComponent
 
-##CSS default classes
+## CSS default classes
 - The standard class for buttons is standard__button__style;
 - The standard class for form inputs is standard__input__style;
 

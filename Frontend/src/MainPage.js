@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 import './CSS/MainPage.css';
 import HeaderComponent from './components/HeaderComponent';
-import CardGridComponent from './components/CardGridComponent'
-import LoginPage, { fakeAuth } from './components/LoginPage'
+import CardGridComponent from './components/CardGridComponent';
+import LoginPage, { fakeAuth } from './components/LoginPage';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
-import AddEditFormComponent from './components/AddEditFormComponent'
+import AddEditFormComponent from './components/AddEditFormComponent';
 import FooterComponent from './components/FooterComponent';
+import { DisplayStatusInfoWindow } from './components/DisplayStatusInfoComponent';
 
 /* Font Awesome imports */
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* You must import your icon below this line  */
-import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
-import { faEye } from '@fortawesome/free-solid-svg-icons'
-
-library.add(fab, faUserEdit, faEye);
-
-
+import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faPlus, faSearch);
 
 /*
 ^ To add an icon to the library add it in the import above, ^
@@ -45,19 +42,30 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       )
     }
     /* ^From login/header branch^ */
-    
-    
-    class App extends Component {
-      constructor(props) {
-        super(props);
-        this.state = {
-          data: [],
-          loading: true,
-          filteredMobsterData: [],
-          searching: false,
-          LoggedIn: false,
-          LoggingIn: false,
-        }
+
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      loading: true,
+      displayMessage: 'loading',
+      filteredMobsterData: [],
+      searching: false,
+      LoggedIn: false,
+      LoggingIn: false,
+    }
+  }
+
+  CardGridComponentWithProps = () => {
+    return (
+      <CardGridComponent
+      list={this.state.searching ?
+        this.state.filteredMobsterData :
+        this.state.data}
+        />
+        )
       }
       
       CardGridComponentWithProps = () => {

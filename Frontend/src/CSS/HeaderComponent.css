@@ -1,6 +1,6 @@
 .header__container {
   padding: 18px;
-  height: 72px;
+  height: 96px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,7 +9,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
   background-color: white;
 }
 
@@ -21,3 +21,6 @@
   height: 48px;
 }
 
+.header__buttons {
+  display: flex;
+}
