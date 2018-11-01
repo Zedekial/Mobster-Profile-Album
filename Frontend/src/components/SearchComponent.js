@@ -66,11 +66,8 @@ class SearchComponent extends Component {
   render() {
     if (this.props.state.loading) {
       return (
-        <div className='search__user__input'>
-          <h1>Loading..</h1>
-        </div>
+        null
       )
-
     } else {
       return (
         <div className='search__user__input'>

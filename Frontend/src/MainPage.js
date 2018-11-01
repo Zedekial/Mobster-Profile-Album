@@ -96,6 +96,7 @@ class App extends Component {
 
 
   SearchComponentCallBack = (filteredMobsters, searching) => {
+    console.log(filteredMobsters)
     switch (filteredMobsters) {
       case null:
       case []:
@@ -115,7 +116,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    axios.get('https://api.myjsn.com/bins/msk5m')
+    axios.get('https://api.myjson.com/bins/msk5m')
     .then(response => {
       this.setState({
         data: response.data,
@@ -138,12 +139,14 @@ render() {
       UpdateLoginState={this.UpdateLoginState}
       UpdateLoggingIn={this.UpdateLoggingIn}
     />
-    {
-      this.state.loading &&
-      <DisplayStatusInfoWindow
-      state={this.state}
-      />
-    }
+      {
+      (this.state.loading || this.state.searching && !this.state.filteredMobsterData.length) &&
+       <DisplayStatusInfoWindow
+        state={this.state}
+        />
+      }
+
+
     <Switch>
 
       <Route exact path='/' render={this.CardGridComponentWithProps} />
