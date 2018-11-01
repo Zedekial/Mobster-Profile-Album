@@ -15,6 +15,7 @@ class AddEditFormComponent extends Component {
             phone:'', 
             formErrors: {email: '', name: '', role:'', phone:''},
             alert: {class: '', message: ''},
+            method: window.location.pathname,
             emailValid: false,
             nameValid: false,
             roleValid: false,
@@ -24,9 +25,21 @@ class AddEditFormComponent extends Component {
         this.submitForm = this.submitForm.bind(this);
         this.validateField = this.validateField.bind(this);
         this.validateForm = this.validateForm.bind(this);
+        this.checkMethod = this.checkMethod.bind(this);
 
     }
-    
+
+    checkMethod (method) {
+        switch (method){
+             case '/add':
+                return 'Create';
+            case '/edit':
+                return 'Save';
+            case '/delete':
+                return 'Save';
+            }
+        }
+
     submitForm(event){
         event.preventDefault();
         let formData = new FormData();
@@ -97,6 +110,7 @@ class AddEditFormComponent extends Component {
       }
       
     render() {
+        console.log(this.state.method);
         return (
             <div className="add__user__form">
                 <h1>Add new mobster</h1>
@@ -108,7 +122,9 @@ class AddEditFormComponent extends Component {
                     <input className="standard__input__style add__user__form__input" id="picture" type="file" accept="image/*"/>
                     <AlertComponent className={this.state.alert.class} message={this.state.alert.message}/>
                     <div className="add__user__form__buttons">
-                    <input className="standard__button__style" type="submit" value="Save" disabled={!this.state.formValid}/>
+                    <input className="standard__button__style" type="submit" value={this.checkMethod(this.state.method)} disabled={!this.state.formValid}/>
+                   {this.state.method !== '/add' && <input className="standard__button__style" type="submit" value="Delete" disabled={!this.state.formValid}/> }
+
                     <BackButtonComponent/>
                     </div>
                 </form>

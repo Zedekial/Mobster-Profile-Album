@@ -13,8 +13,8 @@ import { DisplayStatusInfoWindow } from './components/DisplayStatusInfoComponent
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* You must import your icon below this line  */
-import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faPlus, faSearch);
+import { faPlus, faSearch, faUserEdit, faEye } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faPlus, faSearch, faUserEdit, faEye);
 
 /*
 ^ To add an icon to the library add it in the import above, ^
@@ -152,8 +152,8 @@ class App extends Component {
                   <Route path="/login" render={this.MyLoginPage} />
                   <Route path="/add" component={AddEditFormComponent} />
                   <Route path="/edit" component={AddEditFormComponent} />
+                  <Route path="/delete" component={AddEditFormComponent} />
                   
-
                   <PrivateRoute path='/admin' component={Admin} />
                 </Switch>
                 <FooterComponent />
