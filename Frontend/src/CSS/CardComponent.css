@@ -34,7 +34,7 @@
     position: relative;
     padding: 12px;
     background-color: white;
-    opacity: 0.95;
+    /* opacity: 0.95; */
     text-align: left;
 }
 
@@ -60,7 +60,31 @@
     padding-left: 8px;
 }
 
-.edit__icon {
+
+.user__edit__button {
     position: absolute;
-    z-index: 1
+    z-index: 1;
+    display: none;
+    border-radius: 0;
+    width: 200px;
+    box-sizing: border-box;
+    margin: 0;
+    /* opacity: 0.95; */
+    /* bottom: 100px; */
 }
+
+.card__container:hover .user__edit__button {
+    display: block;
+}
+
+.user__show__more__button {
+    margin-top: 72px;
+    text-align: center;
+    color: #0f9dce;
+    font-size: 16px;
+
+}
+
+.user__show__more__button:hover {
+    color: #47bef5;
+ }
