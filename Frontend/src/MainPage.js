@@ -12,8 +12,8 @@ import FooterComponent from './components/FooterComponent';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* You must import your icon below this line  */
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faPlus);
+import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faPlus, faSearch);
 
 /*
 ^ To add an icon to the library add it in the import above, ^

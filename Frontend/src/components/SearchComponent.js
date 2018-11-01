@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import SearchIcon from '@material-ui/icons/Search';
+import {SearchInputComponent} from './SearchInputComponent';
 import "../CSS/SearchComponent.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 class SearchComponent extends Component {
   state = {
@@ -39,13 +39,14 @@ class SearchComponent extends Component {
   };
 
   HandleInvalidSearch = (isInvalid) => {
-    let searchInput = document.getElementsByClassName('input')[0];
+    let searchInput = document.getElementsByClassName('standard__input__style')[0];
+    let searchIcon = document.getElementsByClassName('search__icon')[0];
     if (isInvalid) {
-      searchInput.classList.remove('MuiInput-underline-116');
-      searchInput.classList.add('invalid-input');
+      searchInput.classList.add('search__user__input--invalid');
+      searchIcon.classList.add('search__user__input--invalid');
     } else {
-      searchInput.classList.remove('invalid-input');
-      searchInput.classList.add('MuiInput-underline-116');
+      searchInput.classList.remove('search__user__input--invalid');
+      searchIcon.classList.remove('search__user__input--invalid');
     }
   }
 
@@ -65,37 +66,21 @@ class SearchComponent extends Component {
   render() {
     if (this.props.state.loading) {
       return (
-        <div className='searchinput'>
+        <div className='search__user__input'>
           <h1>Loading..</h1>
         </div>
       )
 
     } else {
       return (
-
-        <div className='searchinput'>
-          {/* <h4>Search by first name, location or email</h4>
-          <p>Search:</p><input onChange={e => this.HandleSearch(e)} /> */}
-          <Input
-            placeholder="Search Mobster"
-            className='input'
-            inputProps={{
-              'aria-label': 'Description',
-
-            }}
-            startAdornment={
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            }
-            onChange={e => this.HandleSearch(e)}
-          />
+        <div className='search__user__input'>
+          <FontAwesomeIcon className="search__icon" icon="search" />
+          <SearchInputComponent HandleSearch={this.HandleSearch}/>
           <span className="errorMessage"></span>
         </div>
       );
     }
   }
-
 }
 
 const FilterMobsterData = (mobsterData, searchText) => {
