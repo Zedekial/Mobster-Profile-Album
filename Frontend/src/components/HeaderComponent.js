@@ -10,7 +10,7 @@ const HeaderComponent = (props) => {
   return (
     <header className={'header__container'}>
       <HeaderLogoComponent/>
-      
+
           {
             !props.state.LoggingIn &&
             <SearchComponent
