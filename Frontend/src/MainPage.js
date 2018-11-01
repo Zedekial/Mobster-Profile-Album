@@ -7,6 +7,8 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import AddEditFormComponent from './components/AddEditFormComponent'
 import FooterComponent from './components/FooterComponent';
+import ModalContainerComponent from './components/ModalContainerComponent';
+import ModalComponent from './components/ModalComponent'
 
 /* Font Awesome imports */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -53,6 +55,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           searching: false,
           LoggedIn: false,
           LoggingIn: false,
+          modalVisible: false
         }
       }
       
@@ -62,6 +65,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           list={this.state.searching ?
             this.state.filteredMobsterData :
             this.state.data}
+          handleOpeningModal={this.handleOpeningModal}
             />
             )
           }
@@ -124,6 +128,21 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
                 console.log(`Data failed to fetch`)
               })
             }
+
+            /*{Function to handle closing of modal}*/
+            handleClosingModal = () => {
+              this.setState({
+                modalVisible: false
+              });
+            }
+
+            /*{Function to handle opening of modal}*/
+            handleOpeningModal = () => {
+              this.setState({
+                modalVisible: true
+              });
+            }
+
             
             render() {
               return (
@@ -140,12 +159,15 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
                   <Route path="/add" component={AddEditFormComponent} />
                   <PrivateRoute path='/admin' component={Admin} />
                 </Switch>
+                {this.state.modalVisible &&
+                <ModalContainerComponent className="modal__container">
+                  <ModalComponent handleClosingModal={this.handleClosingModal}/>
+                </ModalContainerComponent> }
                 <FooterComponent />
                 </div>
                 );
               }
             }
-            
             
             
             export default App;

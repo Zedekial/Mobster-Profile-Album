@@ -9,6 +9,7 @@ export const CardDetailsComponent = (props) => {
                 <li>Email: {props.email}</li>
                 <li>Role: {props.role}</li>
             </ul>
+            <button onClick={props.handleOpeningModal}>More details</button>
         </div>
         );
     }

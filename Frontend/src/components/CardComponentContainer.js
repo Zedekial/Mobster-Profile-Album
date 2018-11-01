@@ -22,7 +22,7 @@ class CardComponentContainer extends Component {
         return (
         <div className={'card__container'}>
             <CardMediaComponent src={this.props.src} name={this.props.name} onClick={this.toggleCard} className={`card__media ${this.state.classFront}`}  />
-            <CardDetailsComponent phone={this.props.phone} email={this.props.email} role={this.props.role} name={this.props.name} onClick={this.toggleCard} className={`card__details ${this.state.classBack}`}/>
+            <CardDetailsComponent handleOpeningModal={this.props.handleOpeningModal} phone={this.props.phone} email={this.props.email} role={this.props.role} name={this.props.name} onClick={this.toggleCard} className={`card__details ${this.state.classBack}`}/>
         </div>
         );
     }
