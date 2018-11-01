@@ -99,18 +99,20 @@ class App extends Component {
     console.log(filteredMobsters)
     switch (filteredMobsters) {
       case null:
-      case []:
-      this.setState({
-        searching: searching,
-      })
-      break;
+      case 'no results':
+        this.setState({
+          searching: searching,
+          filteredMobsterData: [],
+          displayMessage: 'no results'
+        })
+        break;
       case undefined:
-      break;
+        break;
       default:
-      this.setState({
-        filteredMobsterData: filteredMobsters,
-        searching: searching,
-      })
+        this.setState({
+          filteredMobsterData: filteredMobsters,
+          searching: searching,
+        })
       break;
     }
   }
@@ -140,7 +142,7 @@ render() {
       UpdateLoggingIn={this.UpdateLoggingIn}
     />
       {
-      (this.state.loading || this.state.searching && !this.state.filteredMobsterData.length) &&
+      (this.state.loading || (this.state.searching && !this.state.filteredMobsterData.length)) &&
        <DisplayStatusInfoWindow
         state={this.state}
         />

@@ -4,7 +4,7 @@ import '../CSS/DisplayStatusInfoComponent.css'
 const LoadingMessage = () => {
   console.log('LoadingMessage')
   return (
-    <h1>Loading!</h1>
+    <h1>Loding!</h1>
   )
 }
 
@@ -23,7 +23,6 @@ const NoSearchResultsMessage = () => {
 }
 
 export const DisplayStatusInfoWindow = (props) => {
-  console.log(props.state.displayMessage)
   return (
     <div className='displaystatus-infowindow--container'>
       {(()=> {

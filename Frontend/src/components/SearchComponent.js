@@ -30,7 +30,9 @@ class SearchComponent extends Component {
         searching: true,
       }, () => {
         let filteredMobsters = FilterMobsterData(this.props.state.data, this.state.searchText);
-        this.props.SearchComponentCallBack(filteredMobsters, this.state.searching);
+        let filteredEmptyArrayMobsters = filteredMobsters.length ? filteredMobsters : 'no results';
+        
+        this.props.SearchComponentCallBack(filteredEmptyArrayMobsters, this.state.searching);
       });
 
     }
@@ -41,6 +43,7 @@ class SearchComponent extends Component {
   HandleInvalidSearch = (isInvalid) => {
     let searchInput = document.getElementsByClassName('standard__input__style')[0];
     let searchIcon = document.getElementsByClassName('search__icon')[0];
+
     if (isInvalid) {
       searchInput.classList.add('search__user__input--invalid');
       searchIcon.classList.add('search__user__input--invalid');
@@ -73,7 +76,7 @@ class SearchComponent extends Component {
         <div className='search__user__input'>
           <FontAwesomeIcon className="search__icon" icon="search" />
           <SearchInputComponent HandleSearch={this.HandleSearch}/>
-          <span className="errorMessage"></span>
+          <span className="error__message"></span>
         </div>
       );
     }
