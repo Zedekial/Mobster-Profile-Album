@@ -11,13 +11,20 @@ const HeaderComponent = (props) => {
     <header className={'header__container'}>
       <HeaderLogoComponent/>
 
-          {
-            !props.state.LoggingIn &&
-            <SearchComponent
-              state={props.state}
-              SearchComponentCallBack={props.SearchComponentCallBack}
-            />
-          }
+      <div>
+        {
+          !props.state.LoggingIn &&
+          <SearchComponent
+            state={props.state}
+            SearchComponentCallBack={props.SearchComponentCallBack}
+          />
+        }
+      </div>
+
+          <div>
+          <Link to={props.state.LoggedIn ? '/add' : '/login' }>
+                <AddUserButtonComponent state={props.state}/>
+          </Link>
           <Link to={ props.state.LoggedIn ? '/' : '/login' } style={{textDecoration: 'none'}}>
           {
             !props.state.LoggingIn &&
@@ -28,9 +35,7 @@ const HeaderComponent = (props) => {
             />
           }
           </Link>
-          <Link to={props.state.LoggedIn ? '/add' : '/login' }>
-                <AddUserButtonComponent state={props.state}/>
-          </Link>
+          </div>
     </header>
   );
 }
