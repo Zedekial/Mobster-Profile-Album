@@ -131,6 +131,8 @@ class AddEditFormComponent extends Component {
     }
     
     render() {
+        const {foo} = this.props.location.state
+        console.log(foo);
         return (
             <div className="add__user__form">
                 <h1>Add new mobster</h1>
