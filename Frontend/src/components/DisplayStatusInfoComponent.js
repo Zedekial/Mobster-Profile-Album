@@ -1,10 +1,21 @@
 import React from 'react';
 import '../CSS/DisplayStatusInfoComponent.css'
 
+
 const LoadingMessage = () => {
-  console.log('LoadingMessage')
+  let setDotInterval;
+  let loadingDots = '';
+  let createLoadingDots = setInterval (() => {
+    console.log('inside func');
+    if ( loadingDots.length > 3 ) {
+      loadingDots = '';
+    } else {
+      loadingDots += '.'
+    }
+  },300);
+  clearInterval(createLoadingDots);
   return (
-    <h1>Loading!</h1>
+      <h1>Loading<span id='dots'>{loadingDots}</span></h1>
   )
 }
 

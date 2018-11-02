@@ -118,7 +118,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    axios.get('https://api.myjson.com/bins/msk5m')
+    axios.get('https://api.myjsn.com/bins/msk5m')
     .then(response => {
       this.setState({
         data: response.data,
