@@ -36,139 +36,149 @@ const Admin = () => (<div> <h2>I am in GOD MODE ADMIN</h2> </div>)
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
-    {...rest}
-    render={(props) => fakeAuth.isAuthenticated === true
-      ? <Component {...props} />
-      : <Redirect to={{ pathname: '/', state: { from: props.location } }} />} />
-      )
+      {...rest}
+      render={(props) => fakeAuth.isAuthenticated === true
+        ? <Component {...props} />
+        : <Redirect to={{ pathname: '/', state: { from: props.location } }} />} />
+  )
+}
+/* ^From login/header branch^ */
+
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      loading: true,
+      filteredMobsterData: [],
+      searching: false,
+      LoggedIn: false,
+      LoggingIn: false,
+      modalVisible: false
     }
-    /* ^From login/header branch^ */
-    
-    
-    class App extends Component {
-      constructor(props) {
-        super(props);
-        this.state = {
-          data: [],
-          loading: true,
-          filteredMobsterData: [],
-          searching: false,
-          LoggedIn: false,
-          LoggingIn: false,
-          modalVisible: false
-        }
-      }
-      
-      CardGridComponentWithProps = () => {
-        return (
-          <CardGridComponent
-          list={this.state.searching ?
-            this.state.filteredMobsterData :
-            this.state.data}
-          handleOpeningModal={this.handleOpeningModal}
-            />
-            )
-          }
-          
-          /* From login/header branch */
-          MyLoginPage = (props) => {
-            return (
-              <LoginPage
-              UpdateLoginState={this.UpdateLoginState}
-              {...props} state={this.state}
-              />
-              );
-            }
-            
-            UpdateLoginState = () => {
-              if (this.state.LoggedIn === false) {
-                this.setState({
-                  LoggedIn: true,
-                  LoggingIn: false,
-                });
-              } else {
-                this.setState({ LoggedIn: false });
-              }
-            }
-            
-            UpdateLoggingIn = () => {
-              this.setState({ LoggingIn: true })
-            }
-            /* ^From login/header branch^ */
-            
-            
-            SearchComponentCallBack = (filteredMobsters, searching) => {
-              switch (filteredMobsters) {
-                case null:
-                case []:
-                this.setState({
-                  searching: searching,
-                })
-                break;
-                case undefined:
-                break;
-                default:
-                this.setState({
-                  filteredMobsterData: filteredMobsters,
-                  searching: searching,
-                })
-                break;
-              }
-            }
-            
-            componentWillMount() {
-              axios.get('https://api.myjson.com/bins/msk5m')
-              .then(response => {
-                this.setState({
-                  data: response.data,
-                  loading: false,
-                })
-              })
-              .catch(err => {
-                console.log(`Data failed to fetch`)
-              })
-            }
+  }
 
-            /*{Function to handle closing of modal}*/
-            handleClosingModal = () => {
-              this.setState({
-                modalVisible: false
-              });
-            }
+  CardGridComponentWithProps = () => {
+    return (
+      <CardGridComponent
+        list={this.state.searching ?
+          this.state.filteredMobsterData :
+          this.state.data}
+        handleOpeningModal={this.handleOpeningModal}
+      />
+    )
+  }
 
-            /*{Function to handle opening of modal}*/
-            handleOpeningModal = () => {
-              this.setState({
-                modalVisible: true
-              });
-            }
+  /* From login/header branch */
+  MyLoginPage = (props) => {
+    return (
+      <LoginPage
+        UpdateLoginState={this.UpdateLoginState}
+        {...props} state={this.state}
+      />
+    );
+  }
 
-            
-            render() {
-              return (
-                <div className="App">
-                <HeaderComponent
-                  state={this.state}
-                  SearchComponentCallBack={this.SearchComponentCallBack}
-                  UpdateLoginState={this.UpdateLoginState}
-                  UpdateLoggingIn={this.UpdateLoggingIn}
-                />
-                <Switch>
-                  <Route exact path='/' render={this.CardGridComponentWithProps} />
-                  <Route path="/login" render={this.MyLoginPage} />
-                  <Route path="/add" component={AddEditFormComponent} />
-                  <PrivateRoute path='/admin' component={Admin} />
-                </Switch>
-                {this.state.modalVisible &&
-                <ModalContainerComponent className="modal__container">
-                  <ModalComponent handleClosingModal={this.handleClosingModal}/>
-                </ModalContainerComponent> }
-                <FooterComponent />
-                </div>
-                );
-              }
-            }
-            
-            
-            export default App;
-            
+  UpdateLoginState = () => {
+    if (this.state.LoggedIn === false) {
+      this.setState({
+        LoggedIn: true,
+        LoggingIn: false,
+      });
+    } else {
+      this.setState({ LoggedIn: false });
+    }
+  }
+
+  UpdateLoggingIn = () => {
+    this.setState({ LoggingIn: true })
+  }
+  /* ^From login/header branch^ */
+
+
+  SearchComponentCallBack = (filteredMobsters, searching) => {
+    switch (filteredMobsters) {
+      case null:
+      case []:
+        this.setState({
+          searching: searching,
+        })
+        break;
+      case undefined:
+        break;
+      default:
+        this.setState({
+          filteredMobsterData: filteredMobsters,
+          searching: searching,
+        })
+        break;
+    }
+  }
+
+  componentWillMount() {
+    axios.get('https://api.myjson.com/bins/msk5m')
+      .then(response => {
+        this.setState({
+          data: response.data,
+          loading: false,
+        })
+      })
+      .catch(err => {
+        console.log(`Data failed to fetch`)
+      })
+  }
+
+  /*{Function to handle closing of modal}*/
+  handleClosingModal = () => {
+    this.setState({
+      modalVisible: false
+    });
+  }
+
+  /*{Function to handle opening of modal}*/
+  handleOpeningModal = (details) => {
+    this.setState({
+      modalVisible: true,
+      details: details
+    });
+
+    console.log(details.name);
+    console.log(details.email);
+    console.log(details.role);
+  }
+
+
+  render() {
+    return (
+      <div className="App">
+        <HeaderComponent
+          state={this.state}
+          SearchComponentCallBack={this.SearchComponentCallBack}
+          UpdateLoginState={this.UpdateLoginState}
+          UpdateLoggingIn={this.UpdateLoggingIn}
+        />
+        <Switch>
+          <Route exact path='/' render={this.CardGridComponentWithProps} />
+          <Route path="/login" render={this.MyLoginPage} />
+          <Route path="/add" component={AddEditFormComponent} />
+          <PrivateRoute path='/admin' component={Admin} />
+        </Switch>
+        {this.state.modalVisible &&
+          <ModalContainerComponent className="modal__container">
+            <ModalComponent
+              handleClosingModal={this.handleClosingModal}
+              src={this.state.details.src}
+              name={this.state.details.name}
+              email={this.state.details.email}
+              phone={this.state.details.phone}
+              role={this.state.details.role} />
+          </ModalContainerComponent>}
+        <FooterComponent />
+      </div>
+    );
+  }
+}
+
+
+export default App;
