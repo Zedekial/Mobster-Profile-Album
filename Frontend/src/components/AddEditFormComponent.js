@@ -16,7 +16,7 @@ class AddEditFormComponent extends Component {
             role: this.data.role || '', 
             phone: this.data.phone || '', 
             formErrors: {email: '', name: '', role:'', phone:''},
-            formSubmit: {value:'', method: '', url: ''},
+            formSubmit: {title: '', value: '', method: '', url: ''},
             alert: {class: '', message: ''},
             path: window.location.pathname,
             emailValid: false,
@@ -35,10 +35,10 @@ class AddEditFormComponent extends Component {
     componentDidMount(){
         switch (this.state.path){
             case '/add':
-            this.setState({formSubmit: {value: 'Create', method: 'post', url: '/mobsters'}});
+            this.setState({formSubmit: {title: 'Add new mobster', value: 'Create', method: 'post', url: '/mobsters'}});
             break;
             case '/edit':
-            this.setState({formSubmit: {value: 'Save', method: 'put', url: `/mobsters/${this.state.id}`}});
+            this.setState({formSubmit: {title: 'Update or remove mobster', value: 'Save', method: 'put', url: `/mobsters/${this.state.id}`}});
             break;
         }
     }
@@ -134,7 +134,7 @@ class AddEditFormComponent extends Component {
     render() {
         return (
             <div className="add__user__form">
-                <h1>Add new mobster</h1>
+                <h1>{this.state.formSubmit.title}</h1>
                 <form onSubmit={this.submitForm}>
                     <input className="standard__input__style add__user__form__input" id="name" type="text" placeholder="Name" value={this.state.name} onChange={this.setInput.bind(this, 'name')}/>
                     <input className="standard__input__style add__user__form__input" id="email" type="email" placeholder="Email" value={this.state.email} onChange={this.setInput.bind(this, 'email')}/>
@@ -143,7 +143,7 @@ class AddEditFormComponent extends Component {
                     <input className="standard__input__style add__user__form__input" id="picture" type="file" accept="image/*"/>
                     <AlertComponent className={this.state.alert.class} message={this.state.alert.message}/>
                     <div className="add__user__form__buttons">
-                        <input className="standard__button__style" type="submit" value={this.submitForm.value} disabled={!this.state.formValid}/>
+                        <input className="standard__button__style" type="submit" value={this.state.formSubmit.value} disabled={!this.state.formValid}/>
                         {this.state.path === '/edit' && <button className="standard__button__style" onClick={this.deleteUser}>Delete</button> }
                         <BackButtonComponent/>
                     </div>
