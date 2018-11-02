@@ -8,12 +8,13 @@ import '../CSS/AddEditFormComponent.css';
 class AddEditFormComponent extends Component {
     constructor(props){
         super(props);
+        this.props.location.state ? this.data = this.props.location.state.foo.data : this.data = false;
         this.state = {
-            id: '',
-            name:'',
-            email:'',
-            role:'', 
-            phone:'', 
+            id: this.data.id || '',
+            name: this.data.name || '',
+            email: this.data.email || '',
+            role: this.data.role || '', 
+            phone: this.data.phone || '', 
             formErrors: {email: '', name: '', role:'', phone:''},
             formSubmit: {value:'', method: '', url: ''},
             alert: {class: '', message: ''},
@@ -44,9 +45,9 @@ class AddEditFormComponent extends Component {
     
     submitForm(event){
         event.preventDefault();
-        console.log(this.state.formSubmit.method);
-        console.log(this.state.formSubmit.url);
-        console.log(this.getData());
+        // console.log(this.state.formSubmit.method);
+        // console.log(this.state.formSubmit.url);
+        // console.log(this.getData());
         
         axios({
             method: this.state.formSubmit.method,
@@ -131,8 +132,6 @@ class AddEditFormComponent extends Component {
     }
     
     render() {
-        const {foo} = this.props.location.state
-        console.log(foo);
         return (
             <div className="add__user__form">
                 <h1>Add new mobster</h1>

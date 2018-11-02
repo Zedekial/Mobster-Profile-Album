@@ -152,8 +152,6 @@ class App extends Component {
                   <Route path="/login" render={this.MyLoginPage} />
                   <Route path="/add" component={AddEditFormComponent} />
                   <Route path="/edit" component={AddEditFormComponent} />
-                  <Route path="/delete" component={AddEditFormComponent} />
-                  
                   <PrivateRoute path='/admin' component={Admin} />
                 </Switch>
                 <FooterComponent />
