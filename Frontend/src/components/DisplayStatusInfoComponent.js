@@ -1,10 +1,17 @@
 import React from 'react';
-import '../CSS/DisplayStatusInfoComponent.css'
+import '../CSS/DisplayStatusInfoComponent.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 const LoadingMessage = () => {
-  console.log('LoadingMessage')
+
   return (
-    <h1>Loading!</h1>
+      <h1 className='loading__content'>
+        Loading
+        <span className='loading__content--icon--wrap'>
+          <FontAwesomeIcon className="fa-2x fa-pulse loading__content--icon--animated" icon="spinner" />
+        </span>
+      </h1>
   )
 }
 
@@ -23,7 +30,6 @@ const NoSearchResultsMessage = () => {
 }
 
 export const DisplayStatusInfoWindow = (props) => {
-  console.log(props.state.displayMessage)
   return (
     <div className='displaystatus-infowindow--container'>
       {(()=> {

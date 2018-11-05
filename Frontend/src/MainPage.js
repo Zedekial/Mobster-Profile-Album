@@ -13,8 +13,9 @@ import { DisplayStatusInfoWindow } from './components/DisplayStatusInfoComponent
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* You must import your icon below this line  */
-import { faPlus, faSearch, faUserEdit, faEye } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faPlus, faSearch, faUserEdit, faEye);
+import { faPlus, faSearch, faUserEdit, faEye, faSpinner } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faPlus, faSearch, faUserEdit, faEye, faSpinner);
+
 
 /*
 ^ To add an icon to the library add it in the import above, ^
@@ -67,100 +68,101 @@ class App extends Component {
         />
         )
       }
-      
-      CardGridComponentWithProps = () => {
-        return (
-          <CardGridComponent
-          list={this.state.searching ?
-            this.state.filteredMobsterData :
-            this.state.data}
-            state={this.state.LoggedIn}
-            />
-            )
-          }
-          
-          /* From login/header branch */
-          MyLoginPage = (props) => {
-            return (
-              <LoginPage
-              UpdateLoginState={this.UpdateLoginState}
-              {...props} state={this.state}
-              />
-              );
-            }
-            
-            UpdateLoginState = () => {
-              if (this.state.LoggedIn === false) {
-                this.setState({
-                  LoggedIn: true,
-                  LoggingIn: false,
-                });
-              } else {
-                this.setState({ LoggedIn: false });
-              }
-            }
-            
-            UpdateLoggingIn = () => {
-              this.setState({ LoggingIn: true })
-            }
-            /* ^From login/header branch^ */
-            
-            
-            SearchComponentCallBack = (filteredMobsters, searching) => {
-              switch (filteredMobsters) {
-                case null:
-                case []:
-                this.setState({
-                  searching: searching,
-                })
-                break;
-                case undefined:
-                break;
-                default:
-                this.setState({
-                  filteredMobsterData: filteredMobsters,
-                  searching: searching,
-                })
-                break;
-              }
-            }
-            
-            componentWillMount() {
-              axios.get('https://api.myjson.com/bins/msk5m')
-              .then(response => {
-                this.setState({
-                  data: response.data,
-                  loading: false,
-                })
-              })
-              .catch(err => {
-                console.log(`Data failed to fetch`)
-              })
-            }
-            
-            render() {
-              return (
-                <div className="App">
-                <HeaderComponent
-                  state={this.state}
-                  SearchComponentCallBack={this.SearchComponentCallBack}
-                  UpdateLoginState={this.UpdateLoginState}
-                  UpdateLoggingIn={this.UpdateLoggingIn}
-                />
-                <Switch>
-                  <Route exact path='/' render={this.CardGridComponentWithProps} />
-                  <Route path="/login" render={this.MyLoginPage} />
-                  <Route path="/add" component={AddEditFormComponent} />
-                  <Route path="/edit" component={AddEditFormComponent} />
-                  <PrivateRoute path='/admin' component={Admin} />
-                </Switch>
-                <FooterComponent />
-                </div>
-                );
-              }
-            }
-            
-            
-            
-            export default App;
-            
+
+  /* From login/header branch */
+  MyLoginPage = (props) => {
+    return (
+      <LoginPage
+      UpdateLoginState={this.UpdateLoginState}
+      {...props} state={this.state}
+      />
+      );
+    }
+
+  UpdateLoginState = () => {
+    if (this.state.LoggedIn === false) {
+      this.setState({
+        LoggedIn: true,
+        LoggingIn: false,
+      });
+    } else {
+      this.setState({ LoggedIn: false });
+    }
+  }
+
+  UpdateLoggingIn = () => {
+    this.setState({ LoggingIn: true })
+  }
+  /* ^From login/header branch^ */
+
+
+  SearchComponentCallBack = (filteredMobsters, searching) => {
+    console.log(filteredMobsters)
+    switch (filteredMobsters) {
+      case null:
+      case 'no results':
+        this.setState({
+          searching: searching,
+          filteredMobsterData: [],
+          displayMessage: 'no results'
+        })
+        break;
+      case undefined:
+        break;
+      default:
+        this.setState({
+          filteredMobsterData: filteredMobsters,
+          searching: searching,
+        })
+      break;
+    }
+  }
+
+  componentWillMount() {
+    axios.get('https://api.myjson.com/bins/msk5m')
+    .then(response => {
+      this.setState({
+        data: response.data,
+        loading: false,
+        displayMessage: '',
+      })
+    })
+    .catch(err => {
+      this.setState({ displayMessage: 'error' })
+      console.log(`Data failed to fetch`)
+    })
+  }
+
+render() {
+  return (
+    <div className="App">
+    <HeaderComponent
+      state={this.state}
+      SearchComponentCallBack={this.SearchComponentCallBack}
+      UpdateLoginState={this.UpdateLoginState}
+      UpdateLoggingIn={this.UpdateLoggingIn}
+    />
+      {
+      (this.state.loading || (this.state.searching && !this.state.filteredMobsterData.length)) &&
+       <DisplayStatusInfoWindow
+        state={this.state}
+        />
+      }
+
+
+    <Switch>
+
+      <Route exact path='/' render={this.CardGridComponentWithProps} />
+      <Route path="/login" render={this.MyLoginPage} />
+      <Route path="/add" component={AddEditFormComponent} />
+      <PrivateRoute path='/admin' component={Admin} />
+    </Switch>
+    <FooterComponent />
+    </div>
+    );
+  }
+}
+
+
+
+export default App;
