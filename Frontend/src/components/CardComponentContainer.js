@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { CardMediaComponent } from './CardMediaComponent';
 import { CardDetailsComponent } from './CardDetailsComponent';
 import EditUserButtonComponent from './EditUserButtonComponent';
+import ModalContainerComponent from './ModalContainerComponent';
+import ModalComponent from './ModalComponent'
 
 import '../CSS/EditUserButtonComponent.css'
 
@@ -12,8 +14,13 @@ class CardComponentContainer extends Component {
             active: false,
             classFront: 'card--show',
             classBack: 'card--hide',
+            modalVisible: false,
+            details: this.props
         };
         this.toggleCard = this.toggleCard.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleClosingModal = this.handleClosingModal.bind(this);
+        this.handleOpeningModal = this.handleOpeningModal.bind(this);
     }
 
     toggleCard() {
@@ -25,10 +32,29 @@ class CardComponentContainer extends Component {
     }
 
     handleClick = () => {
-        this.props.handleOpeningModal(this.props)
+        this.handleOpeningModal(this.props)
         // console.log('handle click method')
         this.toggleCard()
     }
+    handleClosingModal = () => {
+        this.setState({
+          modalVisible: false
+        });
+      }
+    
+      /*{Function to handle opening of modal}*/
+      handleOpeningModal = () => {
+        this.setState({
+          modalVisible: true,
+          details: this.props
+        });
+      }
+    
+      handleModalCardClick = (event) => {
+        console.log('Clicked');
+        event.stopPropagation();
+        return;
+      }
 
     render() {
         return (
@@ -41,7 +67,7 @@ class CardComponentContainer extends Component {
                 className={`card__media ${this.state.classFront}`}
               />
               <CardDetailsComponent
-                handleOpeningModal={this.props.handleOpeningModal}
+                handleOpeningModal={this.handleOpeningModal}
                 phone={this.props.phone}
                 email={this.props.email}
                 role={this.props.role}
@@ -50,6 +76,20 @@ class CardComponentContainer extends Component {
                 className={`card__details ${this.state.classBack}`}
                 handleClick={this.handleClick}
               />
+                   {
+        this.state.modalVisible &&
+        <ModalContainerComponent className="modal__container">
+          <ModalComponent
+            handleModalCardClick={this.handleModalCardClick}
+            handleClosingModal={this.handleClosingModal}
+            src={this.state.details.src}
+            name={this.state.details.name}
+            email={this.state.details.email}
+            phone={this.state.details.phone}
+            role={this.state.details.role}
+          />
+        </ModalContainerComponent>
+      }
             </div>
         );
     }

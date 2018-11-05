@@ -8,8 +8,7 @@ import axios from 'axios';
 import AddEditFormComponent from './components/AddEditFormComponent';
 import FooterComponent from './components/FooterComponent';
 import { DisplayStatusInfoWindow } from './components/DisplayStatusInfoComponent';
-import ModalContainerComponent from './components/ModalContainerComponent';
-import ModalComponent from './components/ModalComponent'
+
 
 /* Font Awesome imports */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -137,25 +136,7 @@ class App extends Component {
   }
 
   /*{Function to handle closing of modal}*/
-  handleClosingModal = () => {
-    this.setState({
-      modalVisible: false
-    });
-  }
 
-  /*{Function to handle opening of modal}*/
-  handleOpeningModal = (details) => {
-    this.setState({
-      modalVisible: true,
-      details: details
-    });
-  }
-
-  handleModalCardClick = (event) => {
-    console.log('Clicked');
-    event.stopPropagation();
-    return;
-  }
 
 render() {
   return (
@@ -176,22 +157,11 @@ render() {
         <Route exact path='/' render={this.CardGridComponentWithProps} />
         <Route path="/login" render={this.MyLoginPage} />
         <Route path="/add" component={AddEditFormComponent} />
+        <Route path="/edit" component={AddEditFormComponent} />
+
         <PrivateRoute path='/admin' component={Admin} />
       </Switch>
-      {
-        this.state.modalVisible &&
-        <ModalContainerComponent className="modal__container">
-          <ModalComponent
-            handleModalCardClick={this.handleModalCardClick}
-            handleClosingModal={this.handleClosingModal}
-            src={this.state.details.src}
-            name={this.state.details.name}
-            email={this.state.details.email}
-            phone={this.state.details.phone}
-            role={this.state.details.role}
-          />
-        </ModalContainerComponent>
-      }
+ 
       <FooterComponent />
     </div>
     );
