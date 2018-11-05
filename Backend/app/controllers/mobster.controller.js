@@ -7,7 +7,7 @@ const fs = require('fs');
 exports.create = (req, res) => {
     let form = new formidable.IncomingForm();
     let dir = path.resolve(__dirname, '..', '..','..','Frontend','build', 'uploads');
-    console.log(dir);
+
     let mobsterData = {};
 
     if (!fs.existsSync(dir)){
@@ -26,20 +26,19 @@ exports.create = (req, res) => {
     });
 
     form.on('error', function(error){
-        res.json({
+        res.staus(500).send({
             message: error
         });
     })
 
     form.on('end', function(){
-        console.log(mobsterData);
         const mobster = new Mobster(mobsterData);
 
         mobster.save()
         .then(data => {
             res.send(data);
         }).catch(err => {
-            res.send({
+            res.status(500).send({
                 message: err.message
             });
         });
