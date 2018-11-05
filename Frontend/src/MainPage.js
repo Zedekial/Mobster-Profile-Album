@@ -15,7 +15,7 @@ import ModalComponent from './components/ModalComponent'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* You must import your icon below this line  */
-import { faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 library.add(fab, faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle);
 
 
@@ -63,24 +63,24 @@ class App extends Component {
   CardGridComponentWithProps = () => {
     return (
       <CardGridComponent
-      list={this.state.searching ?
-        this.state.filteredMobsterData :
-        this.state.data}
-      handleOpeningModal={this.handleOpeningModal}
-      state={this.state}
-        />
-        )
-      }
+        list={this.state.searching ?
+          this.state.filteredMobsterData :
+          this.state.data}
+        handleOpeningModal={this.handleOpeningModal}
+        state={this.state}
+      />
+    )
+  }
 
   /* From login/header branch */
   MyLoginPage = (props) => {
     return (
       <LoginPage
-      UpdateLoginState={this.UpdateLoginState}
-      {...props} state={this.state}
+        UpdateLoginState={this.UpdateLoginState}
+        {...props} state={this.state}
       />
-      );
-    }
+    );
+  }
 
   UpdateLoginState = () => {
     if (this.state.LoggedIn === false) {
@@ -117,23 +117,23 @@ class App extends Component {
           filteredMobsterData: filteredMobsters,
           searching: searching,
         })
-      break;
+        break;
     }
   }
 
   componentWillMount() {
     axios.get('https://api.myjson.com/bins/msk5m')
-    .then(response => {
-      this.setState({
-        data: response.data,
-        loading: false,
-        displayMessage: '',
+      .then(response => {
+        this.setState({
+          data: response.data,
+          loading: false,
+          displayMessage: '',
+        })
       })
-    })
-    .catch(err => {
-      this.setState({ displayMessage: 'error' })
-      console.log(`Data failed to fetch`)
-    })
+      .catch(err => {
+        this.setState({ displayMessage: 'error' })
+        console.log(`Data failed to fetch`)
+      })
   }
 
   /*{Function to handle closing of modal}*/
@@ -157,43 +157,43 @@ class App extends Component {
     return;
   }
 
-render() {
-  return (
-    <div className="App">
-      <HeaderComponent
-        state={this.state}
-        SearchComponentCallBack={this.SearchComponentCallBack}
-        UpdateLoginState={this.UpdateLoginState}
-        UpdateLoggingIn={this.UpdateLoggingIn}
-      />
-        {
-        (this.state.loading || (this.state.searching && !this.state.filteredMobsterData.length)) &&
-         <DisplayStatusInfoWindow
+  render() {
+    return (
+      <div className="App">
+        <HeaderComponent
           state={this.state}
+          SearchComponentCallBack={this.SearchComponentCallBack}
+          UpdateLoginState={this.UpdateLoginState}
+          UpdateLoggingIn={this.UpdateLoggingIn}
+        />
+        {
+          (this.state.loading || (this.state.searching && !this.state.filteredMobsterData.length)) &&
+          <DisplayStatusInfoWindow
+            state={this.state}
           />
         }
-      <Switch>
-        <Route exact path='/' render={this.CardGridComponentWithProps} />
-        <Route path="/login" render={this.MyLoginPage} />
-        <Route path="/add" component={AddEditFormComponent} />
-        <PrivateRoute path='/admin' component={Admin} />
-      </Switch>
-      {
-        this.state.modalVisible &&
-        <ModalContainerComponent className="modal__container">
-          <ModalComponent
-            handleModalCardClick={this.handleModalCardClick}
-            handleClosingModal={this.handleClosingModal}
-            src={this.state.details.src}
-            name={this.state.details.name}
-            email={this.state.details.email}
-            phone={this.state.details.phone}
-            role={this.state.details.role}
-          />
-        </ModalContainerComponent>
-      }
-      <FooterComponent />
-    </div>
+        <Switch>
+          <Route exact path='/' render={this.CardGridComponentWithProps} />
+          <Route path="/login" render={this.MyLoginPage} />
+          <Route path="/add" component={AddEditFormComponent} />
+          <PrivateRoute path='/admin' component={Admin} />
+        </Switch>
+        {
+          this.state.modalVisible &&
+          <ModalContainerComponent className="modal__container">
+            <ModalComponent
+              handleModalCardClick={this.handleModalCardClick}
+              handleClosingModal={this.handleClosingModal}
+              src={this.state.details.src}
+              name={this.state.details.name}
+              email={this.state.details.email}
+              phone={this.state.details.phone}
+              role={this.state.details.role}
+            />
+          </ModalContainerComponent>
+        }
+        <FooterComponent />
+      </div>
     );
   }
 }
