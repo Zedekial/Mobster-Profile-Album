@@ -29,8 +29,23 @@ class CardComponentContainer extends Component {
     render() {
         return (
             <div className={'card__container'}>
-                <CardMediaComponent src={this.props.src} name={this.props.name} onClick={this.toggleCard} className={`card__media ${this.state.classFront}`} />
-                <CardDetailsComponent handleOpeningModal={this.props.handleOpeningModal} phone={this.props.phone} email={this.props.email} role={this.props.role} name={this.props.name} onClick={this.toggleCard} className={`card__details ${this.state.classBack}`} handleClick={this.handleClick} />
+              <EditUserButtonComponent data={this.props} state={this.props.state} />
+              <CardMediaComponent
+                src={this.props.src}
+                name={this.props.name}
+                onClick={this.toggleCard}
+                className={`card__media ${this.state.classFront}`}
+              />
+              <CardDetailsComponent
+                handleOpeningModal={this.props.handleOpeningModal}
+                phone={this.props.phone}
+                email={this.props.email}
+                role={this.props.role}
+                name={this.props.name}
+                onClick={this.toggleCard}
+                className={`card__details ${this.state.classBack}`}
+                handleClick={this.handleClick}
+              />
             </div>
         );
     }

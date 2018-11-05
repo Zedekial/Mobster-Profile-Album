@@ -6,7 +6,17 @@ const CardGridComponent = (props) => {
     return (
         <div className={'card__grid'}>
           {props.list.map((data) =>
-            <CardComponentContainer handleOpeningModal={props.handleOpeningModal} id={data.id} state={props.state} key={data.id} src={data.src} name={data.name} phone={data.phone} role={data.role} email={data.email}/>
+            <CardComponentContainer
+              handleOpeningModal={props.handleOpeningModal}
+              id={data.id}
+              state={props.state}
+              key={data.id}
+              src={data.src}
+              name={data.name}
+              phone={data.phone}
+              role={data.role}
+              email={data.email}
+            />
           )}
         </div>
       );

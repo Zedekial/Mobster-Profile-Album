@@ -13,8 +13,8 @@ class AddEditFormComponent extends Component {
             id: this.data.id || '',
             name: this.data.name || '',
             email: this.data.email || '',
-            role: this.data.role || '', 
-            phone: this.data.phone || '', 
+            role: this.data.role || '',
+            phone: this.data.phone || '',
             formErrors: {email: '', name: '', role:'', phone:''},
             formSubmit: {title: '', value: '', method: '', url: ''},
             alert: {class: '', message: ''},
@@ -31,8 +31,10 @@ class AddEditFormComponent extends Component {
         this.deleteUser = this.deleteUser.bind(this);
         this.getData = this.getData.bind(this);
     }
-    
-    componentDidMount(){
+
+    componentDidMount() {
+      console.log(this.props)
+
         switch (this.state.path){
             case '/add':
             this.setState({formSubmit: {title: 'Add new mobster', value: 'Create', method: 'post', url: '/mobsters'}});
@@ -42,14 +44,14 @@ class AddEditFormComponent extends Component {
             break;
         }
     }
-    
+
     submitForm(event){
         event.preventDefault();
         // console.log(this.state.formSubmit.method);
         // console.log(this.state.formSubmit.url);
         // console.log(fileField.files[0]);
         // console.log(this.getData());
-        
+
         axios({
             method: this.state.formSubmit.method,
             url: this.state.formSubmit.url,
@@ -59,13 +61,13 @@ class AddEditFormComponent extends Component {
         })
         .catch(function (error) {
             console.log(error);
-        });   
+        });
     }
-    
+
     getData(){
         let formData = new FormData();
         let fileField = document.getElementById('picture');
-        
+
         formData.append('name', this.state.name);
         formData.append('email', this.state.email);
         formData.append('role', this.state.role);
@@ -74,7 +76,7 @@ class AddEditFormComponent extends Component {
         console.log(fileField.files[0]);
         return formData;
     }
-    
+
     deleteUser(){
         axios({
             method: 'delete',
@@ -84,22 +86,22 @@ class AddEditFormComponent extends Component {
         })
         .catch(function (error) {
             console.log(error);
-        }); 
+        });
     }
-    
+
     setInput(nameInput,e){
         const value = e.target.value;
         this.setState({[nameInput]: value},
             () => { this.validateField(nameInput, value) });
     }
-    
+
     validateField(fieldName, value) {
         let fieldValidationErrors = this.state.formErrors;
         let emailValid = this.state.emailValid;
         let nameValid = this.state.nameValid;
         let roleValid = this.state.roleValid;
         let phoneValid = this.state.phoneValid;
-        
+
         switch(fieldName) {
             case 'email':
             emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -127,12 +129,12 @@ class AddEditFormComponent extends Component {
             phoneValid: phoneValid
         }, this.validateForm);
     }
-    
+
     validateForm() {
         this.setState({formValid: this.state.emailValid && this.state.nameValid && this.state.roleValid && this.state.phoneValid});
     }
-    
-    
+
+
     render() {
     ( function ( document, window, index ){
 	var inputs = document.querySelectorAll( '.inputfile' );
@@ -154,7 +156,7 @@ class AddEditFormComponent extends Component {
 			else
 				label.innerHTML = labelVal;
 		});
-        
+
 		// Firefox bug fix
 		input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
 		input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
@@ -169,11 +171,11 @@ class AddEditFormComponent extends Component {
                     <input className="standard__input__style add__user__form__input" id="role" type="text" placeholder="Role" value={this.state.role} onChange={this.setInput.bind(this, 'role')}/>
                     <input className="standard__input__style add__user__form__input" id="phone" type="text" placeholder="Phone" value={this.state.phone} onChange={this.setInput.bind(this, 'phone')}/>
                     {/* <input className="standard__input__style add__user__form__input" id="picture" type="file" accept="image/*"/> */}
-                   
+
                     <input type="file" name="picture" id="picture" className="inputfile inputfile-1" accept="image/*" />
 					<label htmlFor="picture"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Choose a file&hellip;</span></label>
-				
-                   
+
+
                     <AlertComponent className={this.state.alert.class} message={this.state.alert.message}/>
 
 
@@ -191,4 +193,3 @@ class AddEditFormComponent extends Component {
 }
 
 export default AddEditFormComponent;
-    

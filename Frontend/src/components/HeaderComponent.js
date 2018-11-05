@@ -10,7 +10,6 @@ const HeaderComponent = (props) => {
   return (
     <header className={'header__container'} onClick={props.handleClosingModal}>
       <HeaderLogoComponent/>
-
       <div>
         {
           !props.state.LoggingIn &&
@@ -20,11 +19,8 @@ const HeaderComponent = (props) => {
           />
         }
       </div>
-
           <div className={'header__buttons'}>
-
-                <AddUserButtonComponent state={props.state}/>
-
+            <AddUserButtonComponent state={props.state}/>
           {
             // !props.state.LoggingIn &&
             <LoginButtonComponent

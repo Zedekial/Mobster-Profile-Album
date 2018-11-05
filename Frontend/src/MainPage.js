@@ -67,6 +67,7 @@ class App extends Component {
         this.state.filteredMobsterData :
         this.state.data}
       handleOpeningModal={this.handleOpeningModal}
+      state={this.state}
         />
         )
       }
