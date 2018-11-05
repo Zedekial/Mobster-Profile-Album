@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import AddUserButtonComponent from './AddUserButtonComponent'
 import HeaderLogoComponent from './HeaderLogoComponent'
 import LoginButtonComponent from './LoginButtonComponent';
@@ -22,7 +21,6 @@ const HeaderComponent = (props) => {
           <div className={'header__buttons'}>
             <AddUserButtonComponent state={props.state}/>
           {
-            // !props.state.LoggingIn &&
             <LoginButtonComponent
             state={props.state}
             UpdateLoginState={props.UpdateLoginState}

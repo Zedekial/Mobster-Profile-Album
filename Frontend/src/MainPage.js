@@ -120,7 +120,8 @@ class App extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    //Change this url to '/mobsters' to call the backend
     axios.get('https://api.myjson.com/bins/msk5m')
     .then(response => {
       this.setState({
