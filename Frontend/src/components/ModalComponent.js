@@ -3,8 +3,8 @@ import '../CSS/ModalComponent.css';
 
 const Modal = (props) => {
     return (
-        <div className="modal__container">
-            <div className="modal__container__card">
+        <div className="modal__container" onClick={props.handleClosingModal}>
+            <div className="modal__container__card" onClick={props.handleModalCardClick}>
                 <img alt={props.name + ' img'} src={props.src}></img>
                 <h2>{props.name}</h2>
                 <ul>
@@ -16,7 +16,6 @@ const Modal = (props) => {
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.omnis.</p>
                 <button onClick={props.handleClosingModal}>Close</button>
             </div>
-
         </div>
     )
 }

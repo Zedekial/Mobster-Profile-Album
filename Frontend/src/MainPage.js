@@ -142,12 +142,13 @@ class App extends Component {
       modalVisible: true,
       details: details
     });
-
-    console.log(details.name);
-    console.log(details.email);
-    console.log(details.role);
   }
 
+  handleModalCardClick = (event) => {
+    console.log('Clicked');
+    event.stopPropagation();
+    return;
+  }
 
   render() {
     return (
@@ -167,6 +168,7 @@ class App extends Component {
         {this.state.modalVisible &&
           <ModalContainerComponent className="modal__container">
             <ModalComponent
+              handleModalCardClick={this.handleModalCardClick}
               handleClosingModal={this.handleClosingModal}
               src={this.state.details.src}
               name={this.state.details.name}
@@ -179,6 +181,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;
