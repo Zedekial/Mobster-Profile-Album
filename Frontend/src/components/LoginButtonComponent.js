@@ -1,9 +1,9 @@
 import React from "react";
-
+import { Link } from 'react-router-dom';
 class LoginButtonComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isLoggedIn: false};
+    // this.state = {isLoggedIn: false};
   }
 
   handleLogoutClick = () => {
@@ -25,7 +25,10 @@ class LoginButtonComponent extends React.Component {
 
     return (
       <div>
-        {button}
+        <Link to={ this.props.state.LoggedIn ? '/' : '/login' } style={{textDecoration: 'none'}}>
+           {button}
+        </Link>
+
       </div>
     );
   }
