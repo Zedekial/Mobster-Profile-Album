@@ -19,6 +19,7 @@
     padding:3rem;
     border-radius: 3%;
     animation: fadeIn .2s linear;
+    position: relative;
 }
 
   .modal__container__card--image{
@@ -35,6 +36,16 @@
 
   .modal__container__card ul li{
     padding: 1rem;
+  }
+
+  .modal__container__card--button{
+    font-size: 3rem;
+    color: #0f9dce;
+    background-color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 
   @keyframes fadeIn {

@@ -15,8 +15,8 @@ import ModalComponent from './components/ModalComponent'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* You must import your icon below this line  */
-import { faPlus, faSearch, faUserEdit, faEye, faSpinner } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faPlus, faSearch, faUserEdit, faEye, faSpinner);
+import { faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle);
 
 
 /*
