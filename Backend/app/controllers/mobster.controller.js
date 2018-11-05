@@ -6,7 +6,7 @@ const fs = require('fs');
 // POST
 exports.create = (req, res) => {
     let form = new formidable.IncomingForm();
-    let dir = path.resolve(__dirname, '..', '..','..','Frontend', 'uploads');
+    let dir = path.resolve(__dirname, '..', '..','..','Frontend','build', 'uploads');
     console.log(dir);
     let mobsterData = {};
 
@@ -18,7 +18,7 @@ exports.create = (req, res) => {
 
     form.on('fileBegin', function (name, file){
         file.path = path.resolve(dir, file.name);
-        mobsterData[name] = file.name;
+        mobsterData[name] = `../uploads/${file.name}`;
     });
 
     form.on('field', function(name, value) {
@@ -46,8 +46,6 @@ exports.create = (req, res) => {
     })
 
     form.parse(req);
-
-
 };
 
 // GET

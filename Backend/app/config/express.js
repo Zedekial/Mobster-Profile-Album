@@ -8,8 +8,6 @@ const PATH_ROUTES = path.resolve(__dirname, '..');
 
 module.exports = function() {
   const app = express();
-  console.log(PATH_ROUTES);
-  console.log(PUBLIC_RESOURCES);
   // ======================================
   // # Middlewares
   // ======================================
