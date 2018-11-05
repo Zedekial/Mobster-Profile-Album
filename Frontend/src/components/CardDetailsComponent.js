@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const CardDetailsComponent = (props) => {
     return (
-        <div className={props.className}>
+        <div className={props.className} onClick={props.toggleCard}>
           <h2>{props.name}</h2>
           <ul>
               <li>Phone: {props.phone}</li>

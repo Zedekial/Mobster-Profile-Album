@@ -5,7 +5,7 @@ const Modal = (props) => {
     return (
         <div className="modal__container" onClick={props.handleClosingModal}>
             <div className="modal__container__card" onClick={props.handleModalCardClick}>
-                <div class="modal__container__card--image">
+                <div className="modal__container__card--image">
                     <img draggable='false' alt={props.name + ' img'} src={props.src}></img>
                 </div>
                 <h2>{props.name}</h2>

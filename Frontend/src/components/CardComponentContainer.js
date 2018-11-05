@@ -17,6 +17,8 @@ class CardComponentContainer extends Component {
     }
 
     toggleCard() {
+        console.log('toggle click method')
+
         this.setState({ active: !this.state.active });
         this.state.active ? this.setState({ classFront: 'card--show', classBack: 'card--hide' }) : this.setState({ classFront: 'card--hide', classBack: 'card--show' });
 
@@ -24,6 +26,8 @@ class CardComponentContainer extends Component {
 
     handleClick = () => {
         this.props.handleOpeningModal(this.props)
+        // console.log('handle click method')
+        this.toggleCard()
     }
 
     render() {
@@ -42,7 +46,7 @@ class CardComponentContainer extends Component {
                 email={this.props.email}
                 role={this.props.role}
                 name={this.props.name}
-                onClick={this.toggleCard}
+                toggleCard={this.toggleCard}
                 className={`card__details ${this.state.classBack}`}
                 handleClick={this.handleClick}
               />
