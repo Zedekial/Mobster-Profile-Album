@@ -25,19 +25,26 @@
   .modal__container__card--image{
     display: block;
     margin: 0 auto;
-    height: 500px;
-    width: 400px;
     padding: 3rem;
+    max-width: 250px;
+    height: 318px;
+    text-align: center;
   }
 
   .modal__container__card--image img{
-    object-fit: cover;
+    /* object-fit: cover; */
     border-bottom: 3px solid #0f9dce;
+    width: 100%;
   }
 
   .modal__container__card ul li{
     padding: 1rem;
     opacity: 0.8;
+  }
+
+  .modal__container__card--details {
+    margin-top: 4rem;
+    padding: 2rem;
   }
 
   .modal__container__card--button{

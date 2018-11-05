@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import AddUserButtonComponent from './AddUserButtonComponent'
 import HeaderLogoComponent from './HeaderLogoComponent'
 import LoginButtonComponent from './LoginButtonComponent';
@@ -9,7 +8,7 @@ import '../CSS/HeaderComponent.css';
 const HeaderComponent = (props) => {
   return (
     <header className={'header__container'} onClick={props.handleClosingModal}>
-      <HeaderLogoComponent/>
+      <HeaderLogoComponent />
       <div>
         {
           !props.state.LoggingIn &&
@@ -19,17 +18,17 @@ const HeaderComponent = (props) => {
           />
         }
       </div>
-          <div className={'header__buttons'}>
-            <AddUserButtonComponent state={props.state}/>
-          {
-            // !props.state.LoggingIn &&
-            <LoginButtonComponent
+      <div className={'header__buttons'}>
+        <AddUserButtonComponent state={props.state} />
+        {
+          // !props.state.LoggingIn &&
+          <LoginButtonComponent
             state={props.state}
             UpdateLoginState={props.UpdateLoginState}
             UpdateLoggingIn={props.UpdateLoggingIn}
-            />
-          }
-          </div>
+          />
+        }
+      </div>
     </header>
   );
 }
