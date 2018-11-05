@@ -65,6 +65,7 @@
     position: absolute;
     z-index: 1;
     display: none;
+    /* visibility: hidden; */
     border-radius: 0;
     width: 200px;
     box-sizing: border-box;

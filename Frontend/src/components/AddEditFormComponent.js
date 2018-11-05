@@ -47,6 +47,7 @@ class AddEditFormComponent extends Component {
         event.preventDefault();
         // console.log(this.state.formSubmit.method);
         // console.log(this.state.formSubmit.url);
+        // console.log(fileField.files[0]);
         // console.log(this.getData());
         
         axios({
@@ -70,7 +71,7 @@ class AddEditFormComponent extends Component {
         formData.append('role', this.state.role);
         formData.append('phone', this.state.phone);
         formData.append('picture', fileField.files[0]);
-        
+        console.log(fileField.files[0]);
         return formData;
     }
     
@@ -131,7 +132,34 @@ class AddEditFormComponent extends Component {
         this.setState({formValid: this.state.emailValid && this.state.nameValid && this.state.roleValid && this.state.phoneValid});
     }
     
+    
     render() {
+    ( function ( document, window, index ){
+	var inputs = document.querySelectorAll( '.inputfile' );
+	Array.prototype.forEach.call( inputs, function( input )
+	{
+		var label	 = input.nextElementSibling,
+			labelVal = label.innerHTML;
+
+		input.addEventListener( 'change', function( e )
+		{
+			var fileName = '';
+			if( this.files && this.files.length > 1 )
+				fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+			else
+				fileName = e.target.value.split( '\\' ).pop();
+
+			if( fileName )
+				label.querySelector( 'span' ).innerHTML = fileName;
+			else
+				label.innerHTML = labelVal;
+		});
+        
+		// Firefox bug fix
+		input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+		input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+	});
+}( document, window, 0 ));
         return (
             <div className="add__user__form">
                 <h1>{this.state.formSubmit.title}</h1>
@@ -140,8 +168,16 @@ class AddEditFormComponent extends Component {
                     <input className="standard__input__style add__user__form__input" id="email" type="email" placeholder="Email" value={this.state.email} onChange={this.setInput.bind(this, 'email')}/>
                     <input className="standard__input__style add__user__form__input" id="role" type="text" placeholder="Role" value={this.state.role} onChange={this.setInput.bind(this, 'role')}/>
                     <input className="standard__input__style add__user__form__input" id="phone" type="text" placeholder="Phone" value={this.state.phone} onChange={this.setInput.bind(this, 'phone')}/>
-                    <input className="standard__input__style add__user__form__input" id="picture" type="file" accept="image/*"/>
+                    {/* <input className="standard__input__style add__user__form__input" id="picture" type="file" accept="image/*"/> */}
+                   
+                    <input type="file" name="picture" id="picture" className="inputfile inputfile-1" accept="image/*" />
+					<label htmlFor="picture"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Choose a file&hellip;</span></label>
+				
+                   
                     <AlertComponent className={this.state.alert.class} message={this.state.alert.message}/>
+
+
+
                     <div className="add__user__form__buttons">
                         <input className="standard__button__style" type="submit" value={this.state.formSubmit.value} disabled={!this.state.formValid}/>
                         {this.state.path === '/edit' && <button className="standard__button__style" onClick={this.deleteUser}>Delete</button> }

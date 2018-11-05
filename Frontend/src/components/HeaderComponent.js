@@ -22,19 +22,17 @@ const HeaderComponent = (props) => {
       </div>
 
           <div className={'header__buttons'}>
-          <Link to={props.state.LoggedIn ? '/add' : '/login' }>
+
                 <AddUserButtonComponent state={props.state}/>
-          </Link>
-          <Link to={ props.state.LoggedIn ? '/' : '/login' } style={{textDecoration: 'none'}}>
+
           {
-            !props.state.LoggingIn &&
+            // !props.state.LoggingIn &&
             <LoginButtonComponent
             state={props.state}
             UpdateLoginState={props.UpdateLoginState}
             UpdateLoggingIn={props.UpdateLoggingIn}
             />
           }
-          </Link>
           </div>
     </header>
   );
