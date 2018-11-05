@@ -1,21 +1,17 @@
 import React from 'react';
-import '../CSS/DisplayStatusInfoComponent.css'
+import '../CSS/DisplayStatusInfoComponent.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 const LoadingMessage = () => {
-  let setDotInterval;
-  let loadingDots = '';
-  let createLoadingDots = setInterval (() => {
-    console.log('inside func');
-    if ( loadingDots.length > 3 ) {
-      loadingDots = '';
-    } else {
-      loadingDots += '.'
-    }
-  },300);
-  clearInterval(createLoadingDots);
+
   return (
-      <h1>Loading<span id='dots'>{loadingDots}</span></h1>
+      <h1 className='loading__content'>
+        Loading
+        <span className='loading__content--icon--wrap'>
+          <FontAwesomeIcon className="fa-2x fa-pulse loading__content--icon--animated" icon="spinner" />
+        </span>
+      </h1>
   )
 }
 

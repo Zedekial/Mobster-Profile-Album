@@ -11,3 +11,11 @@ h1 {
   background-color: #eee;
   opacity: .3;
 }
+
+.loading__content--icon--wrap {
+  padding-left: 20px;
+}
+
+.loading__content--icon--animated {
+  margin-bottom: -10px;
+}
