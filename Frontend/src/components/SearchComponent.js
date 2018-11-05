@@ -31,8 +31,8 @@ class SearchComponent extends Component {
       }, () => {
         let filteredMobsters = FilterMobsterData(this.props.state.data, this.state.searchText);
         let filteredEmptyArrayMobsters = filteredMobsters.length ? filteredMobsters : 'no results';
-        
-        this.props.SearchComponentCallBack(filteredEmptyArrayMobsters, this.state.searching);
+
+        this.props.SearchComponentCallBack(filteredEmptyArrayMobsters, this.state.searching, this.state.searchText);
       });
 
     }

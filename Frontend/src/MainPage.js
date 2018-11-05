@@ -53,7 +53,9 @@ class App extends Component {
       data: [],
       loading: true,
       displayMessage: 'loading',
+      errorDetails: '',
       filteredMobsterData: [],
+      searchText: '',
       searching: false,
       LoggedIn: false,
       LoggingIn: false,
@@ -99,14 +101,14 @@ class App extends Component {
   /* ^From login/header branch^ */
 
 
-  SearchComponentCallBack = (filteredMobsters, searching) => {
-    console.log(filteredMobsters)
+  SearchComponentCallBack = (filteredMobsters, searching, searchText) => {
     switch (filteredMobsters) {
       case null:
       case 'no results':
         this.setState({
           searching: searching,
           filteredMobsterData: [],
+          searchText: searchText,
           displayMessage: 'no results'
         })
         break;
@@ -121,6 +123,25 @@ class App extends Component {
     }
   }
 
+  retryGetMobsterData = () => {
+    axios.get('https://api.myjson.com/bins/msk5m')
+    .then(response => {
+      this.setState({
+        data: response.data,
+        loading: false,
+        displayMessage: '',
+      })
+    })
+    .catch(err => {
+      let errorString = `${err.name}: the response was '${err.message}`
+      this.setState({
+        displayMessage: 'error',
+        errorDetails: errorString,
+      })
+      console.log(`Data failed to fetch, error details ${err.name}, ${err.message}`)
+    })
+  }
+
   componentWillMount() {
     axios.get('https://api.myjson.com/bins/msk5m')
     .then(response => {
@@ -131,8 +152,11 @@ class App extends Component {
       })
     })
     .catch(err => {
-      this.setState({ displayMessage: 'error' })
-      console.log(`Data failed to fetch`)
+      let errorString = `${err.name}: the response was '${err.message}`
+      this.setState({
+        displayMessage: 'error',
+        errorDetails: errorString,
+      })
     })
   }
 
@@ -158,6 +182,7 @@ class App extends Component {
   }
 
 render() {
+  console.log(this.state.displayMessage)
   return (
     <div className="App">
       <HeaderComponent
@@ -170,10 +195,14 @@ render() {
         (this.state.loading || (this.state.searching && !this.state.filteredMobsterData.length)) &&
          <DisplayStatusInfoWindow
           state={this.state}
+          retryGetMobsterData={this.retryGetMobsterData}
           />
         }
       <Switch>
+      {
+        (!this.state.loading || (!this.state.displayMessage.includes('no results'))) &&
         <Route exact path='/' render={this.CardGridComponentWithProps} />
+      }
         <Route path="/login" render={this.MyLoginPage} />
         <Route path="/add" component={AddEditFormComponent} />
         <PrivateRoute path='/admin' component={Admin} />
