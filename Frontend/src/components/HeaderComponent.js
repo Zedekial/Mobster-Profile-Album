@@ -8,7 +8,7 @@ import '../CSS/HeaderComponent.css';
 
 const HeaderComponent = (props) => {
   return (
-    <header className={'header__container'}>
+    <header className={'header__container'} onClick={props.handleClosingModal}>
       <HeaderLogoComponent/>
 
       <div>

@@ -8,6 +8,8 @@ import axios from 'axios';
 import AddEditFormComponent from './components/AddEditFormComponent';
 import FooterComponent from './components/FooterComponent';
 import { DisplayStatusInfoWindow } from './components/DisplayStatusInfoComponent';
+import ModalContainerComponent from './components/ModalContainerComponent';
+import ModalComponent from './components/ModalComponent'
 
 /* Font Awesome imports */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -36,14 +38,13 @@ const Admin = () => (<div> <h2>I am in GOD MODE ADMIN</h2> </div>)
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
-    {...rest}
-    render={(props) => fakeAuth.isAuthenticated === true
-      ? <Component {...props} />
-      : <Redirect to={{ pathname: '/', state: { from: props.location } }} />} />
-      )
-    }
-    /* ^From login/header branch^ */
-
+      {...rest}
+      render={(props) => fakeAuth.isAuthenticated === true
+        ? <Component {...props} />
+        : <Redirect to={{ pathname: '/', state: { from: props.location } }} />} />
+  )
+}
+/* ^From login/header branch^ */
 
 class App extends Component {
   constructor(props) {
@@ -65,6 +66,7 @@ class App extends Component {
       list={this.state.searching ?
         this.state.filteredMobsterData :
         this.state.data}
+      handleOpeningModal={this.handleOpeningModal}
         />
         )
       }
@@ -133,36 +135,67 @@ class App extends Component {
     })
   }
 
+  /*{Function to handle closing of modal}*/
+  handleClosingModal = () => {
+    this.setState({
+      modalVisible: false
+    });
+  }
+
+  /*{Function to handle opening of modal}*/
+  handleOpeningModal = (details) => {
+    this.setState({
+      modalVisible: true,
+      details: details
+    });
+  }
+
+  handleModalCardClick = (event) => {
+    console.log('Clicked');
+    event.stopPropagation();
+    return;
+  }
+
 render() {
   return (
     <div className="App">
-    <HeaderComponent
-      state={this.state}
-      SearchComponentCallBack={this.SearchComponentCallBack}
-      UpdateLoginState={this.UpdateLoginState}
-      UpdateLoggingIn={this.UpdateLoggingIn}
-    />
-      {
-      (this.state.loading || (this.state.searching && !this.state.filteredMobsterData.length)) &&
-       <DisplayStatusInfoWindow
+      <HeaderComponent
         state={this.state}
-        />
+        SearchComponentCallBack={this.SearchComponentCallBack}
+        UpdateLoginState={this.UpdateLoginState}
+        UpdateLoggingIn={this.UpdateLoggingIn}
+      />
+        {
+        (this.state.loading || (this.state.searching && !this.state.filteredMobsterData.length)) &&
+         <DisplayStatusInfoWindow
+          state={this.state}
+          />
+        }
+      <Switch>
+        <Route exact path='/' render={this.CardGridComponentWithProps} />
+        <Route path="/login" render={this.MyLoginPage} />
+        <Route path="/add" component={AddEditFormComponent} />
+        <PrivateRoute path='/admin' component={Admin} />
+      </Switch>
+      {
+        this.state.modalVisible &&
+        <ModalContainerComponent className="modal__container">
+          <ModalComponent
+            handleModalCardClick={this.handleModalCardClick}
+            handleClosingModal={this.handleClosingModal}
+            src={this.state.details.src}
+            name={this.state.details.name}
+            email={this.state.details.email}
+            phone={this.state.details.phone}
+            role={this.state.details.role}
+          />
+        </ModalContainerComponent>
       }
-
-
-    <Switch>
-
-      <Route exact path='/' render={this.CardGridComponentWithProps} />
-      <Route path="/login" render={this.MyLoginPage} />
-      <Route path="/add" component={AddEditFormComponent} />
-      <PrivateRoute path='/admin' component={Admin} />
-    </Switch>
-    <FooterComponent />
+      <FooterComponent />
     </div>
     );
   }
 }
-
 
 
 export default App;
