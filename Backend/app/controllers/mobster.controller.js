@@ -84,29 +84,54 @@ exports.findOne = (req, res) => {
 
 // UPDATE a mobster
 exports.update = (req, res) => {
-    Mobster.findByIdAndUpdate(req.params.mobsterid, {
-        name: req.body.name,
-        phone: req.body.phone,
-        email: req.body.email,
-        role: req.body.role
-    }, {new: true})
-    .then(mobster => {
-        if(!mobster) {
-            return res.status(404).send({
-                message: "mobster not found with id " + req.params.mobsterid
-            });
-        }
-        res.send(mobster);
-    }).catch(err => {
-        if(err.kind === 'ObjectId') {
-            return res.status(404).send({
-                message: "mobster not found with id " + req.params.mobsterid
-            });
-        }
-        return res.status(500).send({
-            message: "Error updating mobster with id " + req.params.mobsterid
-        });
+    let form = new formidable.IncomingForm();
+    let dir = path.resolve(__dirname, '..', '..','..','Frontend','build', 'uploads');
+    let mobsterData = {};
+
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    };
+
+    form.maxFileSize = 20 * 1024 * 1024;
+
+    form.on('fileBegin', function (name, file){
+        file.path = path.resolve(dir, file.name);
+        mobsterData[name] = `../uploads/${file.name}`;
     });
+
+    form.on('field', function(name, value) {
+        mobsterData[name] = value;
+    });
+
+    form.on('error', function(error){
+        res.staus(500).send({
+            message: error
+        });
+    })
+
+    form.on('end', function(){
+        Mobster.findByIdAndUpdate(req.params.mobsterid, mobsterData, {new: true})
+        .then(mobster => {
+            if(!mobster) {
+                return res.status(404).send({
+                    message: "mobster not found with id " + req.params.mobsterid
+                });
+            }
+            res.send(mobster);
+        }).catch(err => {
+            if(err.kind === 'ObjectId') {
+                return res.status(404).send({
+                    message: "mobster not found with id " + req.params.mobsterid
+                });
+            }
+            return res.status(500).send({
+                message: "Error updating mobster with id " + req.params.mobsterid
+            });
+        });
+        
+    })
+
+    form.parse(req);    
 };
 
 // DELETE a mobster
