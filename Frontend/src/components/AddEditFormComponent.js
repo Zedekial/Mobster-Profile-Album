@@ -16,9 +16,8 @@ class AddEditFormComponent extends Component {
             role: '',
             phone: '',
             formErrors: {email: '', name: '', role:'', phone:''},
-            formSubmit: {title: '', value: '', method: '', url: ''},
+            formSubmit: {title: '', value: '', method: '', url: '', delete: false},
             alert: {class: '', message: ''},
-            path: window.location.pathname,
             emailValid: false,
             nameValid: false,
             roleValid: false,
@@ -52,7 +51,7 @@ class AddEditFormComponent extends Component {
                 email: '', 
                 role: '', 
                 phone: '', 
-                formSubmit: {title: 'Add new mobster', value: 'Create', method: 'post', url: '/mobsters'}});
+                formSubmit: {title: 'Add new mobster', value: 'Create', method: 'post', url: '/mobsters', delete: false}});
             break;
             case 'edit':
             const data = this.props.location.state.foo.data;
@@ -62,7 +61,7 @@ class AddEditFormComponent extends Component {
                 email: data.email, 
                 role: data.role, 
                 phone: data.phone, 
-                formSubmit: {title: 'Update or remove mobster', value: 'Save', method: 'put', url: `/mobsters/${this.state.id}`}});
+                formSubmit: {title: 'Update or remove mobster', value: 'Save', method: 'put', url: `/mobsters/${this.state.id}`, delete: true}});
             break;
         }
     }
@@ -169,7 +168,7 @@ class AddEditFormComponent extends Component {
                 <AlertComponent className={this.state.alert.class} message={this.state.alert.message}/>
                 <div className="add__user__form__buttons">
                     <button className="standard__button__style" onClick={this.submitForm} disabled={!this.state.formValid}>{this.state.formSubmit.value}</button>
-                    {this.state.path === '/edit' && <button className="standard__button__style" onClick={this.deleteUser}>Delete</button> }
+                    {this.state.formSubmit.delete && <button className="standard__button__style" onClick={this.deleteUser}>Delete</button> }
                     <BackButtonComponent/>
                 </div>
                 <FormErrors formErrors={this.state.formErrors} />
