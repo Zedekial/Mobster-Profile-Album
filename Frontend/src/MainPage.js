@@ -7,6 +7,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import AddEditFormComponent from './components/AddEditFormComponent';
 import FooterComponent from './components/FooterComponent';
+import CreateMobsterChunks from './components/LazyLoadingComponent';
 import { DisplayStatusInfoWindow } from './components/DisplayStatusInfoComponent';
 
 
@@ -54,6 +55,8 @@ class App extends Component {
       displayMessage: 'loading',
       errorDetails: '',
       filteredMobsterData: [],
+      mobsterChunks: [],
+      chunkIndex: 0,
       searchText: '',
       searching: false,
       LoggedIn: false,
@@ -65,9 +68,11 @@ class App extends Component {
     return (
       <CardGridComponent
         list={this.state.searching ?
-              this.state.filteredMobsterData :
-              this.state.data
-              }
+          this.state.filteredMobsterData :
+          (!this.state.loading ?
+            this.state.mobsterChunks[this.state.chunkIndex] :
+            null)
+        }
         handleOpeningModal={this.handleOpeningModal}
         state={this.state}
       />
@@ -123,6 +128,16 @@ class App extends Component {
     }
   }
 
+  CreateMobsterChunksCallback = (mobsterChunks, updatedChunkIndex) => {
+    this.setState({ mobsterChunks: mobsterChunks })
+    if(!this.state.chunkIndex === updatedChunkIndex) {
+      this.setState({ chunkIndex: updatedChunkIndex })
+    }
+    setTimeout(() => {
+      console.log(this.state.chunkIndex)
+    }, 200)
+  }
+
   retryGetMobsterData = () => {
     axios.get('https://api.myjson.com/bins/1a9wby')
     .then(response => {
@@ -152,6 +167,10 @@ class App extends Component {
           displayMessage: '',
         })
       })
+      .then(() => {
+        console.log('then working');
+        CreateMobsterChunks(this.state.data, this.CreateMobsterChunksCallback);
+      })
       .catch(err => {
         let errorString = `${err.name}: the response was '${err.message}`
         this.setState({
@@ -165,7 +184,6 @@ class App extends Component {
 
 
 render() {
-  console.log(this.state.displayMessage)
   return (
     <div className="App">
       <HeaderComponent
