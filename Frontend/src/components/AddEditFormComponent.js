@@ -51,6 +51,7 @@ class AddEditFormComponent extends Component {
             data: this.getData()
         }).then((response) => {
             if(response.status === 200) {
+                console.log(response);
                 this.setState({name: '', email: '', role: '', phone: '', alert: {class: 'success', message: 'Your changes have been saved!'}})
             }
         })
@@ -67,7 +68,7 @@ class AddEditFormComponent extends Component {
         formData.append('email', this.state.email);
         formData.append('role', this.state.role);
         formData.append('phone', this.state.phone);
-        formData.append('picture', fileField.files[0]);
+        formData.append('src', fileField.files[0]);
         return formData;
     }
 
@@ -131,6 +132,7 @@ class AddEditFormComponent extends Component {
     }
 
     render() {
+        console.log(this.props.location.state);
         return (
             <div className="add__user__form">
                 <h1>{this.state.formSubmit.title}</h1>
@@ -139,7 +141,7 @@ class AddEditFormComponent extends Component {
                     <input className="standard__input__style add__user__form__input" id="email" type="email" placeholder="Email" value={this.state.email} onChange={this.setInput.bind(this, 'email')}/>
                     <input className="standard__input__style add__user__form__input" id="role" type="text" placeholder="Role" value={this.state.role} onChange={this.setInput.bind(this, 'role')}/>
                     <input className="standard__input__style add__user__form__input" id="phone" type="text" placeholder="Phone" value={this.state.phone} onChange={this.setInput.bind(this, 'phone')}/>
-                    <FileInputComponent/>
+                    <FileInputComponent name="picture" id="picture"/>
                 </form>
                 <AlertComponent className={this.state.alert.class} message={this.state.alert.message}/>
                 <div className="add__user__form__buttons">
