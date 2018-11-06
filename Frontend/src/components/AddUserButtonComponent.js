@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class AddUserButtonComponent extends Component {
+const AddUserButtonComponent = (props) => {
+  return(
+    <Link to={props.state.LoggedIn ? { pathname: '/add', state: {path: 'add'} } : '/login' }> 
+      <button className={'standard__button__style'}>Add Mobster</button>
+    </Link>
+  )  
+}
   
-    render() { 
-        return(
-          <Link to={this.props.state.LoggedIn ? '/add' : '/login' }> 
-            <button className={'standard__button__style'}>Add Mobster</button>
-          </Link>
-
-        )  
-        }
-    }
 export default AddUserButtonComponent;
