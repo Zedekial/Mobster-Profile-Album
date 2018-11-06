@@ -58,16 +58,27 @@ class CardComponentContainer extends Component {
       }
 
     handleScroll = () => {
-      console.log('handleScroll is visible')
+      let scrollPos = window.scrollY;
       if (this.scroller) {
-        console.log(this.scroller.scrollTop);
+        // console.log(this.scroller.scrollTop);
+        // console.log(this.scroller.scrollHeight)
       }
+    }
+
+    componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
     }
 
 
     render() {
         return (
           <div className={'card__container'}>
+             <div
+               onScroll={this.handleScroll}
+                 ref={(scroller) => {
+                 this.scroller = scroller;
+                 }}
+             >
             <EditUserButtonComponent data={this.props} state={this.props.state} />
             <CardMediaComponent
               src={this.props.src}
@@ -99,6 +110,7 @@ class CardComponentContainer extends Component {
               />
             </ModalContainerComponent>
            }
+            </div>
           </div>
         );
     }

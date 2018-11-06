@@ -3,6 +3,16 @@ import CardComponentContainer from './CardComponentContainer';
 import '../CSS/CardComponent.css';
 
 const CardGridComponent = (props) => {
+
+  let mobstersArrayLength = props.list.length;
+  console.log(mobstersArrayLength + ' mobsters');
+
+  let chunkSize = 8;
+  let numbOfReturnedChunks = mobstersArrayLength / chunkSize;
+  console.log(numbOfReturnedChunks + ' nr of chunks');
+
+  // console.log(chunkSize + ' is chunkSize')
+
     return (
         <div className={'card__grid'}>
           {props.list.map((data) =>
