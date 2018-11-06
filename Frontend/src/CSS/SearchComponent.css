@@ -15,6 +15,11 @@ ul, li {
   display: flex;
 }
 
+.standard__input__style:focus{
+  border: none;
+  box-shadow: 0px 2px 0px #0f9dce;
+}
+
 .standard__input__style::placeholder{
   font-size: 20px;
 }

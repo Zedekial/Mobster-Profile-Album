@@ -1,10 +1,10 @@
 import React from 'react';
 import '../CSS/DisplayStatusInfoComponent.css';
+import '../CSS/MainPage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 const LoadingMessage = () => {
-
   return (
       <h1 className='loading__content'>
         Loading
@@ -15,17 +15,54 @@ const LoadingMessage = () => {
   )
 }
 
-const ErrorMessage = () => {
-  console.log('ErrorMessage')
+const ErrorMessage = (props) => {
+
+  let toggleErrorDisplay = () => {
+    let errorTextbox = document.getElementsByClassName('error__message--more-info-textbox')[0]
+    if(!errorTextbox.classList.contains('show') && !errorTextbox.classList.contains('hide')) {
+      errorTextbox.classList.toggle('show');
+    }else {
+      errorTextbox.classList.toggle('show');
+      errorTextbox.classList.toggle('hide');
+    }
+  }
+
   return (
-    <h1>Error!</h1>
+    <div>
+      <h1>Error while loading data!</h1>
+      <h3 className='error__message--more-info-header' onClick={toggleErrorDisplay}>More info</h3>
+      <p className='error__message--more-info-textbox hide'>{props.errorDetails}
+        <button className='standard__button__style' onClick={props.retryGetMobsterData}>Try Again?</button>
+      </p>
+    </div>
   )
 }
 
-const NoSearchResultsMessage = () => {
-  console.log('NoSearchResultsMessage')
+const NoSearchResultsMessage = (props) => {
   return (
-    <h1>No Results</h1>
+    <div>
+      <h1>Your search returned no results</h1>
+      <p>You searched for: {props.state.searchText}</p>
+      <ul>
+      Perhaps you meant:
+        <SuggestedSearch
+          state={props.state}
+        />
+      </ul>
+    </div>
+  )
+}
+
+const SuggestedSearch = (props) => {
+  let trimmedSearchPhrase = props.state.searchText.slice(0, props.state.searchText.length -2).toLowerCase()
+  return (
+    props.state.data.map(mobster => {
+      if(mobster.name.toLowerCase().includes(trimmedSearchPhrase)) {
+        return <li key={mobster.id}>{mobster.name}</li>
+      }else {
+        return null
+      }
+    })
   )
 }
 
@@ -37,9 +74,14 @@ export const DisplayStatusInfoWindow = (props) => {
           case 'loading':
             return <LoadingMessage />
           case 'error':
-            return <ErrorMessage />
+            return <ErrorMessage
+                      errorDetails={props.state.errorDetails}
+                      retryGetMobsterData={props.retryGetMobsterData}
+                    />
           case 'no results':
-            return <NoSearchResultsMessage />
+            return <NoSearchResultsMessage
+                    state={props.state}
+                  />
           default:
             return null;
           }
