@@ -59,9 +59,17 @@ class CardComponentContainer extends Component {
 
     handleScroll = () => {
       let scrollPos = window.scrollY;
-      if (this.scroller) {
-        // console.log(this.scroller.scrollTop);
-        // console.log(this.scroller.scrollHeight)
+      let lengthOfMobsterChunks = this.props.state.mobsterChunks.length;
+      // console.log(this.scroller.scrollHeight + ' scrollHeight');
+      let scrollBackUp = {
+        scrollTop: 0,
+        scrollHeight: 300
+      }
+      let cardScrollBar = this.scroller ? this.scroller : scrollBackUp;
+      if (scrollPos <= (cardScrollBar.scrollTop + 10)) {
+        this.props.updateChunkIndex('decrease')
+      } else if (scrollPos >= (cardScrollBar.scrollHeight * .7)) {
+        this.props.updateChunkIndex('increase')
       }
     }
 

@@ -74,6 +74,7 @@ class App extends Component {
             null)
         }
         handleOpeningModal={this.handleOpeningModal}
+        updateChunkIndex={this.updateChunkIndex}
         state={this.state}
       />
     )
@@ -104,6 +105,22 @@ class App extends Component {
     this.setState({ LoggingIn: true })
   }
   /* ^From login/header branch^ */
+
+  updateChunkIndex = (passedIndex) => {
+    console.log(passedIndex);
+    let newChunkIndex = this.state.chunkIndex;
+    // if ((newChunkIndex + 1) <= this.state.mobsterChunks.length || (newChunkIndex - 1) >= this.state.mobsterChunks.length ) {
+      if(passedIndex === 'increase') {
+        newChunkIndex++;
+        this.setState({ chunkIndex: newChunkIndex })
+      } else if (passedIndex === 'decrease' && (!(passedIndex -1) === 0)) {
+        newChunkIndex--;
+        this.setState({ chunkIndex: newChunkIndex })
+      }
+    // } else {
+    //   this.setState({ chunkIndex: 0 })
+    // }
+  }
 
 
   SearchComponentCallBack = (filteredMobsters, searching, searchText) => {
