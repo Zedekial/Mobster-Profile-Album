@@ -36,7 +36,11 @@
     padding: 12px;
     background-color: white;
     /* opacity: 0.95; */
-    text-align: left;
+    text-align: center;
+}
+
+.card__details li {
+    margin: 5px;
 }
 
 .card__media {

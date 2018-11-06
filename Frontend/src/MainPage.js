@@ -123,7 +123,7 @@ class App extends Component {
 
   componentWillMount() {
     // axios.get('https://api.myjson.com/bins/msk5m')
-    axios.get('https://api.myjson.com/bins/98xg6')
+    axios.get('https://api.myjson.com/bins/1femsm')
       .then(response => {
         this.setState({
           data: response.data,

@@ -7,8 +7,8 @@ export const CardDetailsComponent = (props) => {
             <h2>{props.name}</h2>
             <ul>
                 <li>Phone: {props.phone}</li>
-                <li>Email: {props.email}</li>
-                <li>Role: {props.role}</li>
+                <li>{props.email}</li>
+                <li>{props.role}</li>
             </ul>
             <div className="user__show__more__button" onClick={props.handleClick}>
                 <FontAwesomeIcon icon="eye" className="user__show__more__icon" /> <span>Show more</span>
