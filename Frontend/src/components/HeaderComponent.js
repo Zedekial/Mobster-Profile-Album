@@ -8,7 +8,7 @@ import '../CSS/HeaderComponent.css';
 const HeaderComponent = (props) => {
   return (
     <header className={'header__container'} onClick={props.handleClosingModal}>
-      <HeaderLogoComponent/>
+      <HeaderLogoComponent />
       <div>
         {
           !props.state.LoggingIn &&
@@ -25,9 +25,9 @@ const HeaderComponent = (props) => {
             state={props.state}
             UpdateLoginState={props.UpdateLoginState}
             UpdateLoggingIn={props.UpdateLoggingIn}
-            />
-          }
-          </div>
+          />
+        }
+      </div>
     </header>
   );
 }

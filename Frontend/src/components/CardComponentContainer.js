@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { CardMediaComponent } from './CardMediaComponent';
 import { CardDetailsComponent } from './CardDetailsComponent';
 import EditUserButtonComponent from './EditUserButtonComponent';
@@ -41,7 +42,7 @@ class CardComponentContainer extends Component {
           modalVisible: false
         });
       }
-    
+
       /*{Function to handle opening of modal}*/
       handleOpeningModal = () => {
         this.setState({
@@ -49,7 +50,7 @@ class CardComponentContainer extends Component {
           details: this.props
         });
       }
-    
+
       handleModalCardClick = (event) => {
         console.log('Clicked');
         event.stopPropagation();
@@ -58,41 +59,50 @@ class CardComponentContainer extends Component {
 
     render() {
         return (
-            <div className={'card__container'}>
-              <EditUserButtonComponent data={this.props} state={this.props.state} />
-              <CardMediaComponent
-                src={this.props.src}
-                name={this.props.name}
-                onClick={this.toggleCard}
-                className={`card__media ${this.state.classFront}`}
+          <div className={'card__container'}>
+            <EditUserButtonComponent data={this.props} state={this.props.state} />
+            <CardMediaComponent
+              src={this.props.src}
+              name={this.props.name}
+              onClick={this.toggleCard}
+              className={`card__media ${this.state.classFront}`}
+            />
+            <CardDetailsComponent
+              handleOpeningModal={this.handleOpeningModal}
+              phone={this.props.phone}
+              email={this.props.email}
+              role={this.props.role}
+              name={this.props.name}
+              toggleCard={this.toggleCard}
+              className={`card__details ${this.state.classBack}`}
+              handleClick={this.handleClick}
+            />
+           {
+            this.state.modalVisible &&
+            <ModalContainerComponent className="modal__container">
+              <ModalComponent
+                handleModalCardClick={this.handleModalCardClick}
+                handleClosingModal={this.handleClosingModal}
+                src={this.state.details.src}
+                name={this.state.details.name}
+                email={this.state.details.email}
+                phone={this.state.details.phone}
+                role={this.state.details.role}
               />
-              <CardDetailsComponent
-                handleOpeningModal={this.handleOpeningModal}
-                phone={this.props.phone}
-                email={this.props.email}
-                role={this.props.role}
-                name={this.props.name}
-                toggleCard={this.toggleCard}
-                className={`card__details ${this.state.classBack}`}
-                handleClick={this.handleClick}
-              />
-                   {
-        this.state.modalVisible &&
-        <ModalContainerComponent className="modal__container">
-          <ModalComponent
-            handleModalCardClick={this.handleModalCardClick}
-            handleClosingModal={this.handleClosingModal}
-            src={this.state.details.src}
-            name={this.state.details.name}
-            email={this.state.details.email}
-            phone={this.state.details.phone}
-            role={this.state.details.role}
-          />
-        </ModalContainerComponent>
-      }
-            </div>
+            </ModalContainerComponent>
+           }
+          </div>
         );
     }
+}
+
+CardComponentContainer.propTypes = {
+    phone: PropTypes.number,
+    email: PropTypes.string,
+    role: PropTypes.string,
+    name: PropTypes.string,
+    toggleCard: PropTypes.func,
+    handleClick: PropTypes.func
 }
 
 export default CardComponentContainer;

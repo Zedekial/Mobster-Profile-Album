@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {SearchInputComponent} from './SearchInputComponent';
+import { SearchInputComponent } from './SearchInputComponent';
 import "../CSS/SearchComponent.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 
 class SearchComponent extends Component {
@@ -31,7 +32,7 @@ class SearchComponent extends Component {
       }, () => {
         let filteredMobsters = FilterMobsterData(this.props.state.data, this.state.searchText);
         let filteredEmptyArrayMobsters = filteredMobsters.length ? filteredMobsters : 'no results';
-        
+
         this.props.SearchComponentCallBack(filteredEmptyArrayMobsters, this.state.searching);
       });
 
@@ -75,7 +76,7 @@ class SearchComponent extends Component {
       return (
         <div className='search__user__input'>
           <FontAwesomeIcon className="search__icon" icon="search" />
-          <SearchInputComponent HandleSearch={this.HandleSearch}/>
+          <SearchInputComponent HandleSearch={this.HandleSearch} />
           <span className="error__message"></span>
         </div>
       );
@@ -98,5 +99,6 @@ const MatchAgainstSearchText = (mobster, searchText) => {
     return false
   }
 }
+
 
 export default SearchComponent;

@@ -14,8 +14,8 @@ import { DisplayStatusInfoWindow } from './components/DisplayStatusInfoComponent
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* You must import your icon below this line  */
-import { faPlus, faSearch, faUserEdit, faEye, faSpinner } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faPlus, faSearch, faUserEdit, faEye, faSpinner);
+import { faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle);
 
 
 /*
@@ -62,24 +62,25 @@ class App extends Component {
   CardGridComponentWithProps = () => {
     return (
       <CardGridComponent
-      list={this.state.searching ?
-        this.state.filteredMobsterData :
-        this.state.data}
-      handleOpeningModal={this.handleOpeningModal}
-      state={this.state}
-        />
-        )
-      }
+        list={this.state.searching ?
+              this.state.filteredMobsterData :
+              this.state.data
+              }
+        handleOpeningModal={this.handleOpeningModal}
+        state={this.state}
+      />
+    )
+  }
 
   /* From login/header branch */
   MyLoginPage = (props) => {
     return (
       <LoginPage
-      UpdateLoginState={this.UpdateLoginState}
-      {...props} state={this.state}
+        UpdateLoginState={this.UpdateLoginState}
+        {...props} state={this.state}
       />
-      );
-    }
+    );
+  }
 
   UpdateLoginState = () => {
     if (this.state.LoggedIn === false) {
@@ -116,42 +117,42 @@ class App extends Component {
           filteredMobsterData: filteredMobsters,
           searching: searching,
         })
-      break;
+        break;
     }
   }
 
-  componentDidMount() {
-    //Change this url to '/mobsters' to call the backend
-    axios.get('https://api.myjson.com/bins/msk5m')
-    .then(response => {
-      this.setState({
-        data: response.data,
-        loading: false,
-        displayMessage: '',
+  componentWillMount() {
+    // axios.get('https://api.myjson.com/bins/msk5m')
+    axios.get('https://api.myjson.com/bins/1femsm')
+      .then(response => {
+        this.setState({
+          data: response.data,
+          loading: false,
+          displayMessage: '',
+        })
       })
-    })
-    .catch(err => {
-      this.setState({ displayMessage: 'error' })
-      console.log(`Data failed to fetch`)
-    })
+      .catch(err => {
+        this.setState({ displayMessage: 'error' })
+        console.log(`Data failed to fetch`)
+      })
   }
 
   /*{Function to handle closing of modal}*/
 
 
-render() {
-  return (
-    <div className="App">
-      <HeaderComponent
-        state={this.state}
-        SearchComponentCallBack={this.SearchComponentCallBack}
-        UpdateLoginState={this.UpdateLoginState}
-        UpdateLoggingIn={this.UpdateLoggingIn}
-      />
-        {
-        (this.state.loading || (this.state.searching && !this.state.filteredMobsterData.length)) &&
-         <DisplayStatusInfoWindow
+  render() {
+    return (
+      <div className="App">
+        <HeaderComponent
           state={this.state}
+          SearchComponentCallBack={this.SearchComponentCallBack}
+          UpdateLoginState={this.UpdateLoginState}
+          UpdateLoggingIn={this.UpdateLoggingIn}
+        />
+        {
+          (this.state.loading || (this.state.searching && !this.state.filteredMobsterData.length)) &&
+          <DisplayStatusInfoWindow
+            state={this.state}
           />
         }
       <Switch>
@@ -159,10 +160,8 @@ render() {
         <Route path="/login" render={this.MyLoginPage} />
         <Route path="/add" component={AddEditFormComponent} />
         <Route path="/edit" component={AddEditFormComponent} />
-
         <PrivateRoute path='/admin' component={Admin} />
       </Switch>
- 
       <FooterComponent />
     </div>
     );
