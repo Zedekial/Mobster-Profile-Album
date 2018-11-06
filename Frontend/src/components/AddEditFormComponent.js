@@ -166,7 +166,7 @@ class AddEditFormComponent extends Component {
                 </form>
                 <AlertComponent className={this.state.alert.class} message={this.state.alert.message}/>
                 <div className="add__user__form__buttons">
-                    <button className="standard__button__style" onClick={this.submitForm} disabled={!this.state.formValid}>{this.state.formSubmit.value}</button>
+                    <button className="standard__button__style" onClick={this.submitForm}>{this.state.formSubmit.value}</button>
                     {this.state.formSubmit.delete && <button className="standard__button__style" onClick={this.deleteUser}>Delete</button> }
                     <BackButtonComponent/>
                 </div>
