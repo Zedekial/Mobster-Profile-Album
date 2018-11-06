@@ -18,6 +18,7 @@ class AddEditFormComponent extends Component {
             formErrors: {email: '', name: '', role:'', phone:''},
             formSubmit: {title: '', value: '', method: '', url: ''},
             alert: {class: '', message: ''},
+            path: window.location.pathname,
             emailValid: false,
             nameValid: false,
             roleValid: false,
