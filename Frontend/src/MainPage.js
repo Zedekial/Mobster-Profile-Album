@@ -123,7 +123,7 @@ class App extends Component {
     }
   }
 
-  retryGetMobsterData = () => {
+  getMobsterData = () => {
     axios.get('https://api.myjson.com/bins/1a9wby')
     .then(response => {
       this.setState({
@@ -143,22 +143,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    // axios.get('https://api.myjson.com/bins/msk5m')
-    axios.get('https://api.myjson.com/bins/1a9wby')
-      .then(response => {
-        this.setState({
-          data: response.data,
-          loading: false,
-          displayMessage: '',
-        })
-      })
-      .catch(err => {
-        let errorString = `${err.name}: the response was '${err.message}`
-        this.setState({
-          displayMessage: 'error',
-          errorDetails: errorString,
-        })
-      })
+    this.getMobsterData();
   }
 
   /*{Function to handle closing of modal}*/
@@ -178,7 +163,7 @@ render() {
         (this.state.loading || (this.state.searching && !this.state.filteredMobsterData.length)) &&
          <DisplayStatusInfoWindow
           state={this.state}
-          retryGetMobsterData={this.retryGetMobsterData}
+          getMobsterData={this.getMobsterData}
           />
         }
       <Switch>

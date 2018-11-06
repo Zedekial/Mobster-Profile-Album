@@ -32,7 +32,7 @@ const ErrorMessage = (props) => {
       <h1>Error while loading data!</h1>
       <h3 className='error__message--more-info-header' onClick={toggleErrorDisplay}>More info</h3>
       <p className='error__message--more-info-textbox hide'>{props.errorDetails}
-        <button className='standard__button__style' onClick={props.retryGetMobsterData}>Try Again?</button>
+        <button className='standard__button__style' onClick={props.getMobsterData}>Try Again?</button>
       </p>
     </div>
   )
@@ -76,7 +76,7 @@ export const DisplayStatusInfoWindow = (props) => {
           case 'error':
             return <ErrorMessage
                       errorDetails={props.state.errorDetails}
-                      retryGetMobsterData={props.retryGetMobsterData}
+                      getMobsterData={props.getMobsterData}
                     />
           case 'no results':
             return <NoSearchResultsMessage
