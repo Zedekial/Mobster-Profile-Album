@@ -66,7 +66,7 @@ class CardComponentContainer extends Component {
         scrollHeight: 300
       }
       let cardScrollBar = this.scroller ? this.scroller : scrollBackUp;
-      if (scrollPos <= (cardScrollBar.scrollTop + 10)) {
+      if (scrollPos === (cardScrollBar.scrollTop + 100)) {
         this.props.updateChunkIndex('decrease')
       } else if (scrollPos >= (cardScrollBar.scrollHeight * .7)) {
         this.props.updateChunkIndex('increase')
@@ -74,7 +74,7 @@ class CardComponentContainer extends Component {
     }
 
     componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
+      window.addEventListener('scroll', this.handleScroll);
     }
 
 

@@ -145,11 +145,8 @@ class App extends Component {
     }
   }
 
-  CreateMobsterChunksCallback = (mobsterChunks, updatedChunkIndex) => {
+  CreateMobsterChunksCallback = (mobsterChunks) => {
     this.setState({ mobsterChunks: mobsterChunks })
-    if(!this.state.chunkIndex === updatedChunkIndex) {
-      this.setState({ chunkIndex: updatedChunkIndex })
-    }
     setTimeout(() => {
       console.log(this.state.chunkIndex)
     }, 200)
