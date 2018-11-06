@@ -3,11 +3,9 @@ const formidable = require('formidable');
 const path = require('path');
 const fs = require('fs');
 
-// POST
-exports.create = (req, res) => {
+const handleForm = (req, res, callback) => {
     let form = new formidable.IncomingForm();
     let dir = path.resolve(__dirname, '..', '..','..','Frontend','build', 'uploads');
-
     let mobsterData = {};
 
     if (!fs.existsSync(dir)){
@@ -26,12 +24,22 @@ exports.create = (req, res) => {
     });
 
     form.on('error', function(error){
-        res.staus(500).send({
+        res.status(500).send({
             message: error
         });
     })
 
     form.on('end', function(){
+        callback(mobsterData);
+    })
+
+    form.parse(req);
+
+}
+
+// POST
+exports.create = (req, res) => {
+    handleForm(req, res, (mobsterData) => {
         const mobster = new Mobster(mobsterData);
 
         mobster.save()
@@ -43,8 +51,6 @@ exports.create = (req, res) => {
             });
         });
     })
-
-    form.parse(req);
 };
 
 // GET
@@ -84,32 +90,7 @@ exports.findOne = (req, res) => {
 
 // UPDATE a mobster
 exports.update = (req, res) => {
-    let form = new formidable.IncomingForm();
-    let dir = path.resolve(__dirname, '..', '..','..','Frontend','build', 'uploads');
-    let mobsterData = {};
-
-    if (!fs.existsSync(dir)){
-        fs.mkdirSync(dir);
-    };
-
-    form.maxFileSize = 20 * 1024 * 1024;
-
-    form.on('fileBegin', function (name, file){
-        file.path = path.resolve(dir, file.name);
-        mobsterData[name] = `../uploads/${file.name}`;
-    });
-
-    form.on('field', function(name, value) {
-        mobsterData[name] = value;
-    });
-
-    form.on('error', function(error){
-        res.staus(500).send({
-            message: error
-        });
-    })
-
-    form.on('end', function(){
+    handleForm(req, res, (mobsterData) => {
         Mobster.findByIdAndUpdate(req.params.mobsterid, mobsterData, {new: true})
         .then(mobster => {
             if(!mobster) {
@@ -128,10 +109,7 @@ exports.update = (req, res) => {
                 message: "Error updating mobster with id " + req.params.mobsterid
             });
         });
-        
-    })
-
-    form.parse(req);    
+    });  
 };
 
 // DELETE a mobster
