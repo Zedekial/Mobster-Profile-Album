@@ -61,7 +61,7 @@ class AddEditFormComponent extends Component {
                 email: data.email, 
                 role: data.role, 
                 phone: data.phone, 
-                formSubmit: {title: 'Update or remove mobster', value: 'Save', method: 'put', url: `/mobsters/${this.state.id}`, delete: true}});
+                formSubmit: {title: 'Update or remove mobster', value: 'Save', method: 'put', url: `/mobsters/${data.id}`, delete: true}});
             break;
         }
     }
@@ -154,7 +154,6 @@ class AddEditFormComponent extends Component {
     }
 
     render() {
-        console.log(this.props.location.state);
         return (
             <div className="add__user__form">
                 <h1>{this.state.formSubmit.title}</h1>
