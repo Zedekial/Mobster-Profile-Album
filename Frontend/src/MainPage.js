@@ -9,7 +9,8 @@ import AddEditFormComponent from './components/AddEditFormComponent';
 import FooterComponent from './components/FooterComponent';
 import { DisplayStatusInfoWindow } from './components/DisplayStatusInfoComponent';
 import ModalContainerComponent from './components/ModalContainerComponent';
-import ModalComponent from './components/ModalComponent'
+import ModalComponent from './components/ModalComponent';
+import Infinite from 'react-infinite';
 
 /* Font Awesome imports */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -62,13 +63,13 @@ class App extends Component {
 
   CardGridComponentWithProps = () => {
     return (
-      <CardGridComponent
-      list={this.state.searching ?
-        this.state.filteredMobsterData :
-        this.state.data}
-      handleOpeningModal={this.handleOpeningModal}
-      state={this.state}
-        />
+        <CardGridComponent
+        list={this.state.searching ?
+          this.state.filteredMobsterData :
+          this.state.data}
+        handleOpeningModal={this.handleOpeningModal}
+        state={this.state}
+          />
         )
       }
 

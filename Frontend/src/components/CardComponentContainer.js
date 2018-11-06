@@ -26,26 +26,41 @@ class CardComponentContainer extends Component {
         this.props.handleOpeningModal(this.props)
     }
 
+    handleScroll = () => {
+      console.log('handleScroll is visible')
+      if (this.scroller) {
+        console.log(this.scroller.scrollTop);
+      }
+    }
+
+
     render() {
         return (
             <div className={'card__container'}>
-              <EditUserButtonComponent data={this.props} state={this.props.state} />
-              <CardMediaComponent
-                src={this.props.src}
-                name={this.props.name}
-                onClick={this.toggleCard}
-                className={`card__media ${this.state.classFront}`}
-              />
-              <CardDetailsComponent
-                handleOpeningModal={this.props.handleOpeningModal}
-                phone={this.props.phone}
-                email={this.props.email}
-                role={this.props.role}
-                name={this.props.name}
-                onClick={this.toggleCard}
-                className={`card__details ${this.state.classBack}`}
-                handleClick={this.handleClick}
-              />
+              <div style={{'border: 1px solid red'}}
+                onScroll={this.handleScroll}
+                  ref={(scroller) => {
+                  this.scroller = scroller;
+                  }}
+              >
+                <EditUserButtonComponent data={this.props} state={this.props.state} />
+                <CardMediaComponent
+                  src={this.props.src}
+                  name={this.props.name}
+                  onClick={this.toggleCard}
+                  className={`card__media ${this.state.classFront}`}
+                />
+                <CardDetailsComponent
+                  handleOpeningModal={this.props.handleOpeningModal}
+                  phone={this.props.phone}
+                  email={this.props.email}
+                  role={this.props.role}
+                  name={this.props.name}
+                  onClick={this.toggleCard}
+                  className={`card__details ${this.state.classBack}`}
+                  handleClick={this.handleClick}
+                />
+              </div>
             </div>
         );
     }
