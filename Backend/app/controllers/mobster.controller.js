@@ -6,8 +6,8 @@ const fs = require('fs');
 // POST
 exports.create = (req, res) => {
     let form = new formidable.IncomingForm();
-    let dir = path.resolve(__dirname, '..', '..','..','Frontend', 'uploads');
-    console.log(dir);
+    let dir = path.resolve(__dirname, '..', '..','..','Frontend','build', 'uploads');
+
     let mobsterData = {};
 
     if (!fs.existsSync(dir)){
@@ -18,7 +18,7 @@ exports.create = (req, res) => {
 
     form.on('fileBegin', function (name, file){
         file.path = path.resolve(dir, file.name);
-        mobsterData[name] = file.name;
+        mobsterData[name] = `../uploads/${file.name}`;
     });
 
     form.on('field', function(name, value) {
@@ -26,28 +26,25 @@ exports.create = (req, res) => {
     });
 
     form.on('error', function(error){
-        res.json({
+        res.staus(500).send({
             message: error
         });
     })
 
     form.on('end', function(){
-        console.log(mobsterData);
         const mobster = new Mobster(mobsterData);
 
         mobster.save()
         .then(data => {
             res.send(data);
         }).catch(err => {
-            res.send({
+            res.status(500).send({
                 message: err.message
             });
         });
     })
 
     form.parse(req);
-
-
 };
 
 // GET

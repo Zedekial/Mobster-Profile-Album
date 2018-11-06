@@ -8,16 +8,14 @@ import axios from 'axios';
 import AddEditFormComponent from './components/AddEditFormComponent';
 import FooterComponent from './components/FooterComponent';
 import { DisplayStatusInfoWindow } from './components/DisplayStatusInfoComponent';
-import ModalContainerComponent from './components/ModalContainerComponent';
-import ModalComponent from './components/ModalComponent';
-import Infinite from 'react-infinite';
+
 
 /* Font Awesome imports */
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* You must import your icon below this line  */
-import { faPlus, faSearch, faUserEdit, faEye, faSpinner } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faPlus, faSearch, faUserEdit, faEye, faSpinner);
+import { faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle);
 
 
 /*
@@ -54,7 +52,9 @@ class App extends Component {
       data: [],
       loading: true,
       displayMessage: 'loading',
+      errorDetails: '',
       filteredMobsterData: [],
+      searchText: '',
       searching: false,
       LoggedIn: false,
       LoggingIn: false,
@@ -63,25 +63,26 @@ class App extends Component {
 
   CardGridComponentWithProps = () => {
     return (
-        <CardGridComponent
+      <CardGridComponent
         list={this.state.searching ?
-          this.state.filteredMobsterData :
-          this.state.data}
+              this.state.filteredMobsterData :
+              this.state.data
+              }
         handleOpeningModal={this.handleOpeningModal}
         state={this.state}
-          />
-        )
-      }
+      />
+    )
+  }
 
   /* From login/header branch */
   MyLoginPage = (props) => {
     return (
       <LoginPage
-      UpdateLoginState={this.UpdateLoginState}
-      {...props} state={this.state}
+        UpdateLoginState={this.UpdateLoginState}
+        {...props} state={this.state}
       />
-      );
-    }
+    );
+  }
 
   UpdateLoginState = () => {
     if (this.state.LoggedIn === false) {
@@ -100,14 +101,14 @@ class App extends Component {
   /* ^From login/header branch^ */
 
 
-  SearchComponentCallBack = (filteredMobsters, searching) => {
-    console.log(filteredMobsters)
+  SearchComponentCallBack = (filteredMobsters, searching, searchText) => {
     switch (filteredMobsters) {
       case null:
       case 'no results':
         this.setState({
           searching: searching,
           filteredMobsterData: [],
+          searchText: searchText,
           displayMessage: 'no results'
         })
         break;
@@ -118,12 +119,12 @@ class App extends Component {
           filteredMobsterData: filteredMobsters,
           searching: searching,
         })
-      break;
+        break;
     }
   }
 
-  componentWillMount() {
-    axios.get('https://api.myjson.com/bins/msk5m')
+  retryGetMobsterData = () => {
+    axios.get('https://api.myjson.com/bins/1a9wby')
     .then(response => {
       this.setState({
         data: response.data,
@@ -132,33 +133,39 @@ class App extends Component {
       })
     })
     .catch(err => {
-      this.setState({ displayMessage: 'error' })
-      console.log(`Data failed to fetch`)
+      let errorString = `${err.name}: the response was '${err.message}`
+      this.setState({
+        displayMessage: 'error',
+        errorDetails: errorString,
+      })
+      console.log(`Data failed to fetch, error details ${err.name}, ${err.message}`)
     })
   }
 
+  componentWillMount() {
+    // axios.get('https://api.myjson.com/bins/msk5m')
+    axios.get('https://api.myjson.com/bins/1a9wby')
+      .then(response => {
+        this.setState({
+          data: response.data,
+          loading: false,
+          displayMessage: '',
+        })
+      })
+      .catch(err => {
+        let errorString = `${err.name}: the response was '${err.message}`
+        this.setState({
+          displayMessage: 'error',
+          errorDetails: errorString,
+        })
+      })
+  }
+
   /*{Function to handle closing of modal}*/
-  handleClosingModal = () => {
-    this.setState({
-      modalVisible: false
-    });
-  }
 
-  /*{Function to handle opening of modal}*/
-  handleOpeningModal = (details) => {
-    this.setState({
-      modalVisible: true,
-      details: details
-    });
-  }
-
-  handleModalCardClick = (event) => {
-    console.log('Clicked');
-    event.stopPropagation();
-    return;
-  }
 
 render() {
+  console.log(this.state.displayMessage)
   return (
     <div className="App">
       <HeaderComponent
@@ -171,28 +178,19 @@ render() {
         (this.state.loading || (this.state.searching && !this.state.filteredMobsterData.length)) &&
          <DisplayStatusInfoWindow
           state={this.state}
+          retryGetMobsterData={this.retryGetMobsterData}
           />
         }
       <Switch>
+      {
+        (!this.state.loading || (!this.state.displayMessage.includes('no results'))) &&
         <Route exact path='/' render={this.CardGridComponentWithProps} />
+      }
         <Route path="/login" render={this.MyLoginPage} />
         <Route path="/add" component={AddEditFormComponent} />
+        <Route path="/edit" component={AddEditFormComponent} />
         <PrivateRoute path='/admin' component={Admin} />
       </Switch>
-      {
-        this.state.modalVisible &&
-        <ModalContainerComponent className="modal__container">
-          <ModalComponent
-            handleModalCardClick={this.handleModalCardClick}
-            handleClosingModal={this.handleClosingModal}
-            src={this.state.details.src}
-            name={this.state.details.name}
-            email={this.state.details.email}
-            phone={this.state.details.phone}
-            role={this.state.details.role}
-          />
-        </ModalContainerComponent>
-      }
       <FooterComponent />
     </div>
     );

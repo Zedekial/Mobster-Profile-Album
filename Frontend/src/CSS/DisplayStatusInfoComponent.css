@@ -19,3 +19,26 @@ h1 {
 .loading__content--icon--animated {
   margin-bottom: -10px;
 }
+
+.error__message--more-info-header {
+  width: 100px;
+  cursor: help;
+}
+
+.error__message--more-info-header:hover {
+  background-color: highlight;
+}
+
+.error__message--more-info-textbox {
+  border: solid 2px grey;
+  padding: 10px;
+  background-color: pink;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}

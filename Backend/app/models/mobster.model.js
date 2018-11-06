@@ -38,6 +38,12 @@ const MobsterSchema = mongoose.Schema({
             required: 'Please give your role',
             trim: true
         },
+        hobbies: {
+            type: String
+        },
+        bio: {
+            type: String
+        },
         src: {
             type: String
         }

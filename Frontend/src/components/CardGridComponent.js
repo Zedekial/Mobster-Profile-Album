@@ -8,9 +8,9 @@ const CardGridComponent = (props) => {
           {props.list.map((data) =>
             <CardComponentContainer
               handleOpeningModal={props.handleOpeningModal}
-              id={data.id}
+              id={data._id}
               state={props.state}
-              key={data.id}
+              key={data._id}
               src={data.src}
               name={data.name}
               phone={data.phone}

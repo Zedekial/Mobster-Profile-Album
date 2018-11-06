@@ -4,7 +4,7 @@
 - [Working on the project](#Working-on-the-project)
 - [Teams](#Teams)
 - [Dependancies & setup](#Dependancies-&-setup)
-- [Standard CSS file] (#CSS-default-classes)
+- [Standard CSS file](#CSS-default-classes)
 
 
 # About
