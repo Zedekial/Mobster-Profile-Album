@@ -15,6 +15,7 @@ class AddEditFormComponent extends Component {
             email: '',
             role: '',
             phone: '',
+            src: '',
             formErrors: {email: '', name: '', role:'', phone:''},
             formSubmit: {title: '', value: '', method: '', url: '', delete: false},
             alert: {class: '', message: ''},
@@ -56,7 +57,8 @@ class AddEditFormComponent extends Component {
                 name: '', 
                 email: '', 
                 role: '', 
-                phone: '', 
+                phone: '',
+                src: '',
                 formSubmit: {title: 'Add new mobster', value: 'Create', method: 'post', url: '/mobsters', delete: false}});
             break;
             case 'edit':
@@ -66,7 +68,8 @@ class AddEditFormComponent extends Component {
                 name: data.name, 
                 email: data.email, 
                 role: data.role, 
-                phone: data.phone, 
+                phone: data.phone,
+                src: data.src,
                 formSubmit: {title: 'Update or remove mobster', value: 'Save', method: 'put', url: `/mobsters/${data.id}`, delete: true}});
             break;
         }
@@ -80,7 +83,7 @@ class AddEditFormComponent extends Component {
         formData.append('email', this.state.email);
         formData.append('role', this.state.role);
         formData.append('phone', this.state.phone);
-        formData.append('src', fileField.files[0]);
+        formData.append('src', fileField.files[0] ? fileField.files[0] : this.state.src);
         return formData;
     }
 
@@ -91,7 +94,6 @@ class AddEditFormComponent extends Component {
             data: this.getData()
         }).then((response) => {
             if(response.status === 200) {
-                console.log(response);
                 this.setState({name: '', email: '', role: '', phone: '', alert: {class: 'success', message: 'Your changes have been saved!'}})
             }
         })
@@ -170,7 +172,7 @@ class AddEditFormComponent extends Component {
                     <input className="standard__input__style add__user__form__input" id="email" type="email" placeholder="Email" value={this.state.email} onChange={this.setInput.bind(this, 'email')}/>
                     <input className="standard__input__style add__user__form__input" id="role" type="text" placeholder="Role" value={this.state.role} onChange={this.setInput.bind(this, 'role')}/>
                     <input className="standard__input__style add__user__form__input" id="phone" type="text" placeholder="Phone" value={this.state.phone} onChange={this.setInput.bind(this, 'phone')}/>
-                    <FileInputComponent name="picture" id="picture"/>
+                    <FileInputComponent name="picture" id="picture" filename={this.state.src}/>
                 </form>
                 <AlertComponent className={this.state.alert.class} message={this.state.alert.message}/>
                 <div className="add__user__form__buttons">
