@@ -141,12 +141,23 @@ class App extends Component {
   }
 
   handleScrollLazyLoad = () => {
-    console.log('Called from LazyLoadingComponent');
+    const { mobsterChunks, lazyLoadMobsterData, mobsterChunkIndex } = this.state;
+    console.log(`${mobsterChunkIndex+1 < mobsterChunks.length}`);
+    if (!(mobsterChunkIndex+1 < mobsterChunks.length)) return
     this.setState(prevState => ({
       mobsterChunkIndex: prevState.mobsterChunkIndex+1,
-    }), () => this.setState(prevState => ({
-                  lazyLoadMobsterData: prevState,
-                }), console.log(this.state))
+      scrolling: true,
+    }), () => {
+      let llMobsterDataCopy = lazyLoadMobsterData;
+      llMobsterDataCopy.push(...mobsterChunks[this.state.mobsterChunkIndex]);
+      console.log(llMobsterDataCopy);
+      // console.log(...mobsterChunks)
+      this.setState({
+        lazyLoadMobsterData: llMobsterDataCopy,
+        scrolling: false,
+        });
+
+     }
     )
   }
 

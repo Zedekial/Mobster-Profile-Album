@@ -3,15 +3,9 @@ import CardComponentContainer from './CardComponentContainer';
 import '../CSS/CardComponent.css';
 
 class CardGridComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      scrolling: false,
-    }
-  }
 
   handleScroll = () => {
-    if (this.state.scrolling) return
+    if (this.props.state.scrolling) return
 
     let lengthOfMobsterChunks = this.props.state.mobsterChunks.length;
 
@@ -21,17 +15,13 @@ class CardGridComponent extends Component {
     let pageOffset = window.pageYOffset + window.innerHeight;
     let bottomOffset = 20;
 
-    console.log(lastCard);
-
     if (pageOffset > lastCardOffset - bottomOffset) {
       this.loadMoreChunks()
     }
   }
 
   loadMoreChunks = () => {
-    this.setState(() => ({
-      scrolling: true,
-    }), this.props.handleScrollLazyLoad)
+    this.props.handleScrollLazyLoad()
   }
     componentDidMount() {
       window.addEventListener('scroll', this.handleScroll)
@@ -42,7 +32,6 @@ class CardGridComponent extends Component {
       {this.props.list && this.props.list.map((data) =>
         <CardComponentContainer
         handleOpeningModal={this.props.handleOpeningModal}
-        updateChunkIndex={this.props.updateChunkIndex}
         id={data._id}
         state={this.props.state}
         key={data._id}
