@@ -16,7 +16,7 @@ class CardComponentContainer extends Component {
             classFront: 'card--show',
             classBack: 'card--hide',
             modalVisible: false,
-            details: this.props
+            details: this.props,
         };
         this.toggleCard = this.toggleCard.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -57,36 +57,9 @@ class CardComponentContainer extends Component {
         return;
       }
 
-    handleScroll = () => {
-      let scrollPos = window.scrollY;
-      let lengthOfMobsterChunks = this.props.state.mobsterChunks.length;
-      // console.log(this.scroller.scrollHeight + ' scrollHeight');
-      let scrollBackUp = {
-        scrollTop: 0,
-        scrollHeight: 300
-      }
-      let cardScrollBar = this.scroller ? this.scroller : scrollBackUp;
-      if (scrollPos === (cardScrollBar.scrollTop + 100)) {
-        this.props.updateChunkIndex('decrease')
-      } else if (scrollPos >= (cardScrollBar.scrollHeight * .7)) {
-        this.props.updateChunkIndex('increase')
-      }
-    }
-
-    componentDidMount() {
-      window.addEventListener('scroll', this.handleScroll);
-    }
-
-
     render() {
         return (
           <div className={'card__container'}>
-             <div
-               onScroll={this.handleScroll}
-                 ref={(scroller) => {
-                 this.scroller = scroller;
-                 }}
-             >
             <EditUserButtonComponent data={this.props} state={this.props.state} />
             <CardMediaComponent
               src={this.props.src}
@@ -118,7 +91,6 @@ class CardComponentContainer extends Component {
               />
             </ModalContainerComponent>
            }
-            </div>
           </div>
         );
     }

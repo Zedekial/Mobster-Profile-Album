@@ -50,13 +50,17 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      /* Data used to display and store all mobsters */
       data: [],
+      filteredMobsterData: [],
+      lazyLoadMobsterData: [],
+      mobsterChunks: [],
+      mobsterChunkIndex: 0,
+      scrolling: false,
+      /* ^Data used to display and store all mobsters^ */
       loading: true,
       displayMessage: 'loading',
       errorDetails: '',
-      filteredMobsterData: [],
-      mobsterChunks: [],
-      chunkIndex: 0,
       searchText: '',
       searching: false,
       LoggedIn: false,
@@ -65,22 +69,21 @@ class App extends Component {
   }
 
   CardGridComponentWithProps = () => {
+    const { filteredMobsterData, loading, lazyLoadMobsterData, searching } = this.state
     return (
       <CardGridComponent
-        list={this.state.searching ?
-          this.state.filteredMobsterData :
-          (!this.state.loading ?
-            this.state.mobsterChunks[this.state.chunkIndex] :
+        list={searching ?
+          filteredMobsterData :
+          (!loading ?
+            lazyLoadMobsterData :
             null)
         }
-        handleOpeningModal={this.handleOpeningModal}
-        updateChunkIndex={this.updateChunkIndex}
+        handleScrollLazyLoad={this.handleScrollLazyLoad}
         state={this.state}
       />
     )
   }
 
-  /* From login/header branch */
   MyLoginPage = (props) => {
     return (
       <LoginPage
@@ -104,24 +107,6 @@ class App extends Component {
   UpdateLoggingIn = () => {
     this.setState({ LoggingIn: true })
   }
-  /* ^From login/header branch^ */
-
-  updateChunkIndex = (passedIndex) => {
-    console.log(passedIndex);
-    let newChunkIndex = this.state.chunkIndex;
-    // if ((newChunkIndex + 1) <= this.state.mobsterChunks.length || (newChunkIndex - 1) >= this.state.mobsterChunks.length ) {
-      if(passedIndex === 'increase') {
-        newChunkIndex++;
-        this.setState({ chunkIndex: newChunkIndex })
-      } else if (passedIndex === 'decrease' && (!(passedIndex -1) === 0)) {
-        newChunkIndex--;
-        this.setState({ chunkIndex: newChunkIndex })
-      }
-    // } else {
-    //   this.setState({ chunkIndex: 0 })
-    // }
-  }
-
 
   SearchComponentCallBack = (filteredMobsters, searching, searchText) => {
     switch (filteredMobsters) {
@@ -146,10 +131,23 @@ class App extends Component {
   }
 
   CreateMobsterChunksCallback = (mobsterChunks) => {
-    this.setState({ mobsterChunks: mobsterChunks })
+    this.setState({
+      mobsterChunks: mobsterChunks,
+      lazyLoadMobsterData: mobsterChunks[0],
+    })
     setTimeout(() => {
       console.log(this.state.chunkIndex)
     }, 200)
+  }
+
+  handleScrollLazyLoad = () => {
+    console.log('Called from LazyLoadingComponent');
+    this.setState(prevState => ({
+      mobsterChunkIndex: prevState.mobsterChunkIndex+1,
+    }), () => this.setState(prevState => ({
+                  lazyLoadMobsterData: prevState,
+                }), console.log(this.state))
+    )
   }
 
   retryGetMobsterData = () => {
