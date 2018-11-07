@@ -19,8 +19,10 @@
     margin-top: 48px;
 }
 
-.form__errors{
-    color: red;
+.form--errors, .form--errors:focus {
+    border-bottom: 2px solid #ef9a9a;
 }
 
-
+.form--errors::placeholder, .form--errors::-webkit-input-placeholder {
+    color: #ef9a9a;
+}

@@ -1,100 +1,282 @@
-[
-    {
-        "id": 1,
-        "name": "Lisa Simpson",
-        "email": "lisa@email.com",
-        "role": "Older daughter",
-        "src": "https://vignette.wikia.nocookie.net/simpsons/images/e/ed/Lisa-Simpson-icon-1.png/revision/latest?cb=20170628205647"
+[  
+    {  
+       "name":"Tayla Thompson",
+       "email":"tthompson@email.com",
+       "phone":"09-99999999",
+       "role":"Frontend Developer",
+       "src":"https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=318\u0026w=250"
     },
-    {
-        "id": 2,
-        "name": "Bart Simpson",
-        "email": "bart@email.com",
-        "role": "Son",
-        "src": "https://static.comicvine.com/uploads/square_small/11/114183/5147868-bart_simpson.png"
+    {  
+       "name":"Zakary Grimes",
+       "email":"zgrimes@email.com",
+       "phone":"09-99999999",
+       "role":"Frontend Developer",
+       "src":"https://images.pexels.com/photos/532220/pexels-photo-532220.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=318\u0026w=250"
     },
-    {
-        "id": 3,
-        "name": "Maggie Simpson",
-        "email": "meg@email.com",
-        "role": "Younger daughter",
-        "src": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/Maggie_Simpson.png/220px-Maggie_Simpson.png"
+    {  
+       "name":"Maggie Simpson",
+       "email":"meg@email.com",
+       "phone":"09-99999999",
+       "role":"Backend Developer",
+       "src":"https://images.pexels.com/photos/38554/girl-people-landscape-sun-38554.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=318\u0026w=250"
     },
-    {
-        "id": 4,
-        "name": "Homer Simpson",
-        "email": "homer@email.com",
-        "role": "Father",
-        "src": "https://banner2.kisspng.com/20180404/qxq/kisspng-homer-simpson-the-simpsons-tapped-out-bart-simpso-homer-5ac53063b97335.4238462215228724197596.jpg"
+    {  
+       "name":"Homer Simpson",
+       "email":"homer@email.com",
+       "phone":"09-99999999",
+       "role":"Dev Ops",
+       "src":"https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
     },
-    {
-        "id": 5,
-        "name": "Marge Simpson",
-        "email": "marge@email.com",
-        "role": "Mother",
-        "src": "https://images.genius.com/a8151ddf1f76e54ba53b8e2c8cb1b5c8.300x300x1.png"
+    {  
+       "name":"Marge Simpson",
+       "email":"marge@email.com",
+       "phone":"09-99999999",
+       "role":"Frontend Developer",
+       "src":"https://images.pexels.com/photos/761977/pexels-photo-761977.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
     },
-    {
-        "id": 6,
-        "name": "Snowball",
-        "email": "sball@mobiquity.com",
-        "role": "Cat",
-        "src": "https://static.simpsonswiki.com/images/a/a6/Snowball_II.png"
+    {  
+       "name":"Mildred Frazier",
+       "email":"sball@mobiquity.com",
+       "phone":"09-99999999",
+       "role":"Backend Developer",
+       "src":"https://images.pexels.com/photos/718261/pexels-photo-718261.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
     },
-    {
-        "id": 7,
-        "name": "Santa's Little Helper",
-        "email": "littlehelper@email.com",
-        "role": "Dog",
-        "src": "https://vignette.wikia.nocookie.net/simpsons/images/2/2c/Santa%27s_Little_Helper.png/revision/latest?cb=20180311074656"
+    {  
+       "name":"Lylah Butler",
+       "email":"littlehelper@email.com",
+       "phone":"09-99999999",
+       "role":"Frontend Developer",
+       "src":"https://images.pexels.com/photos/1546694/pexels-photo-1546694.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
     },
-    {
-        "id": 8,
-        "name": "Chocobo",
-        "email": "choc@email.com",
-        "role": "Mount",
-        "src": "https://steamuserimages-a.akamaihd.net/ugc/939436531231930827/3ABF690CFE58A3D7B7E3C279316D1602D56CE32A/"
+    {  
+       "name":"Khaleesi Lynch",
+       "email":"choc@email.com",
+       "phone":"09-99999999",
+       "role":"Dev Ops",
+       "src":"https://images.pexels.com/photos/1533645/pexels-photo-1533645.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
     },
-    {
-        "id": 9,
-        "name": "Cactaur",
-        "email": "thousandneedles@email.com",
-        "role": "Evasive",
-        "src": "https://thumbs.mic.com/ZDg2MzI5NDFhNSMvZE9XMm9mQ1QwV0VhUGtreUtWRThxZlQ0N0M4PS8zOHg4MDoyNTE0eDEzNTIvODAweDQ1MC9maWx0ZXJzOmZvcm1hdChqcGVnKTpxdWFsaXR5KDgwKS9odHRwczovL3MzLmFtYXpvbmF3cy5jb20vcG9saWN5bWljLWltYWdlcy9uNXlwb2VmMHdkazFpN3d0anBtamdwdHVrZzR6bWticHZhcThscWV5eWYwcXdtaGlzaDBtNHVtazlqbG5oeTZkLmpwZw.jpg"
+    {  
+       "name":"Momina Mccann",
+       "email":"thousandneedles@email.com",
+       "phone":"09-99999999",
+       "role":"Frontend Developer",
+       "src":"https://images.pexels.com/photos/1537175/pexels-photo-1537175.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
     },
-    {
-        "id": 10,
-        "name": "Moogle",
-        "email": "mog@email.com",
-        "role": "Helper",
-        "src": "https://vignette.wikia.nocookie.net/monster-strike-enjp/images/c/c9/2499.png/revision/latest?cb=20170218051039"
+    { 
+       "name":"Peter Campbell",
+       "email":"pcampbell@email.com",
+       "phone":"09-99999999",
+       "role":"Backend Developer",
+       "src":"https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
     },
-    {
-        "id": 11,
-        "name": "Iron Giant",
-        "email": "igiant@email.com",
-        "role": "Giant",
-        "src": "http://www.game-art-hq.com/wp-content/uploads/2016/08/Iron-Giant-Final-Fantasy-Type-0-Render.png"
+    { 
+       "name":"Vivian Mendez",
+       "email":"igiant@email.com",
+       "phone":"09-99999999",
+       "role":"Frontend Developer",
+       "src":"https://images.pexels.com/photos/1537688/pexels-photo-1537688.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
     },
-    {
-        "id": 12,
-        "name": "Tonberry",
-        "email": "tberry@email.com",
-        "role": "Chef",
-        "src": "https://vignette.wikia.nocookie.net/finalfantasy/images/7/70/WoFF_Tonberry.png/revision/latest?cb=20161105140848"
+    { 
+       "name":"Usama Noel",
+       "email":"tberry@email.com",
+       "phone":"09-99999999",
+       "role":"Designer",
+       "src":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=318\u0026w=250"
     },
-    {
-        "id": 13,
-        "name": "Flan",
-        "email": "jellyflan@mobiquity.com",
-        "role": "Monster",
-        "src": "https://vignette.wikia.nocookie.net/finalfantasy/images/d/dd/XII_flan_render.png/revision/latest?cb=20130708042457"
+    { 
+       "name":"Flan Leon",
+       "email":"jellyflan@mobiquity.com",
+       "phone":"09-99999999",
+       "role":"Frontend Developer",
+       "src":"https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
     },
-    {
-        "id": 14,
-        "name": "Malboro",
-        "email": "mal@email.com",
-        "role": "Monster",
-        "src": "https://vignette.wikia.nocookie.net/finalfantasy/images/8/81/FF8_Malboro.png/revision/latest?cb=20120506184202"
+    { 
+       "name":"Sonny Knowles",
+       "email":"mal@email.com",
+       "phone":"09-99999999",
+       "role":"Designer",
+       "src":"https://images.pexels.com/photos/1548697/pexels-photo-1548697.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Casey Perez",
+       "email":"Casey@email.com",
+       "phone":"09-99999999",
+       "role":"Designer",
+       "src":"https://images.pexels.com/photos/678783/pexels-photo-678783.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Henrietta Pierce",
+       "email":"Henrietta@email.com",
+       "phone":"09-99999999",
+       "role":"Frontend Developer",
+       "src":"https://images.pexels.com/photos/302355/pexels-photo-302355.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Pascal William",
+       "email":"Pascal@email.com",
+       "phone":"09-99999999",
+       "role":"Designer",
+       "src":"https://images.pexels.com/photos/921284/pexels-photo-921284.png?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Rhianne Snyder",
+       "email":"Rhianne@email.com",
+       "phone":"09-99999999",
+       "role":"Frontend Developer",
+       "src":"https://images.pexels.com/photos/1499327/pexels-photo-1499327.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Lea Leal",
+       "email":"axel@email.com",
+       "phone":"09-99999999",
+       "role":"Backend Developer",
+       "src":"https://images.pexels.com/photos/638700/pexels-photo-638700.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Isa Andrews",
+       "email":"isa@email.com",
+       "phone":"09-99999999",
+       "role":"Backend Developer",
+       "src":"https://images.pexels.com/photos/731695/pexels-photo-731695.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Derrick Singh",
+       "email":"derrick@email.com",
+       "phone":"09-99999999",
+       "role":"Frontend Developer",
+       "src":"https://images.pexels.com/photos/167669/pexels-photo-167669.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Sam Mccartney",
+       "email":"sam@email.com",
+       "phone":"09-99999999",
+       "role":"Backend Developer",
+       "src":"https://images.pexels.com/photos/1539670/pexels-photo-1539670.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Alec Farrow",
+       "email":"alec@email.com",
+       "phone":"09-99999999",
+       "role":"Frontend Developer",
+       "src":"https://images.pexels.com/photos/1553403/pexels-photo-1553403.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Alicia Ratcliffe",
+       "email":"alicia@email.com",
+       "phone":"09-99999999",
+       "role":"Backend Developer",
+       "src":"https://images.pexels.com/photos/1555200/pexels-photo-1555200.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Darin Cuevas",
+       "email":"darin@email.com",
+       "phone":"09-99999999",
+       "role":"Dev Ops",
+       "src":"https://images.pexels.com/photos/1548164/pexels-photo-1548164.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Carla Terrell",
+       "email":"carla@email.com",
+       "phone":"09-99999999",
+       "role":"Backend Developer",
+       "src":"https://images.pexels.com/photos/1543929/pexels-photo-1543929.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Test Card",
+       "email":"test@email.com",
+       "phone":"666666666",
+       "role":"Test Test",
+       "src":"https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Test Card",
+       "email":"test@email.com",
+       "phone":"666666666",
+       "role":"Test Test",
+       "src":"https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Test Card",
+       "email":"test@email.com",
+       "phone":"666666666",
+       "role":"Test Test",
+       "src":"https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Test Card",
+       "email":"test@email.com",
+       "phone":"666666666",
+       "role":"Test Test",
+       "src":"https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Test Card",
+       "email":"test@email.com",
+       "phone":"666666666",
+       "role":"Test Test",
+       "src":"https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Test Card",
+       "email":"test@email.com",
+       "phone":"666666666",
+       "role":"Test Test",
+       "src":"https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Test Card",
+       "email":"test@email.com",
+       "phone":"666666666",
+       "role":"Test Test",
+       "src":"https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Test Card",
+       "email":"test@email.com",
+       "phone":"666666666",
+       "role":"Test Test",
+       "src":"https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Test Card",
+       "email":"test@email.com",
+       "phone":"666666666",
+       "role":"Test Test",
+       "src":"https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Test Card",
+       "email":"test@email.com",
+       "phone":"666666666",
+       "role":"Test Test",
+       "src":"https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Test Card",
+       "email":"test@email.com",
+       "phone":"666666666",
+       "role":"Test Test",
+       "src":"https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Test Card",
+       "email":"test@email.com",
+       "phone":"666666666",
+       "role":"Test Test",
+       "src":"https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Test Card",
+       "email":"test@email.com",
+       "phone":"666666666",
+       "role":"Test Test",
+       "src":"https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
+    },
+    { 
+       "name":"Test Card",
+       "email":"test@email.com",
+       "phone":"666666666",
+       "role":"Test Test",
+       "src":"https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=750\u0026w=1260"
     }
-]
+ ]

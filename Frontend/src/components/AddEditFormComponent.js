@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {FormErrors} from './AddEditFormErrorsComponent';
 import BackButtonComponent from './BackButtonComponent';
 import AlertComponent from './AlertComponent';
 import FileInputComponent from './FileInputComponent';
@@ -26,6 +25,7 @@ class AddEditFormComponent extends Component {
             formValid: false
         };
         this.submitForm = this.submitForm.bind(this);
+        this.saveUser = this.saveUser.bind(this);
         this.validateField = this.validateField.bind(this);
         this.validateForm = this.validateForm.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
@@ -41,12 +41,6 @@ class AddEditFormComponent extends Component {
         if (prevProps.location.state.path !== this.props.location.state.path) {
           this.defineInitialValues();
         }
-        // console.log(this.props);
-       // *************************************
-       // *************************************
-        //maybe we can refactor that function beacuse iss checking state with every keyDown
-
-
     }
 
     defineInitialValues(){
@@ -88,19 +82,31 @@ class AddEditFormComponent extends Component {
     }
 
     submitForm(){
+        if(this.state.formValid ) {
+            this.saveUser();
+        } else {
+            this.setState({alert: {class: 'error', message: 'Missing required inputs!'}});
+            let inputList = document.querySelectorAll('.add__user__form__input');
+            for (let input of inputList){
+                this.validateField(input.id, input.value);
+            }
+
+        }
+    }
+
+    saveUser(){
         axios({
             method: this.state.formSubmit.method,
             url: this.state.formSubmit.url,
             data: this.getData()
         }).then((response) => {
             if(response.status === 200) {
-                this.setState({name: '', email: '', role: '', phone: '', alert: {class: 'success', message: 'Your changes have been saved!'}})
+                this.setState({name: '', email: '', role: '', phone: '', src: '', alert: {class: 'success', message: 'Your changes have been saved!'}})
             }
         })
         .catch((error) => {
             this.setState({alert: {class: 'error', message: error}})
         });
-        
     }
 
     deleteUser(){
@@ -109,7 +115,7 @@ class AddEditFormComponent extends Component {
             url: this.state.formSubmit.url,
         }).then((response) => {
             if(response.status === 200) {
-                this.setState({name: '', email: '', role: '', phone: '', alert: {class: 'success', message: 'Mobster deleted!'}})
+                this.setState({name: '', email: '', role: '', phone: '', src: '', alert: {class: 'success', message: 'Mobster deleted!'}})
                 
             }
         })
@@ -134,19 +140,19 @@ class AddEditFormComponent extends Component {
         switch(fieldName) {
             case 'email':
             emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-            fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+            fieldValidationErrors.email = emailValid ? '' : 'form--errors';
             break;
             case 'name':
             nameValid = value.length > 0;
-            fieldValidationErrors.name = nameValid ? '': ' is invalid';
+            fieldValidationErrors.name = nameValid ? '': 'form--errors';
             break;
             case 'role':
             roleValid = value.length > 0;
-            fieldValidationErrors.role = roleValid ? '': ' is invalid';
+            fieldValidationErrors.role = roleValid ? '': 'form--errors';
             break;
             case 'phone':
             phoneValid = value.match(/[0-9]{11}/);
-            fieldValidationErrors.phone = phoneValid ? '': ' is invalid';
+            fieldValidationErrors.phone = phoneValid ? '': 'form--errors';
             break;
             default:
             break;
@@ -168,10 +174,10 @@ class AddEditFormComponent extends Component {
             <div className="add__user__form">
                 <h1>{this.state.formSubmit.title}</h1>
                 <form>
-                    <input className="standard__input__style add__user__form__input" id="name" type="text" placeholder="Name" value={this.state.name} onChange={this.setInput.bind(this, 'name')}/>
-                    <input className="standard__input__style add__user__form__input" id="email" type="email" placeholder="Email" value={this.state.email} onChange={this.setInput.bind(this, 'email')}/>
-                    <input className="standard__input__style add__user__form__input" id="role" type="text" placeholder="Role" value={this.state.role} onChange={this.setInput.bind(this, 'role')}/>
-                    <input className="standard__input__style add__user__form__input" id="phone" type="text" placeholder="Phone" value={this.state.phone} onChange={this.setInput.bind(this, 'phone')}/>
+                    <input className={`standard__input__style add__user__form__input ${this.state.formErrors.name}`} id="name" type="text" placeholder="Name" value={this.state.name} onChange={this.setInput.bind(this, 'name')}/>
+                    <input className={`standard__input__style add__user__form__input ${this.state.formErrors.email}`} id="email" type="email" placeholder="Email" value={this.state.email} onChange={this.setInput.bind(this, 'email')}/>
+                    <input className={`standard__input__style add__user__form__input ${this.state.formErrors.role}`} id="role" type="text" placeholder="Role" value={this.state.role} onChange={this.setInput.bind(this, 'role')}/>
+                    <input className={`standard__input__style add__user__form__input ${this.state.formErrors.phone}`} id="phone" type="text" placeholder="Phone" value={this.state.phone} onChange={this.setInput.bind(this, 'phone')}/>
                     <FileInputComponent name="picture" id="picture" filename={this.state.src}/>
                 </form>
                 <AlertComponent className={this.state.alert.class} message={this.state.alert.message}/>
@@ -180,7 +186,6 @@ class AddEditFormComponent extends Component {
                     {this.state.formSubmit.delete && <button className="standard__button__style" onClick={this.deleteUser}>Delete</button> }
                     <BackButtonComponent/>
                 </div>
-                <FormErrors formErrors={this.state.formErrors} />
             </div>
         );
     }
