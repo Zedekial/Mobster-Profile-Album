@@ -4,8 +4,6 @@ import { CardDetailsComponent } from './CardDetailsComponent';
 import EditUserButtonComponent from './EditUserButtonComponent';
 import ModalContainerComponent from './ModalContainerComponent';
 import ModalComponent from './ModalComponent';
-import PropTypes from 'prop-types';
-
 
 import '../CSS/EditUserButtonComponent.css'
 
@@ -97,17 +95,5 @@ class CardComponentContainer extends Component {
   }
 }
 
-CardComponentContainer.propTypes = {
-  // list: PropTypes.arrayOf(PropTypes.shape({
-  id: PropTypes.number,
-  src: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  phone: PropTypes.string,
-  role: PropTypes.string,
-  email: PropTypes.string.isRequired,
-  // })),
-  handleOpeningModal: PropTypes.func,
-  toggleCard: PropTypes.func
-}
 
 export default CardComponentContainer;

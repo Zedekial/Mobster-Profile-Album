@@ -35,8 +35,18 @@
   border-top: none;
   border-left: none;
   border-right: none;
-  margin: 0 auto;
+  margin: 1px auto;
   font-size: 17px;
+}
+
+.standard__input__style:focus{
+  border: none;
+  box-shadow: 0px 2px 0px #0f9dce;
+  
+}
+
+.standard__input__style::placeholder{
+  font-size: 20px;
 }
 
 input:-webkit-autofill {

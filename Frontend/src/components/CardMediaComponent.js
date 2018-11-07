@@ -1,4 +1,5 @@
 import React from 'react';
+import { number, string, func } from 'prop-types';
 
 export const CardMediaComponent = (props) => {
     return (
@@ -7,4 +8,11 @@ export const CardMediaComponent = (props) => {
             <h1>{props.name}</h1>
         </div>
     );
+}
+
+CardMediaComponent.propTypes = {
+    src: string,
+    name: string.isRequired,
+    role: string,
+    onClick: func,
 }
