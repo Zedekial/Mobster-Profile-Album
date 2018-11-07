@@ -40,6 +40,12 @@ class AddEditFormComponent extends Component {
         if (prevProps.location.state.path !== this.props.location.state.path) {
           this.defineInitialValues();
         }
+        // console.log(this.props);
+       // *************************************
+       // *************************************
+        //maybe we can refactor that function beacuse iss checking state with every keyDown
+
+
     }
 
     defineInitialValues(){
@@ -92,6 +98,7 @@ class AddEditFormComponent extends Component {
         .catch((error) => {
             this.setState({alert: {class: 'error', message: error}})
         });
+        
     }
 
     deleteUser(){
@@ -101,6 +108,7 @@ class AddEditFormComponent extends Component {
         }).then((response) => {
             if(response.status === 200) {
                 this.setState({name: '', email: '', role: '', phone: '', alert: {class: 'success', message: 'Mobster deleted!'}})
+                
             }
         })
         .catch((error) => {

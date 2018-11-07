@@ -57,9 +57,10 @@ class App extends Component {
       searchText: '',
       searching: false,
       LoggedIn: false,
-      LoggingIn: false,
+      LoggingIn: false
     }
   }
+  
 
   CardGridComponentWithProps = () => {
     return (
@@ -70,6 +71,7 @@ class App extends Component {
               }
         handleOpeningModal={this.handleOpeningModal}
         state={this.state}
+        getMobsterData={this.getMobsterData}
       />
     )
   }
@@ -143,15 +145,12 @@ class App extends Component {
     })
   }
 
-  componentWillMount() {
-    this.getMobsterData();
-  }
 
   /*{Function to handle closing of modal}*/
 
 
 render() {
-  console.log(this.state.displayMessage)
+
   return (
     <div className="App">
       <HeaderComponent
