@@ -16,6 +16,11 @@
     display: block;
 }
 
+.alert__container li {
+    color: #004d40;
+    font-size: 14px;
+}
+
 .alert--error {
     background-color: #ef9a9a;
     color: #b71c1c;

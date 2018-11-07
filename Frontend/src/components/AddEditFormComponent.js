@@ -17,7 +17,7 @@ class AddEditFormComponent extends Component {
             src: '',
             formErrors: {email: '', name: '', role:'', phone:''},
             formSubmit: {title: '', value: '', method: '', url: '', delete: false},
-            alert: {class: '', message: ''},
+            alert: {class: '', message: '', data:''},
             emailValid: false,
             nameValid: false,
             roleValid: false,
@@ -63,7 +63,12 @@ class AddEditFormComponent extends Component {
                 role: data.role, 
                 phone: data.phone,
                 src: data.src,
-                formSubmit: {title: 'Update or remove mobster', value: 'Save', method: 'put', url: `/mobsters/${data.id}`, delete: true}});
+                formSubmit: {title: 'Update or remove mobster', value: 'Save', method: 'put', url: `/mobsters/${data.id}`, delete: true},
+                emailValid: true,
+                nameValid: true,
+                roleValid: true,
+                phoneValid: true,
+            });
             break;
         }
     }
@@ -96,7 +101,7 @@ class AddEditFormComponent extends Component {
             data: this.getData()
         }).then((response) => {
             if(response.status === 200) {
-                this.setState({name: '', email: '', role: '', phone: '', src: '', alert: {class: 'success', message: 'Your changes have been saved!'}})
+                this.setState({name: '', email: '', role: '', phone: '', src: '', alert: {class: 'success', message: 'Your changes have been saved!', data: response.data}})
             }
         })
         .catch((error) => {
@@ -170,7 +175,7 @@ class AddEditFormComponent extends Component {
                     <input className={`standard__input__style add__user__form__input ${this.state.formErrors.phone}`} id="phone" type="text" placeholder="Phone" value={this.state.phone} onChange={this.setInput.bind(this, 'phone')}/>
                     <FileInputComponent name="picture" id="picture" filename={this.state.src}/>
                 </form>
-                <AlertComponent className={this.state.alert.class} message={this.state.alert.message}/>
+                <AlertComponent className={this.state.alert.class} message={this.state.alert.message} data={this.state.alert.data}/>
                 <div className="add__user__form__buttons">
                     <button className="standard__button__style" onClick={this.submitForm}>{this.state.formSubmit.value}</button>
                     {this.state.formSubmit.delete && <button className="standard__button__style" onClick={this.deleteUser}>Delete</button> }
