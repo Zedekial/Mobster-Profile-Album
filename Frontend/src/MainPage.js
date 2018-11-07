@@ -14,8 +14,8 @@ import { DisplayStatusInfoWindow } from './components/DisplayStatusInfoComponent
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* You must import your icon below this line  */
-import { faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle);
+import { faSearch, faUserEdit, faEye, faSpinner, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle);
 
 
 /*
@@ -57,9 +57,10 @@ class App extends Component {
       searchText: '',
       searching: false,
       LoggedIn: false,
-      LoggingIn: false,
+      LoggingIn: false
     }
   }
+  
 
   CardGridComponentWithProps = () => {
     return (
@@ -70,6 +71,7 @@ class App extends Component {
               }
         handleOpeningModal={this.handleOpeningModal}
         state={this.state}
+        getMobsterData={this.getMobsterData}
       />
     )
   }
@@ -123,8 +125,9 @@ class App extends Component {
     }
   }
 
-  retryGetMobsterData = () => {
+  getMobsterData = () => {
     axios.get('https://api.myjson.com/bins/1a9wby')
+    // axios.get('/mobsters')
     .then(response => {
       this.setState({
         data: response.data,
@@ -142,24 +145,6 @@ class App extends Component {
     })
   }
 
-  componentWillMount() {
-    // axios.get('https://api.myjson.com/bins/msk5m')
-    axios.get('https://api.myjson.com/bins/1a9wby')
-      .then(response => {
-        this.setState({
-          data: response.data,
-          loading: false,
-          displayMessage: '',
-        })
-      })
-      .catch(err => {
-        let errorString = `${err.name}: the response was '${err.message}`
-        this.setState({
-          displayMessage: 'error',
-          errorDetails: errorString,
-        })
-      })
-  }
 
   /*{Function to handle closing of modal}*/
 
@@ -177,7 +162,7 @@ render() {
         (this.state.loading || (this.state.searching && !this.state.filteredMobsterData.length)) &&
          <DisplayStatusInfoWindow
           state={this.state}
-          retryGetMobsterData={this.retryGetMobsterData}
+          getMobsterData={this.getMobsterData}
           />
         }
       <Switch>

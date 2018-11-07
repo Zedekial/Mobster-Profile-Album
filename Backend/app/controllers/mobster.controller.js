@@ -3,11 +3,9 @@ const formidable = require('formidable');
 const path = require('path');
 const fs = require('fs');
 
-// POST
-exports.create = (req, res) => {
+const handleForm = (req, res, callback) => {
     let form = new formidable.IncomingForm();
     let dir = path.resolve(__dirname, '..', '..','..','Frontend','build', 'uploads');
-
     let mobsterData = {};
 
     if (!fs.existsSync(dir)){
@@ -26,12 +24,22 @@ exports.create = (req, res) => {
     });
 
     form.on('error', function(error){
-        res.staus(500).send({
+        res.status(500).send({
             message: error
         });
     })
 
     form.on('end', function(){
+        callback(mobsterData);
+    })
+
+    form.parse(req);
+
+}
+
+// POST
+exports.create = (req, res) => {
+    handleForm(req, res, (mobsterData) => {
         const mobster = new Mobster(mobsterData);
 
         mobster.save()
@@ -43,8 +51,6 @@ exports.create = (req, res) => {
             });
         });
     })
-
-    form.parse(req);
 };
 
 // GET
@@ -84,29 +90,26 @@ exports.findOne = (req, res) => {
 
 // UPDATE a mobster
 exports.update = (req, res) => {
-    Mobster.findByIdAndUpdate(req.params.mobsterid, {
-        name: req.body.name,
-        phone: req.body.phone,
-        email: req.body.email,
-        role: req.body.role
-    }, {new: true})
-    .then(mobster => {
-        if(!mobster) {
-            return res.status(404).send({
-                message: "mobster not found with id " + req.params.mobsterid
+    handleForm(req, res, (mobsterData) => {
+        Mobster.findByIdAndUpdate(req.params.mobsterid, mobsterData, {new: true})
+        .then(mobster => {
+            if(!mobster) {
+                return res.status(404).send({
+                    message: "mobster not found with id " + req.params.mobsterid
+                });
+            }
+            res.send(mobster);
+        }).catch(err => {
+            if(err.kind === 'ObjectId') {
+                return res.status(404).send({
+                    message: "mobster not found with id " + req.params.mobsterid
+                });
+            }
+            return res.status(500).send({
+                message: "Error updating mobster with id " + req.params.mobsterid
             });
-        }
-        res.send(mobster);
-    }).catch(err => {
-        if(err.kind === 'ObjectId') {
-            return res.status(404).send({
-                message: "mobster not found with id " + req.params.mobsterid
-            });
-        }
-        return res.status(500).send({
-            message: "Error updating mobster with id " + req.params.mobsterid
         });
-    });
+    });  
 };
 
 // DELETE a mobster
