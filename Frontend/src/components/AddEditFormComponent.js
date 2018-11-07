@@ -22,7 +22,6 @@ class AddEditFormComponent extends Component {
             nameValid: false,
             roleValid: false,
             phoneValid: false,
-            formValid: false
         };
         this.submitForm = this.submitForm.bind(this);
         this.saveUser = this.saveUser.bind(this);
@@ -82,16 +81,12 @@ class AddEditFormComponent extends Component {
     }
 
     submitForm(){
-        if(this.state.formValid ) {
-            this.saveUser();
-        } else {
-            this.setState({alert: {class: 'error', message: 'Missing required inputs!'}});
-            let inputList = document.querySelectorAll('.add__user__form__input');
-            for (let input of inputList){
-                this.validateField(input.id, input.value);
-            }
-
+        let inputList = document.querySelectorAll('.add__user__form__input');
+        for (let input of inputList){
+            this.validateField(input.id, input.value);
         }
+
+        this.validateForm() ? this.saveUser() : this.setState({alert: {class: 'error', message: 'Missing required inputs!'}});
     }
 
     saveUser(){
@@ -132,41 +127,36 @@ class AddEditFormComponent extends Component {
 
     validateField(fieldName, value) {
         let fieldValidationErrors = this.state.formErrors;
-        let emailValid = this.state.emailValid;
-        let nameValid = this.state.nameValid;
-        let roleValid = this.state.roleValid;
-        let phoneValid = this.state.phoneValid;
 
         switch(fieldName) {
             case 'email':
-            emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+            let emailValid = (/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i).test(value);
             fieldValidationErrors.email = emailValid ? '' : 'form--errors';
+            this.setState({emailValid: emailValid});
             break;
             case 'name':
-            nameValid = value.length > 0;
+            let nameValid = value.length > 0;
             fieldValidationErrors.name = nameValid ? '': 'form--errors';
+            this.setState({nameValid: nameValid});
             break;
             case 'role':
-            roleValid = value.length > 0;
+            let roleValid = value.length > 0;
             fieldValidationErrors.role = roleValid ? '': 'form--errors';
+            this.setState({roleValid: roleValid});
             break;
             case 'phone':
-            phoneValid = value.match(/[0-9]{11}/);
+            let phoneValid = (/[0-9]{2}\-[0-9]{8}/).test(value);
             fieldValidationErrors.phone = phoneValid ? '': 'form--errors';
+            this.setState({phoneValid: phoneValid});
             break;
             default:
             break;
         }
-        this.setState({formErrors: fieldValidationErrors,
-            emailValid: emailValid,
-            nameValid: nameValid,
-            roleValid: roleValid,
-            phoneValid: phoneValid
-        }, this.validateForm);
+        this.setState({formErrors: fieldValidationErrors});
     }
 
     validateForm() {
-        this.setState({formValid: this.state.emailValid && this.state.nameValid && this.state.roleValid && this.state.phoneValid});
+        return this.state.emailValid && this.state.nameValid && this.state.roleValid && this.state.phoneValid;
     }
 
     render() {
