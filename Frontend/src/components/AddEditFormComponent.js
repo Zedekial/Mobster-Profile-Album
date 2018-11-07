@@ -52,12 +52,11 @@ class AddEditFormComponent extends Component {
                 email: '', 
                 role: '', 
                 phone: '',
-                src: false,
+                src: '',
                 formSubmit: {title: 'Add new mobster', value: 'Create', method: 'post', url: '/mobsters', delete: false}});
             break;
             case 'edit':
             const data = this.props.location.state.foo.data;
-            console.log(data);
             this.setState({
                 id: data.id, 
                 name: data.name, 
@@ -78,7 +77,7 @@ class AddEditFormComponent extends Component {
         formData.append('email', this.state.email);
         formData.append('role', this.state.role);
         formData.append('phone', this.state.phone);
-        formData.append('src', fileField.files[0] == undefined ? this.state.src : fileField.files[0]);
+        formData.append('src', fileField.files[0] ? fileField.files[0] : this.state.src);
         return formData;
     }
 
@@ -89,7 +88,6 @@ class AddEditFormComponent extends Component {
             data: this.getData()
         }).then((response) => {
             if(response.status === 200) {
-                console.log(response);
                 this.setState({name: '', email: '', role: '', phone: '', alert: {class: 'success', message: 'Your changes have been saved!'}})
             }
         })
