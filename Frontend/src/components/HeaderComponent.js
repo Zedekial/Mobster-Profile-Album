@@ -11,7 +11,7 @@ const HeaderComponent = (props) => {
       <HeaderLogoComponent />
       <div>
         {
-          !props.state.LoggingIn &&
+          // window.location.pathname === '/' &&
           <SearchComponent
             state={props.state}
             SearchComponentCallBack={props.SearchComponentCallBack}
@@ -19,7 +19,8 @@ const HeaderComponent = (props) => {
         }
       </div>
           <div className={'header__buttons'}>
-            <AddUserButtonComponent state={props.state}/>
+          {props.state.LoggedIn &&
+            <AddUserButtonComponent state={props.state}/>}
           {
             <LoginButtonComponent
             state={props.state}
