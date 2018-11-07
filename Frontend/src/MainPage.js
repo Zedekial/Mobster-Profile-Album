@@ -165,7 +165,6 @@ class App extends Component {
 
 
 render() {
-  console.log(this.state.displayMessage)
   return (
     <div className="App">
       <HeaderComponent
