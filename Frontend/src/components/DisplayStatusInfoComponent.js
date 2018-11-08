@@ -4,7 +4,7 @@ import '../CSS/MainPage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-const LoadingMessage = () => {
+export const LoadingMessage = () => {
   return (
       <h1 className='loading__content'>
         Loading
