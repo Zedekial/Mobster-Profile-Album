@@ -4,6 +4,8 @@ import HeaderLogoComponent from './HeaderLogoComponent'
 import LoginButtonComponent from './LoginButtonComponent';
 import SearchComponent from '../components/SearchComponent'
 import '../CSS/HeaderComponent.css';
+import { Redirect, Route, Switch } from 'react-router-dom';
+
 
 const HeaderComponent = (props) => {
   return (
@@ -11,7 +13,7 @@ const HeaderComponent = (props) => {
       <HeaderLogoComponent />
       <div>
         {
-          !props.state.LoggingIn &&
+          window.location.pathname === '/' &&
           <SearchComponent
             state={props.state}
             SearchComponentCallBack={props.SearchComponentCallBack}
@@ -19,7 +21,11 @@ const HeaderComponent = (props) => {
         }
       </div>
           <div className={'header__buttons'}>
+          {
+          props.state.LoggedIn &&
             <AddUserButtonComponent state={props.state}/>
+          }
+            
           {
             <LoginButtonComponent
             state={props.state}
