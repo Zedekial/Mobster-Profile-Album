@@ -9,7 +9,7 @@ const HeaderComponent = (props) => {
   return (
     <header className={'header__container'} onClick={props.handleClosingModal}>
       <HeaderLogoComponent />
-      <div>
+      <div className="header__search">
         {
           // window.location.pathname === '/' &&
           <SearchComponent
@@ -18,11 +18,11 @@ const HeaderComponent = (props) => {
           />
         }
       </div>
-          <div className={'header__buttons'}>
-          {props.state.LoggedIn &&
-            <AddUserButtonComponent state={props.state}/>}
-          {
-            <LoginButtonComponent
+      <div className={'header__buttons'}>
+        {props.state.LoggedIn &&
+          <AddUserButtonComponent state={props.state} />}
+        {
+          <LoginButtonComponent
             state={props.state}
             UpdateLoginState={props.UpdateLoginState}
             UpdateLoggingIn={props.UpdateLoggingIn}

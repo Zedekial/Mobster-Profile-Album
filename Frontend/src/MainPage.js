@@ -14,8 +14,8 @@ import { DisplayStatusInfoWindow } from './components/DisplayStatusInfoComponent
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* You must import your icon below this line  */
-import { faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle);
+import { faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle, faUserPlus);
 
 
 /*
@@ -65,9 +65,9 @@ class App extends Component {
     return (
       <CardGridComponent
         list={this.state.searching ?
-              this.state.filteredMobsterData :
-              this.state.data
-              }
+          this.state.filteredMobsterData :
+          this.state.data
+        }
         handleOpeningModal={this.handleOpeningModal}
         state={this.state}
       />
@@ -125,21 +125,21 @@ class App extends Component {
 
   retryGetMobsterData = () => {
     axios.get('https://api.myjson.com/bins/1a9wby')
-    .then(response => {
-      this.setState({
-        data: response.data,
-        loading: false,
-        displayMessage: '',
+      .then(response => {
+        this.setState({
+          data: response.data,
+          loading: false,
+          displayMessage: '',
+        })
       })
-    })
-    .catch(err => {
-      let errorString = `${err.name}: the response was '${err.message}`
-      this.setState({
-        displayMessage: 'error',
-        errorDetails: errorString,
+      .catch(err => {
+        let errorString = `${err.name}: the response was '${err.message}`
+        this.setState({
+          displayMessage: 'error',
+          errorDetails: errorString,
+        })
+        console.log(`Data failed to fetch, error details ${err.name}, ${err.message}`)
       })
-      console.log(`Data failed to fetch, error details ${err.name}, ${err.message}`)
-    })
   }
 
   componentWillMount() {
@@ -164,35 +164,35 @@ class App extends Component {
   /*{Function to handle closing of modal}*/
 
 
-render() {
-  console.log(this.state.displayMessage)
-  return (
-    <div className="App">
-      <HeaderComponent
-        state={this.state}
-        SearchComponentCallBack={this.SearchComponentCallBack}
-        UpdateLoginState={this.UpdateLoginState}
-        UpdateLoggingIn={this.UpdateLoggingIn}
-      />
-        {
-        (this.state.loading || (this.state.searching && !this.state.filteredMobsterData.length)) &&
-         <DisplayStatusInfoWindow
+  render() {
+    console.log(this.state.displayMessage)
+    return (
+      <div className="App">
+        <HeaderComponent
           state={this.state}
-          retryGetMobsterData={this.retryGetMobsterData}
+          SearchComponentCallBack={this.SearchComponentCallBack}
+          UpdateLoginState={this.UpdateLoginState}
+          UpdateLoggingIn={this.UpdateLoggingIn}
+        />
+        {
+          (this.state.loading || (this.state.searching && !this.state.filteredMobsterData.length)) &&
+          <DisplayStatusInfoWindow
+            state={this.state}
+            retryGetMobsterData={this.retryGetMobsterData}
           />
         }
-      <Switch>
-      {
-        (!this.state.loading || (!this.state.displayMessage.includes('no results'))) &&
-        <Route exact path='/' render={this.CardGridComponentWithProps} />
-      }
-        <Route path="/login" render={this.MyLoginPage} />
-        <Route path="/add" component={AddEditFormComponent} />
-        <Route path="/edit" component={AddEditFormComponent} />
-        <PrivateRoute path='/admin' component={Admin} />
-      </Switch>
-      <FooterComponent />
-    </div>
+        <Switch>
+          {
+            (!this.state.loading || (!this.state.displayMessage.includes('no results'))) &&
+            <Route exact path='/' render={this.CardGridComponentWithProps} />
+          }
+          <Route path="/login" render={this.MyLoginPage} />
+          <Route path="/add" component={AddEditFormComponent} />
+          <Route path="/edit" component={AddEditFormComponent} />
+          <PrivateRoute path='/admin' component={Admin} />
+        </Switch>
+        <FooterComponent />
+      </div>
     );
   }
 }

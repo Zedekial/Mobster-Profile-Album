@@ -37,6 +37,7 @@
     background-color: white;
     /* opacity: 0.95; */
     text-align: center;
+    padding-top: 30px;
 }
 
 .card__details li {
@@ -109,6 +110,10 @@
 
   @media screen and (max-width: 579px) {
     .card__grid{
-        margin-top: 170px;
+        margin-top: 120px;
+    }
+
+    .card__container {
+        margin: 20px;
     }
   }
