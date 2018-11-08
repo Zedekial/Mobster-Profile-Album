@@ -15,11 +15,6 @@ ul, li {
   display: flex;
 }
 
-
-.standard__input__style::placeholder{
-  font-size: 20px;
-}
-
 .search__input__wrapper{
   display: flex;
   color: gray;

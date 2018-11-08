@@ -1,6 +1,7 @@
 import React from 'react';
 import CardComponentContainer from './CardComponentContainer';
 import '../CSS/CardComponent.css';
+import { shape, number, string, arrayOf, func } from 'prop-types';
 
 const CardGridComponent = (props) => {
   return (
@@ -23,7 +24,16 @@ const CardGridComponent = (props) => {
   );
 }
 
-
-
+CardGridComponent.propTypes = {
+  list: arrayOf(shape({
+    id: number,
+    src: string,
+    name: string.isRequired,
+    role: string,
+    phone: string,
+    email: string,
+  })),
+  handleOpeningModal: func
+}
 
 export default CardGridComponent;

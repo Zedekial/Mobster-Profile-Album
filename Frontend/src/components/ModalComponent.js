@@ -1,6 +1,8 @@
 import React from 'react';
 import '../CSS/ModalComponent.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { number, string, func } from 'prop-types';
+
 
 const Modal = (props) => {
     return (
@@ -23,6 +25,17 @@ const Modal = (props) => {
         </div>
 
     )
+}
+
+Modal.propTypes = {
+    id: number,
+    src: string,
+    name: string.isRequired,
+    role: string,
+    phone: string,
+    email: string,
+    handleClosingModal: func,
+    handleModalCardClick: func
 }
 
 export default Modal
