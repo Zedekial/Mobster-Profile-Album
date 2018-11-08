@@ -24,8 +24,6 @@ class CardComponentContainer extends Component {
   }
 
   toggleCard() {
-    console.log('toggle click method')
-
     this.setState({ active: !this.state.active });
     this.state.active ? this.setState({ classFront: 'card--show', classBack: 'card--hide' }) : this.setState({ classFront: 'card--hide', classBack: 'card--show' });
 
@@ -33,7 +31,6 @@ class CardComponentContainer extends Component {
 
   handleClick = () => {
     this.handleOpeningModal(this.props)
-    // console.log('handle click method')
     this.toggleCard()
   }
   handleClosingModal = () => {

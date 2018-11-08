@@ -36,7 +36,6 @@ class LoginPage extends Component {
 
     } else {
       e.target.reset();
-      console.log('wrong password');
     }
   }
 

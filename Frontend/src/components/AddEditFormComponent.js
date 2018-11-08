@@ -45,31 +45,31 @@ class AddEditFormComponent extends Component {
     setInitialState(){
         switch (this.props.location.state.path){
             case 'add':
-            this.setState({
-                id: '', 
-                name: '', 
-                email: '', 
-                role: '', 
-                phone: '',
-                src: '',
-                formSubmit: {title: 'Add new mobster', value: 'Create', method: 'post', url: '/mobsters', delete: false}});
-            break;
+              this.setState({
+                  id: '',
+                  name: '',
+                  email: '',
+                  role: '',
+                  phone: '',
+                  src: '',
+                  formSubmit: {title: 'Add new mobster', value: 'Create', method: 'post', url: '/mobsters', delete: false}});
+              break;
             case 'edit':
-            const data = this.props.location.state.foo.data;
-            this.setState({
-                id: data.id, 
-                name: data.name, 
-                email: data.email, 
-                role: data.role, 
-                phone: data.phone,
-                src: data.src,
-                formSubmit: {title: 'Update or remove mobster', value: 'Save', method: 'put', url: `/mobsters/${data.id}`, delete: true},
-                emailValid: true,
-                nameValid: true,
-                roleValid: true,
-                phoneValid: true,
-            });
-            break;
+              const data = this.props.location.state.foo.data;
+              this.setState({
+                  id: data.id,
+                  name: data.name,
+                  email: data.email,
+                  role: data.role,
+                  phone: data.phone,
+                  src: data.src,
+                  formSubmit: {title: 'Update or remove mobster', value: 'Save', method: 'put', url: `/mobsters/${data.id}`, delete: true},
+                  emailValid: true,
+                  nameValid: true,
+                  roleValid: true,
+                  phoneValid: true,
+              });
+              break;
         }
     }
 
@@ -118,7 +118,7 @@ class AddEditFormComponent extends Component {
         .then((response) => {
             if(response.status === 200) {
                 this.setState({name: '', email: '', role: '', phone: '', src: '', alert: {class: 'success', message: 'Mobster deleted!'}})
-                
+
             }
         })
         .catch((error) => {

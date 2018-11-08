@@ -5,9 +5,6 @@ import React, { Component } from 'react';
 import { shape, number, string, arrayOf, func } from 'prop-types';
 
 export default class CardGridComponent extends Component {
-  constructor(props){
-    super(props);
-  }
   componentDidMount() {
     this.props.getMobsterData();
   }

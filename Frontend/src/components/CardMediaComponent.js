@@ -1,5 +1,5 @@
 import React from 'react';
-import { number, string, func } from 'prop-types';
+import { string, func } from 'prop-types';
 
 export const CardMediaComponent = (props) => {
     return (
