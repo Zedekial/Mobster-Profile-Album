@@ -3,6 +3,7 @@ import CardComponentContainer from './CardComponentContainer';
 import '../CSS/CardComponent.css';
 import React, { Component } from 'react';
 import { shape, number, string, arrayOf, func } from 'prop-types';
+import { LoadingMessage } from './DisplayStatusInfoComponent';
 
 export default class CardGridComponent extends Component {
   constructor(props){
