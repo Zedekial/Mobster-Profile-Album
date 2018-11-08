@@ -20,6 +20,13 @@
     margin-bottom: 96px;
 }
 
+.add__user__form__delete {
+    background-color: #b71c1c;
+}
+.add__user__form__delete:hover {
+    background-color: #ef9a9a;
+}
+
 .form--errors, .form--errors:focus {
     border-bottom: 2px solid #ef9a9a;
 }
