@@ -10,7 +10,7 @@ export default class CardGridComponent extends Component {
     super(props);
     this.state = {
       items: 18,
-      loadingState: false
+      loadingState: false,
     };
   }
 
@@ -26,18 +26,32 @@ export default class CardGridComponent extends Component {
 
   getMobsters = (props) => {
     let mobsters = this.props.list.map((data) =>
-      <CardComponentContainer
-        handleOpeningModal={this.props.handleOpeningModal}
-        id={data._id}
-        state={this.props.state}
-        key={data.id}
-        src={data.src}
-        name={data.name}
-        phone={data.phone}
-        role={data.role}
-        email={data.email}
-      />
-    )
+    <CardComponentContainer
+    handleOpeningModal={this.props.handleOpeningModal}
+    id={data._id}
+    state={this.props.state}
+    key={data.id}
+    src={data.src}
+    name={data.name}
+    phone={data.phone}
+    role={data.role}
+    email={data.email}
+    />
+  )
+  // .sort(function order(a,b) {
+    //   let nameA = a.props.list.name.toUpperCase();
+    //   let nameB = b.props.list.name.toUpperCase();
+    //   if (nameA > nameB) {
+    //     return 1;
+    //   }
+    //   return 0;
+    // });
+    // let item = this.props.list;
+    // console.log((this.props.list));
+    // console.log(item[0])
+    // console.log(typeof(this.props.list));
+
+    // console.log(this.props.list[0]["name"]);
     return mobsters;
   }
 

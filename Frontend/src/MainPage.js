@@ -123,16 +123,27 @@ class App extends Component {
         break;
     }
   }
+  sortMobsters = (a,b) => {
+      var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase();
+        if (nameA < nameB)
+           return -1;
+        if (nameA > nameB)
+           return 1;
+           return 0;
+     }
+  
 
   getMobsterData = () => {
     axios.get('https://api.myjson.com/bins/1a9wby')
     // axios.get('/mobsters')
     .then(response => {
+      // console.log(response.data)
+    
       this.setState({
-        data: response.data,
+        data: response.data.sort(this.sortMobsters),
         loading: false,
         displayMessage: '',
-      })
+      });
     })
     .catch(err => {
       let errorString = `${err.name}: the response was '${err.message}`
