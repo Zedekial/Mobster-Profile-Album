@@ -29,20 +29,20 @@ class AddEditFormComponent extends Component {
         this.validateForm = this.validateForm.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
         this.getData = this.getData.bind(this);
-        this.defineInitialValues = this.defineInitialValues.bind(this);
+        this.setInitialState = this.setInitialState.bind(this);
     }
 
     componentDidMount() {
-        this.defineInitialValues();
+        this.setInitialState();
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.location.state.path !== this.props.location.state.path) {
-          this.defineInitialValues();
+          this.setInitialState();
         }
     }
 
-    defineInitialValues(){
+    setInitialState(){
         switch (this.props.location.state.path){
             case 'add':
             this.setState({
