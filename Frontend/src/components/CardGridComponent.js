@@ -1,9 +1,10 @@
 
 import CardComponentContainer from './CardComponentContainer';
 import '../CSS/CardComponent.css';
-import React, { PureComponent, Component } from 'react'
+import React, { Component } from 'react';
+import { shape, number, string, arrayOf, func } from 'prop-types';
 
-export default class CardGridComponent extends PureComponent {
+export default class CardGridComponent extends Component {
   constructor(props){
     super(props);
   }
@@ -31,4 +32,14 @@ export default class CardGridComponent extends PureComponent {
   }
 }
 
-
+CardGridComponent.propTypes = {
+  list: arrayOf(shape({
+    id: number,
+    src: string,
+    name: string.isRequired,
+    role: string,
+    phone: string,
+    email: string,
+  })),
+  handleOpeningModal: func
+}

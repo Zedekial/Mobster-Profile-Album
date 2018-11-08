@@ -15,15 +15,6 @@ ul, li {
   display: flex;
 }
 
-.standard__input__style:focus{
-  border: none;
-  box-shadow: 0px 2px 0px #0f9dce;
-}
-
-.standard__input__style::placeholder{
-  font-size: 20px;
-}
-
 .search__input__wrapper{
   display: flex;
   color: gray;
@@ -38,6 +29,13 @@ ul, li {
 
 .search__user__input--invalid {
   color: #f44336;
+}
+
+@media screen and (max-width: 579px) {
+  .search__user__input {
+    margin: 0px;
+    width: 190px;
+  }
 }
 
 

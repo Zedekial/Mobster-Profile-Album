@@ -14,9 +14,8 @@ import { DisplayStatusInfoWindow } from './components/DisplayStatusInfoComponent
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* You must import your icon below this line  */
-import { faSearch, faUserEdit, faEye, faSpinner, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle);
-
+import { faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faPlus, faSearch, faUserEdit, faEye, faSpinner, faTimesCircle, faUserPlus);
 
 /*
 ^ To add an icon to the library add it in the import above, ^

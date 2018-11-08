@@ -6,7 +6,7 @@ import axios from 'axios';
 import '../CSS/AddEditFormComponent.css';
 
 class AddEditFormComponent extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             id: '',
@@ -99,13 +99,14 @@ class AddEditFormComponent extends Component {
             method: this.state.formSubmit.method,
             url: this.state.formSubmit.url,
             data: this.getData()
-        }).then((response) => {
+        })
+        .then((response) => {
             if(response.status === 200) {
                 this.setState({name: '', email: '', role: '', phone: '', src: '', alert: {class: 'success', message: 'Your changes have been saved!', data: response.data}})
             }
         })
         .catch((error) => {
-            this.setState({alert: {class: 'error', message: error}})
+            this.setState({ alert: { class: 'error', message: error } })
         });
     }
 
@@ -113,27 +114,28 @@ class AddEditFormComponent extends Component {
         axios({
             method: 'delete',
             url: this.state.formSubmit.url,
-        }).then((response) => {
+        })
+        .then((response) => {
             if(response.status === 200) {
                 this.setState({name: '', email: '', role: '', phone: '', src: '', alert: {class: 'success', message: 'Mobster deleted!'}})
                 
             }
         })
         .catch((error) => {
-            this.setState({alert: {class: 'error', message: error}})
+                this.setState({ alert: { class: 'error', message: error } })
         });
     }
 
-    setInput(nameInput,e){
+    setInput(nameInput, e) {
         const value = e.target.value;
-        this.setState({[nameInput]: value},
+        this.setState({ [nameInput]: value },
             () => { this.validateField(nameInput, value) });
     }
 
     validateField(fieldName, value) {
         let fieldValidationErrors = this.state.formErrors;
 
-        switch(fieldName) {
+        switch (fieldName) {
             case 'email':
             let emailValid = (/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i).test(value);
             fieldValidationErrors.email = emailValid ? '' : 'form--errors';
@@ -155,7 +157,7 @@ class AddEditFormComponent extends Component {
             this.setState({phoneValid: phoneValid});
             break;
             default:
-            break;
+                break;
         }
         this.setState({formErrors: fieldValidationErrors});
     }

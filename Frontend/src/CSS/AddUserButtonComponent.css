@@ -13,8 +13,20 @@
     right: 0;
 }
 
-
+.add__mobster__icon {
+    font-size: 1.3rem;
+}
 
 .add__user__button:hover {
     /* color: white; */
+}
+
+@media screen and (max-width: 579px) {
+    .add__mobster__icon {
+        display: inline;
+    }
+
+    .add__user__button {
+        display: none;
+    }
 }
