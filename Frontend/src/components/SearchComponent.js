@@ -100,6 +100,8 @@ const MatchAgainstSearchText = (mobster, searchText) => {
     return true
   } else if (mobster.email.replace('@email.com', '').replace('@mobiquity.com', '').toLowerCase().includes(searchText.toLowerCase())) {
     return true
+  } else if (mobster.role.toLowerCase().includes(searchText.toLowerCase())) {
+    return true
   } else {
     return false
   }
