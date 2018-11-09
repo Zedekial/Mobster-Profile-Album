@@ -30,20 +30,6 @@ Then if you wish to use the icon in the library you use this format
 
 /* ^Font Awesome imports^ */
 
-/* From login/header branch */
-const Admin = () => (<div> <h2>I am in GOD MODE ADMIN</h2> </div>)
-
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={(props) => fakeAuth.isAuthenticated === true
-        ? <Component {...props} />
-        : <Redirect to={{ pathname: '/', state: { from: props.location } }} />} />
-  )
-}
-/* ^From login/header branch^ */
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -125,11 +111,11 @@ class App extends Component {
   }
 
   getMobsterData = () => {
-    axios.get('https://api.myjson.com/bins/1a9wby')
-    // axios.get('/mobsters')
+    // axios.get('https://api.myjson.com/bins/1a9wby')
+    axios.get('/mobsters')
     .then(response => {
       this.setState({
-        data: response.data,
+        data: response.data.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)),
         loading: false,
         displayMessage: '',
       })
@@ -172,7 +158,6 @@ render() {
         <Route path="/login" render={this.MyLoginPage} />
         <Route path="/add" component={AddEditFormComponent} />
         <Route path="/edit" component={AddEditFormComponent} />
-        <PrivateRoute path='/admin' component={Admin} />
       </Switch>
       <FooterComponent />
     </div>
