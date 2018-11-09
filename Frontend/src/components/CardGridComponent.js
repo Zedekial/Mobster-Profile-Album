@@ -1,12 +1,33 @@
-
+import React, { Component } from 'react';
 import CardComponentContainer from './CardComponentContainer';
 import '../CSS/CardComponent.css';
-import React, { Component } from 'react';
 import { shape, number, string, arrayOf, func } from 'prop-types';
 
-export default class CardGridComponent extends Component {
-  componentDidMount() {
-    this.props.getMobsterData();
+class CardGridComponent extends Component {
+
+  handleScroll = () => {
+    if (this.props.state.scrolling) return
+
+    let lengthOfMobsterChunks = this.props.state.mobsterChunks.length;
+
+    if (lengthOfMobsterChunks <= this.props.state.mobsterChunkIndex) return
+    let lastCard = document.querySelector('.card__grid > .card__container:last-child');
+    let lastCardOffset = lastCard.offsetTop + lastCard.clientHeight;
+    let pageOffset = window.pageYOffset + window.innerHeight;
+    let bottomOffset = 20;
+
+    if (pageOffset > lastCardOffset - bottomOffset) {
+      this.loadMoreChunks()
+    }
+  }
+
+  loadMoreChunks = () => {
+    this.props.handleScrollLazyLoad()
+  }
+    componentDidMount() {
+      window.addEventListener('scroll', this.handleScroll)
+      this.props.getMobsterData();
+
   }
   render() {
     return (
@@ -40,3 +61,5 @@ CardGridComponent.propTypes = {
   })),
   handleOpeningModal: func
 }
+
+export default CardGridComponent
