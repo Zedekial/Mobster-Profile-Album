@@ -5,8 +5,6 @@ import EditUserButtonComponent from './EditUserButtonComponent';
 import ModalContainerComponent from './ModalContainerComponent';
 import ModalComponent from './ModalComponent';
 
-import '../CSS/EditUserButtonComponent.css'
-
 class CardComponentContainer extends Component {
   constructor(props) {
     super(props);
