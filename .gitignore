@@ -4,11 +4,11 @@
 /Frontend/node_modules
 /Frontend/package-lock.json
 /Frontend/build/
+/Frontend/src/dataTest.json
 
 /Backend/app/models/link.json
 /Backend/node_modules
 /Backend/package-lock.json
-/Backend/uploads
 
 
 # testing
