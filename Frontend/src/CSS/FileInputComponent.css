@@ -4,9 +4,7 @@
     vertical-align: middle;
     fill: currentColor;
     margin-top: -0.25em;
-    /* 4px */
     margin-right: 0.25em;
-    /* 4px */
 }
 
 .inputfile {
@@ -28,12 +26,9 @@
     cursor: pointer;
     display: block;
     overflow: hidden;
-    /* padding: 0.625rem 1.25rem; */
 }
-
 
 .inputfile-1 + label {
     color: #0f9dce;
     background-color: #fff;
-    /* border-style: solid;     */
 }
