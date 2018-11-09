@@ -1,6 +1,5 @@
-
-import CardComponentContainer from './CardComponentContainer';
-import '../CSS/CardComponent.css';
+import CardComponent from './CardComponent';
+import '../CSS/CardGridComponent.css';
 import React, { Component } from 'react';
 import { shape, number, string, arrayOf, func } from 'prop-types';
 
@@ -15,7 +14,7 @@ export default class CardGridComponent extends Component {
     return (
       <div className={'card__grid'}>
         {this.props.list.map((data) =>
-          <CardComponentContainer
+          <CardComponent
             handleOpeningModal={this.props.handleOpeningModal}
             id={data._id}
             state={this.props.state}

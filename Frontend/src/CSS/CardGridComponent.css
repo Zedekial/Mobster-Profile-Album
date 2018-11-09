@@ -1,0 +1,19 @@
+.card__grid {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 96px auto;
+}
+
+@media screen and (max-width: 700px) and (min-width: 580px) {
+    .card__grid{
+        margin-top: 100px;
+    }
+}
+
+@media screen and (max-width: 579px) {
+    .card__grid{
+        margin-top: 120px;
+    }
+}

@@ -33,6 +33,10 @@
   display: none;
 }
 
+.add__mobster__icon {
+  font-size: 1.3rem;
+}
+
 @media screen and (max-width: 800px) and (min-width: 580px) {
   .header__container{
     flex-wrap: wrap;
@@ -77,4 +81,8 @@
   .header__buttons{
     margin: 5px;
   }
+
+  .add__mobster__icon {
+    display: inline;
+}
 }

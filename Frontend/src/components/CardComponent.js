@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { CardMediaComponent } from './CardMediaComponent';
-import { CardDetailsComponent } from './CardDetailsComponent';
-import EditUserButtonComponent from './EditUserButtonComponent';
-import ModalContainerComponent from './ModalContainerComponent';
 import ModalComponent from './ModalComponent';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../CSS/CardComponent.css';
+import { Link } from 'react-router-dom';
 
-class CardComponentContainer extends Component {
+class CardComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,53 +26,60 @@ class CardComponentContainer extends Component {
 
   }
 
-  handleClick = () => {
+  handleClick() {
     this.handleOpeningModal(this.props)
     this.toggleCard()
   }
 
-  handleClosingModal = () => {
+  handleClosingModal() {
     this.setState({
       modalVisible: false
     });
   }
 
   /*{Function to handle opening of modal}*/
-  handleOpeningModal = () => {
+  handleOpeningModal() {
     this.setState({
       modalVisible: true,
       details: this.props
     });
   }
 
-  handleModalCardClick = (event) => {
+  handleModalCardClick(event) {
     event.stopPropagation();
     return;
   }
 
   render() {
+    const data = this.props;
+
     return (
       <div className={'card__container'}>
-        <EditUserButtonComponent data={this.props} state={this.props.state} />
-        <CardMediaComponent
-          src={this.props.src}
-          name={this.props.name}
-          onClick={this.toggleCard}
-          className={`card__media ${this.state.classFront}`}
-        />
-        <CardDetailsComponent
-          handleOpeningModal={this.handleOpeningModal}
-          phone={this.props.phone}
-          email={this.props.email}
-          role={this.props.role}
-          name={this.props.name}
-          toggleCard={this.toggleCard}
-          className={`card__details ${this.state.classBack}`}
-          handleClick={this.handleClick}
-        />
+        {
+          this.props.state.LoggedIn &&
+          <Link to={{ pathname: '/edit', state: {path: 'edit', foo: {data}} }}>
+            <div className="user__edit__button standard__button__style">
+              <FontAwesomeIcon icon="user-edit" className="user__edit__icon"/> <span>Edit Mobster</span>
+            </div>
+          </Link>
+        }
+        <div onClick={this.toggleCard} className={`card__media ${this.state.classFront}`}>
+            <img draggable='false' alt={this.props.name + ' img'} src={this.props.src}></img>
+            <h1>{this.props.name}</h1>
+        </div>
+        <div className={`card__details ${this.state.classBack}`} onClick={this.toggleCard}>
+            <h2>{this.props.name}</h2>
+            <ul>
+                <li>Phone: {this.props.phone}</li>
+                <li>{this.props.email}</li>
+                <li>{this.props.role}</li>
+            </ul>
+            <div className="user__show__more__button" onClick={this.handleClick}>
+                <FontAwesomeIcon icon="eye" className="user__show__more__icon" /> <span>Show more</span>
+            </div>
+        </div>
         {
           this.state.modalVisible &&
-          <ModalContainerComponent className="modal__container">
             <ModalComponent
               handleModalCardClick={this.handleModalCardClick}
               handleClosingModal={this.handleClosingModal}
@@ -83,7 +89,6 @@ class CardComponentContainer extends Component {
               phone={this.state.details.phone}
               role={this.state.details.role}
             />
-          </ModalContainerComponent>
         }
       </div>
     );
@@ -91,4 +96,4 @@ class CardComponentContainer extends Component {
 }
 
 
-export default CardComponentContainer;
+export default CardComponent;

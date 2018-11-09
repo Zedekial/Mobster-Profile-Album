@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { SearchInputComponent } from './SearchInputComponent';
 import "../CSS/SearchComponent.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -82,7 +81,7 @@ class SearchComponent extends Component {
       return (
         <div className='search__user__input'>
           <FontAwesomeIcon className="search__icon" icon="search" />
-          <SearchInputComponent HandleSearch={this.HandleSearch} />
+          <input className="standard__input__style" placeholder="Search Mobster" onChange={e => this.HandleSearch(e.target)}/>
           <span className="error__message"></span>
         </div>
       );

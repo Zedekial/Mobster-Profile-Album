@@ -1,9 +1,0 @@
-.add__mobster__icon {
-    font-size: 1.3rem;
-}
-
-@media screen and (max-width: 579px) {
-    .add__mobster__icon {
-        display: inline;
-    }
-}
