@@ -79,8 +79,9 @@ class App extends Component {
             null)
         }
         handleScrollLazyLoad={this.handleScrollLazyLoad}
-        state={this.state}
         getMobsterData={this.getMobsterData}
+        resetChunkIndexCallBack={this.resetChunkIndexCallBack}
+        state={this.state}
       />
     )
   }
@@ -132,7 +133,6 @@ class App extends Component {
   }
 
   CreateMobsterChunksCallback = (mobsterChunks) => {
-    console.log(mobsterChunks)
     this.setState({
       mobsterChunks: mobsterChunks,
       lazyLoadMobsterData: mobsterChunks[0],
@@ -154,6 +154,14 @@ class App extends Component {
         });
      }
     )
+  }
+
+  resetChunkIndexCallBack = () => {
+    const { mobsterChunks, mobsterChunkIndex } = this.state;
+    if ((mobsterChunkIndex+1 === mobsterChunks.length)) {
+      this.setState({ mobsterChunkIndex: 0 })
+    }
+
   }
 
   getMobsterData = () => {
