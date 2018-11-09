@@ -33,7 +33,8 @@
   }
 
   .modal__container__card--image img{
-    /* object-fit: cover; */
+    object-fit: contain;
+    
     border-bottom: 3px solid #0f9dce;
     width: 100%;
     height: 350px;

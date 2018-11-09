@@ -134,7 +134,7 @@ class App extends Component {
   
 
   getMobsterData = () => {
-    axios.get('https://api.myjson.com/bins/1a9wby')
+    axios.get('/mobsters')
     // axios.get('/mobsters')
     .then(response => {
       // console.log(response.data)
