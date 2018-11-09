@@ -4,8 +4,6 @@ import HeaderLogoComponent from './HeaderLogoComponent'
 import LoginButtonComponent from './LoginButtonComponent';
 import SearchComponent from '../components/SearchComponent'
 import '../CSS/HeaderComponent.css';
-import { Redirect, Route, Switch } from 'react-router-dom';
-
 
 const HeaderComponent = (props) => {
   return (
