@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import AddEditFormComponent from './components/AddEditFormComponent';
 import FooterComponent from './components/FooterComponent';
+import CreateMobsterChunks from './components/LazyLoadingComponent';
 import { DisplayStatusInfoWindow } from './components/DisplayStatusInfoComponent';
 
 
@@ -34,34 +35,43 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      /* Data used to display and store all mobsters */
       data: [],
+      filteredMobsterData: [],
+      lazyLoadMobsterData: [],
+      mobsterChunks: [],
+      mobsterChunkIndex: 0,
+      scrolling: false,
+      /* ^Data used to display and store all mobsters^ */
       loading: true,
       displayMessage: 'loading',
       errorDetails: '',
-      filteredMobsterData: [],
       searchText: '',
       searching: false,
       LoggedIn: false,
       LoggingIn: false
     }
   }
-  
+
 
   CardGridComponentWithProps = () => {
+    const { filteredMobsterData, loading, lazyLoadMobsterData, searching } = this.state
     return (
       <CardGridComponent
-        list={this.state.searching ?
-              this.state.filteredMobsterData :
-              this.state.data
-              }
-        handleOpeningModal={this.handleOpeningModal}
-        state={this.state}
+        list={searching ?
+          filteredMobsterData :
+          (!loading ?
+            lazyLoadMobsterData :
+            null)
+        }
+        handleScrollLazyLoad={this.handleScrollLazyLoad}
         getMobsterData={this.getMobsterData}
+        resetChunkIndexCallBack={this.resetChunkIndexCallBack}
+        state={this.state}
       />
     )
   }
 
-  /* From login/header branch */
   MyLoginPage = (props) => {
     return (
       <LoginPage
@@ -85,8 +95,6 @@ class App extends Component {
   UpdateLoggingIn = () => {
     this.setState({ LoggingIn: true })
   }
-  /* ^From login/header branch^ */
-
 
   SearchComponentCallBack = (filteredMobsters, searching, searchText) => {
     switch (filteredMobsters) {
@@ -110,6 +118,38 @@ class App extends Component {
     }
   }
 
+  CreateMobsterChunksCallback = (mobsterChunks) => {
+    this.setState({
+      mobsterChunks: mobsterChunks,
+      lazyLoadMobsterData: mobsterChunks[0],
+    })
+  }
+
+  handleScrollLazyLoad = () => {
+    const { mobsterChunks, lazyLoadMobsterData, mobsterChunkIndex } = this.state;
+    if (!(mobsterChunkIndex+1 < mobsterChunks.length)) return
+    this.setState(prevState => ({
+      mobsterChunkIndex: prevState.mobsterChunkIndex+1,
+      scrolling: true,
+    }), () => {
+      let llMobsterDataCopy = lazyLoadMobsterData;
+      llMobsterDataCopy.push(...mobsterChunks[this.state.mobsterChunkIndex]);
+      this.setState({
+        lazyLoadMobsterData: llMobsterDataCopy,
+        scrolling: false,
+        });
+     }
+    )
+  }
+
+  resetChunkIndexCallBack = () => {
+    const { mobsterChunks, mobsterChunkIndex } = this.state;
+    if ((mobsterChunkIndex+1 === mobsterChunks.length)) {
+      this.setState({ mobsterChunkIndex: 0 })
+    }
+
+  }
+
   getMobsterData = () => {
     // axios.get('https://api.myjson.com/bins/1a9wby')
     axios.get('/mobsters')
@@ -120,19 +160,17 @@ class App extends Component {
         displayMessage: '',
       })
     })
+    .then(() => {
+      CreateMobsterChunks(this.state.data, this.CreateMobsterChunksCallback);
+    })
     .catch(err => {
       let errorString = `${err.name}: the response was '${err.message}`
       this.setState({
         displayMessage: 'error',
         errorDetails: errorString,
       })
-      console.log(`Data failed to fetch, error details ${err.name}, ${err.message}`)
     })
   }
-
-
-  /*{Function to handle closing of modal}*/
-
 
 render() {
   return (
