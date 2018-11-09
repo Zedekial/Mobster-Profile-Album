@@ -3,7 +3,17 @@ import { SearchInputComponent } from './SearchInputComponent';
 import "../CSS/SearchComponent.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-
+/* This debounce function is from 'https://blog.flowandform.agency/debounce-in-react-fc5ed305a0e8' */
+const debounce = function (a,b,c) {
+  let d,e;
+  return function() {
+    function h(){
+      (d=null,c)||(e=a.apply(f,g))
+    }
+    var f=this,g=arguments;
+    return clearTimeout(d),d=setTimeout(h,b),c&&!d&&(e=a.apply(f,g)),e
+  }
+}
 
 class SearchComponent extends Component {
   state = {
@@ -12,12 +22,11 @@ class SearchComponent extends Component {
     filteredData: [],
   };
   /* This function is called when you start typing in the input */
-  HandleSearch = e => {
+  HandleSearch = debounce((inputText) => {
     /* Filter search phrase (text typed in input) and return the result */
-    let filteredSearch = this.FilterSearch(e.target.value).join("");
+    let filteredSearch = this.FilterSearch(inputText.value).join("");
 
-
-    if (e.target.value === '') {
+    if (inputText.value === '') {
       this.HandleInvalidSearch(false);
       this.setState({
         searchText: '',
@@ -35,11 +44,8 @@ class SearchComponent extends Component {
 
         this.props.SearchComponentCallBack(filteredEmptyArrayMobsters, this.state.searching, this.state.searchText);
       });
-
     }
-
-
-  };
+  }, 500);
 
   HandleInvalidSearch = (isInvalid) => {
     let searchInput = document.getElementsByClassName('standard__input__style')[0];

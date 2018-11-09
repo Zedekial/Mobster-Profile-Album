@@ -6,7 +6,7 @@ export const SearchInputComponent = (props) => {
         <input
             className="standard__input__style"
             placeholder="Search Mobster"
-            onChange={e => props.HandleSearch(e)}
+            onChange={e => props.HandleSearch(e.target)}
         />
     )
 }

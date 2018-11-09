@@ -9,17 +9,15 @@ import '../CSS/AddEditFormComponent.css';
 class AddEditFormComponent extends Component {
     constructor(props){
         super(props);
-        this.props.location.state ? this.data = this.props.location.state.foo.data : this.data = false;
         this.state = {
-            id: this.data.id || '',
-            name: this.data.name || '',
-            email: this.data.email || '',
-            role: this.data.role || '',
-            phone: this.data.phone || '',
+            id: '',
+            name: '',
+            email: '',
+            role: '',
+            phone: '',
             formErrors: {email: '', name: '', role:'', phone:''},
-            formSubmit: {title: '', value: '', method: '', url: ''},
+            formSubmit: {title: '', value: '', method: '', url: '', delete: false},
             alert: {class: '', message: ''},
-            path: window.location.pathname,
             emailValid: false,
             nameValid: false,
             roleValid: false,
@@ -31,17 +29,53 @@ class AddEditFormComponent extends Component {
         this.validateForm = this.validateForm.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
         this.getData = this.getData.bind(this);
+        this.defineInitialValues = this.defineInitialValues.bind(this);
     }
 
     componentDidMount() {
-        switch (this.state.path){
-            case '/add':
-            this.setState({formSubmit: {title: 'Add new mobster', value: 'Create', method: 'post', url: '/mobsters'}});
+        this.defineInitialValues();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.location.state.path !== this.props.location.state.path) {
+          this.defineInitialValues();
+        }
+    }
+
+    defineInitialValues(){
+        switch (this.props.location.state.path){
+            case 'add':
+            this.setState({
+                id: '', 
+                name: '', 
+                email: '', 
+                role: '', 
+                phone: '', 
+                formSubmit: {title: 'Add new mobster', value: 'Create', method: 'post', url: '/mobsters', delete: false}});
             break;
-            case '/edit':
-            this.setState({formSubmit: {title: 'Update or remove mobster', value: 'Save', method: 'put', url: `/mobsters/${this.state.id}`}});
+            case 'edit':
+            const data = this.props.location.state.foo.data;
+            this.setState({
+                id: data.id, 
+                name: data.name, 
+                email: data.email, 
+                role: data.role, 
+                phone: data.phone, 
+                formSubmit: {title: 'Update or remove mobster', value: 'Save', method: 'put', url: `/mobsters/${data.id}`, delete: true}});
             break;
         }
+    }
+
+    getData(){
+        let formData = new FormData();
+        let fileField = document.getElementById('picture');
+
+        formData.append('name', this.state.name);
+        formData.append('email', this.state.email);
+        formData.append('role', this.state.role);
+        formData.append('phone', this.state.phone);
+        formData.append('src', fileField.files[0]);
+        return formData;
     }
 
     submitForm(){
@@ -58,18 +92,6 @@ class AddEditFormComponent extends Component {
         .catch((error) => {
             this.setState({alert: {class: 'error', message: error}})
         });
-    }
-
-    getData(){
-        let formData = new FormData();
-        let fileField = document.getElementById('picture');
-
-        formData.append('name', this.state.name);
-        formData.append('email', this.state.email);
-        formData.append('role', this.state.role);
-        formData.append('phone', this.state.phone);
-        formData.append('src', fileField.files[0]);
-        return formData;
     }
 
     deleteUser(){
@@ -132,7 +154,6 @@ class AddEditFormComponent extends Component {
     }
 
     render() {
-        console.log(this.props.location.state);
         return (
             <div className="add__user__form">
                 <h1>{this.state.formSubmit.title}</h1>
@@ -146,7 +167,7 @@ class AddEditFormComponent extends Component {
                 <AlertComponent className={this.state.alert.class} message={this.state.alert.message}/>
                 <div className="add__user__form__buttons">
                     <button className="standard__button__style" onClick={this.submitForm} disabled={!this.state.formValid}>{this.state.formSubmit.value}</button>
-                    {this.state.path === '/edit' && <button className="standard__button__style" onClick={this.deleteUser}>Delete</button> }
+                    {this.state.formSubmit.delete && <button className="standard__button__style" onClick={this.deleteUser}>Delete</button> }
                     <BackButtonComponent/>
                 </div>
                 <FormErrors formErrors={this.state.formErrors} />
