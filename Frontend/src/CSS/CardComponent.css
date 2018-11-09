@@ -44,7 +44,7 @@
     width: 100%;
     border-bottom: 1px solid grey;
     object-fit: cover;
-    height: 100%;
+    height: 250px;
 }
 
 .card__media h1{
