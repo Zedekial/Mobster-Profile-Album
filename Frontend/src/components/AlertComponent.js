@@ -2,7 +2,6 @@ import React from 'react';
 import '../CSS/AlertComponent.css';
 
 const AlertComponent = (props) => {
-    console.log(props.data);
     return (
         <div className={`alert__container alert--${props.className}`}>
             <p>{props.message}</p>
