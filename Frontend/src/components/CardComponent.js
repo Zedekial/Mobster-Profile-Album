@@ -14,38 +14,33 @@ class CardComponent extends Component {
       modalVisible: false,
       details: this.props
     };
-    this.toggleCard = this.toggleCard.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleClosingModal = this.handleClosingModal.bind(this);
-    this.handleOpeningModal = this.handleOpeningModal.bind(this);
   }
 
-  toggleCard() {
+  toggleCard = () => {
     this.setState({ active: !this.state.active });
     this.state.active ? this.setState({ classFront: 'card--show', classBack: 'card--hide' }) : this.setState({ classFront: 'card--hide', classBack: 'card--show' });
 
   }
 
-  handleClick() {
+  handleClick = () => {
     this.handleOpeningModal(this.props)
     this.toggleCard()
   }
 
-  handleClosingModal() {
+  handleClosingModal = () => {
     this.setState({
       modalVisible: false
     });
   }
 
-  /*{Function to handle opening of modal}*/
-  handleOpeningModal() {
+  handleOpeningModal = () => {
     this.setState({
       modalVisible: true,
       details: this.props
     });
   }
 
-  handleModalCardClick(event) {
+  handleModalCardClick = (event) => {
     event.stopPropagation();
     return;
   }

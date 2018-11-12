@@ -23,13 +23,6 @@ class AddEditFormComponent extends Component {
             roleValid: false,
             phoneValid: false,
         };
-        this.submitForm = this.submitForm.bind(this);
-        this.saveUser = this.saveUser.bind(this);
-        this.validateField = this.validateField.bind(this);
-        this.validateForm = this.validateForm.bind(this);
-        this.deleteUser = this.deleteUser.bind(this);
-        this.getData = this.getData.bind(this);
-        this.setInitialState = this.setInitialState.bind(this);
     }
 
     componentDidMount() {
@@ -42,7 +35,7 @@ class AddEditFormComponent extends Component {
         }
     }
 
-    setInitialState(){
+    setInitialState = () => {
         switch (this.props.location.state.path){
             case 'add':
               this.setState({
@@ -73,7 +66,7 @@ class AddEditFormComponent extends Component {
         }
     }
 
-    getData(){
+    getData = () => {
         let formData = new FormData();
         let fileField = document.getElementById('picture');
 
@@ -85,7 +78,7 @@ class AddEditFormComponent extends Component {
         return formData;
     }
 
-    submitForm(){
+    submitForm = () => {
         let inputList = document.querySelectorAll('.add__user__form__input');
         for (let input of inputList){
             this.validateField(input.id, input.value);
@@ -94,7 +87,7 @@ class AddEditFormComponent extends Component {
         this.validateForm() ? this.saveUser() : this.setState({alert: {class: 'error', message: 'Missing required inputs!'}});
     }
 
-    saveUser(){
+    saveUser = () => {
         axios({
             method: this.state.formSubmit.method,
             url: this.state.formSubmit.url,
@@ -110,7 +103,7 @@ class AddEditFormComponent extends Component {
         });
     }
 
-    deleteUser(){
+    deleteUser = () => {
         axios({
             method: 'delete',
             url: this.state.formSubmit.url,
@@ -126,13 +119,13 @@ class AddEditFormComponent extends Component {
         });
     }
 
-    setInput(nameInput, e) {
+    setInput = (nameInput, e) => {
         const value = e.target.value;
         this.setState({ [nameInput]: value },
             () => { this.validateField(nameInput, value) });
     }
 
-    validateField(fieldName, value) {
+    validateField = (fieldName, value) => {
         let fieldValidationErrors = this.state.formErrors;
 
         switch (fieldName) {
@@ -162,7 +155,7 @@ class AddEditFormComponent extends Component {
         this.setState({formErrors: fieldValidationErrors});
     }
 
-    validateForm() {
+    validateForm = () => {
         return this.state.emailValid && this.state.nameValid && this.state.roleValid && this.state.phoneValid;
     }
 
